@@ -1,0 +1,32 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Razor">
+
+	<PropertyGroup>
+		<OutputType>WinExe</OutputType>
+		<TargetFramework>net7.0-windows</TargetFramework>
+		<UseWPF>true</UseWPF>
+		<IsShippingPackage>false</IsShippingPackage>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Microsoft.AspNetCore.Components.WebView.Wpf" Version="7.0.92" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\MadeLib\MadeLib.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<Content Update="wwwroot\**">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+	</ItemGroup>
+
+	<ItemGroup>
+		<Folder Include="Pages\" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <None Include="..\MadeLib\Shared\PageTitle.razor" Link="PageTitle.razor" />
+	</ItemGroup>
+
+</Project>
