@@ -1,7 +1,7 @@
 ﻿using System.Windows;
 using Microsoft.Extensions.DependencyInjection;
-using MadeLib;
-using MadeLib.Data;
+using View;
+using View.Data;
 using System;
 using System.ComponentModel;
 using System.IO;

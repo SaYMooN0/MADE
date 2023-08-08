@@ -1,6 +1,6 @@
 using Microsoft.JSInterop;
 
-namespace MadeLib
+namespace View
 {
     public class ExampleJsInterop : IAsyncDisposable
     {
@@ -9,7 +9,7 @@ namespace MadeLib
         public ExampleJsInterop(IJSRuntime jsRuntime)
         {
             moduleTask = new(() => jsRuntime.InvokeAsync<IJSObjectReference>(
-                "import", "./_content/MadeLib/exampleJsInterop.js").AsTask());
+                "import", "./_content/View/exampleJsInterop.js").AsTask());
         }
 
         public async ValueTask<string> Prompt(string message)

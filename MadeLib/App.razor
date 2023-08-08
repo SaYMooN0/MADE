@@ -1,10 +1,10 @@
 ﻿
 <Router AppAssembly="@this.GetType().Assembly" PreferExactMatches="@true">
     <Found Context="routeData">
-        <RouteView RouteData="@routeData" DefaultLayout="@typeof(MadeLib.Shared.MainLayout)" />
+        <RouteView RouteData="@routeData" DefaultLayout="@typeof(View.Shared.MainLayout)" />
     </Found>
     <NotFound>
-        <LayoutView Layout="@typeof(MadeLib.Shared.MainLayout)">
+        <LayoutView Layout="@typeof(View.Shared.MainLayout)">
             <p>Sorry, there's nothing at this address.</p>
         </LayoutView>
     </NotFound>

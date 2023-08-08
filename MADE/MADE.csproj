@@ -12,7 +12,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<ProjectReference Include="..\MadeLib\MadeLib.csproj" />
+		<ProjectReference Include="..\MadeLib\View.csproj" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -26,7 +26,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <None Include="..\MadeLib\Shared\PageTitle.razor" Link="PageTitle.razor" />
+	  <None Include="..\View\Shared\PageTitle.razor" Link="PageTitle.razor" />
 	</ItemGroup>
 
 </Project>
