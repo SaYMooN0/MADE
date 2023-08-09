@@ -1,4 +1,4 @@
-namespace View.Data
+namespace MadeLib.Data
 {
     public class WeatherForecastService
     {

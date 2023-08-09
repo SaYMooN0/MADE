@@ -1,11 +1,9 @@
 ﻿using System.Windows;
 using Microsoft.Extensions.DependencyInjection;
-using View;
-using View.Data;
-using System;
+using MadeLib;
+using MadeLib.Data;
 using System.ComponentModel;
 using System.IO;
-using static System.Net.Mime.MediaTypeNames;
 using System.Text;
 
 namespace MADE

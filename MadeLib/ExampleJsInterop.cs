@@ -1,6 +1,6 @@
 using Microsoft.JSInterop;
 
-namespace View
+namespace MadeLib
 {
     public class ExampleJsInterop : IAsyncDisposable
     {

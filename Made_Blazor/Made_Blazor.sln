@@ -5,7 +5,7 @@ VisualStudioVersion = 17.6.33829.357
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MADE", "..\MADE\MADE.csproj", "{532E13E7-B57E-4602-B773-F9C9A774734B}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "View", "..\MadeLib\View.csproj", "{7682A3EF-E2DE-40B2-9995-B2FDFBEDFD35}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MadeLib", "..\MadeLib\MadeLib.csproj", "{7682A3EF-E2DE-40B2-9995-B2FDFBEDFD35}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
