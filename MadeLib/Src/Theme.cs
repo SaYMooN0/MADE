@@ -1,9 +1,9 @@
 ﻿
 using Newtonsoft.Json;
 using System.Drawing;
-namespace MADE.Src
+namespace MadeLib.Src
 {
-    internal class Theme
+    public class Theme
     {
         public string Name { get; private set; }
         private Color _main_back;
@@ -17,6 +17,22 @@ namespace MADE.Src
         private Color _third_bright;
         private Color _warning_main;
         private Color _warning_bright;
+
+        public Theme(string name, string mainBackColor, string secondBackColor, string thirdBackColor, string mainFrontColor, string secondFrontColor, string thirdFrontColor, string mainBrightColor, string secondBrightColor, string thirdBrightColor, string warningMainColor, string warningBrightColor)
+        {
+            Name = name;
+            MainBackColor = mainBackColor;
+            SecondBackColor = secondBackColor;
+            ThirdBackColor = thirdBackColor;
+            MainFrontColor = mainFrontColor;
+            SecondFrontColor = secondFrontColor;
+            ThirdFrontColor = thirdFrontColor;
+            MainBrightColor = mainBrightColor;
+            SecondBrightColor = secondBrightColor;
+            ThirdBrightColor = thirdBrightColor;
+            WarningMainColor = warningMainColor;
+            WarningBrightColor = warningBrightColor;
+        }
 
         public string MainBackColor
         {

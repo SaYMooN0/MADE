@@ -2,6 +2,7 @@
 using Microsoft.Extensions.DependencyInjection;
 using MadeLib;
 using MadeLib.Data;
+using MadeLib.Src;
 using System.ComponentModel;
 using System.IO;
 using System.Text;
@@ -11,6 +12,7 @@ namespace MADE
     public partial class MainWindow : Window
     {
         private readonly AppState _appState = new();
+        private ThemeCollection _themeCollection = new();
 
         public MainWindow()
         {
@@ -18,11 +20,9 @@ namespace MADE
         
             var serviceCollection = new ServiceCollection();
             serviceCollection.AddWpfBlazorWebView();
-            serviceCollection.AddSingleton<AppState>(_appState);
-            serviceCollection.AddSingleton<WeatherForecastService>();
+            serviceCollection.AddSingleton(_appState);
+            serviceCollection.AddSingleton(_themeCollection);
             Resources.Add("services", serviceCollection.BuildServiceProvider());
-            Closing += WriteCount;
-
         }
 
         private void WriteCount(object sender, CancelEventArgs e)

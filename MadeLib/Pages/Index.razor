@@ -1,5 +1,5 @@
 ﻿@page "/"
-@inject MadeLib.AppState AppState
+@inject MadeLib.Src.ThemeCollection themeCollection  
 <h1>Hello, world!</h1>
 
 <p>Welcome to your new app.</p>
@@ -9,6 +9,18 @@
 @code {
     private void Clicked()
     {
-        AppState.Counter++;
+        Src.Theme theme = new Src.Theme("n1",
+        "123123", 
+        "123123", 
+        "123123", 
+        "123123", 
+        "123123", 
+        "123123",
+        "123123",
+        "123123",
+        "123123",
+        "123123",
+        "123123");
+        theme.TrySaveToFile();
     }
 }
