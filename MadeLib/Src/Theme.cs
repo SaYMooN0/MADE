@@ -5,6 +5,7 @@ namespace MadeLib.Src
 {
     public class Theme
     {
+        
         public string Name { get; private set; }
         private Color _main_back;
         private Color _second_back;
@@ -17,7 +18,8 @@ namespace MadeLib.Src
         private Color _third_bright;
         private Color _warning_main;
         private Color _warning_bright;
-
+        public const string FileExtension = ".made_theme";
+        public const string ThemesFolderName = "themes";
         public Theme(string name, string mainBackColor, string secondBackColor, string thirdBackColor, string mainFrontColor, string secondFrontColor, string thirdFrontColor, string mainBrightColor, string secondBrightColor, string thirdBrightColor, string warningMainColor, string warningBrightColor)
         {
             Name = name;
@@ -128,14 +130,48 @@ namespace MadeLib.Src
         }
         public bool TrySaveToFile()
         {
-            string fileName = $"{Name}.madetheme";
+            string fileName =Name + FileExtension;
             try
             {
                 var content = JsonConvert.SerializeObject(this, Formatting.Indented);
-                File.WriteAllText(fileName, content);
+                File.WriteAllText(Path.Combine(ThemesFolderName, fileName), content);
                 return true;
             }
             catch {return false;}
+        }
+        public static Theme DefaultDark()
+        {
+            return new Theme(
+                "default dark",
+                "#272527", // MainBackColor
+                "#2F2E37", // SecondBackColor
+                "#3B3946", // ThirdBackColor
+                "#D8D3DC", // MainFrontColor
+                "#D4BFFD", // SecondFrontColor
+                "#A782EA", // ThirdFrontColor
+                "#8862D5", // MainBrightColor
+                "#7E54D5", // SecondBrightColor
+                "#5A39AD", // ThirdBrightColor
+                "#7E032A", // WarningMainColor
+                "#930336"  // WarningBrightColor
+            );
+        }
+        public static Theme DefaultLight()
+        {
+            return new Theme(
+                "default light",
+                "#E0E1DD", // MainBackColor
+                "#D5BDAF", // SecondBackColor
+                "#C9B9B0", // ThirdBackColor
+                "#457B9D", // MainFrontColor
+                "#1F4558", // SecondFrontColor
+                "#1D3557", // ThirdFrontColor
+                "#171020", // MainBrightColor
+                "#222B48", // SecondBrightColor
+                "#262D4A", // ThirdBrightColor
+                "#7E032A", // WarningMainColor
+                "#930336"  // WarningBrightColor
+            );
         }
     }
 

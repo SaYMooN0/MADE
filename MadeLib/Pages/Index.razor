@@ -9,18 +9,6 @@
 @code {
     private void Clicked()
     {
-        Src.Theme theme = new Src.Theme("n1",
-        "123123", 
-        "123123", 
-        "123123", 
-        "123123", 
-        "123123", 
-        "123123",
-        "123123",
-        "123123",
-        "123123",
-        "123123",
-        "123123");
-        theme.TrySaveToFile();
+        Theme t = themeCollection.Themes.FirstOrDefault();
     }
 }

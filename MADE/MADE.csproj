@@ -9,10 +9,15 @@
 
 	<ItemGroup>
 	  <Compile Remove="Pages\**" />
+	  <Compile Remove="wwwroot - Копировать\**" />
 	  <Content Remove="Pages\**" />
+	  <Content Remove="wwwroot - Копировать\**" />
 	  <EmbeddedResource Remove="Pages\**" />
+	  <EmbeddedResource Remove="wwwroot - Копировать\**" />
 	  <None Remove="Pages\**" />
+	  <None Remove="wwwroot - Копировать\**" />
 	  <Page Remove="Pages\**" />
+	  <Page Remove="wwwroot - Копировать\**" />
 	</ItemGroup>
 
 	<ItemGroup>

@@ -12,7 +12,7 @@ namespace MADE
     public partial class MainWindow : Window
     {
         private readonly AppState _appState = new();
-        private ThemeCollection _themeCollection = new();
+        private ThemeCollection _themeCollection = ThemeCollection.Initialize();
 
         public MainWindow()
         {
