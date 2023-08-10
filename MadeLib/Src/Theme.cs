@@ -18,8 +18,6 @@ namespace MadeLib.Src
         private Color _third_bright;
         private Color _warning_main;
         private Color _warning_bright;
-        public const string FileExtension = ".made_theme";
-        public const string ThemesFolderName = "themes";
         public Theme(string name, string mainBackColor, string secondBackColor, string thirdBackColor, string mainFrontColor, string secondFrontColor, string thirdFrontColor, string mainBrightColor, string secondBrightColor, string thirdBrightColor, string warningMainColor, string warningBrightColor)
         {
             Name = name;
@@ -112,32 +110,6 @@ namespace MadeLib.Src
             {
                 throw new ArgumentException("Invalid hex format. Expected RGB format.");
             }
-        }
-        public static Theme LoadFromJson(string path)
-        {
-            try
-            {
-                if (!File.Exists(path))
-                    return null;
-                string content = File.ReadAllText(path);
-                Theme theme = JsonConvert.DeserializeObject<Theme>(content);
-                return theme;
-            }
-            catch
-            {
-                return null;
-            }
-        }
-        public bool TrySaveToFile()
-        {
-            string fileName =Name + FileExtension;
-            try
-            {
-                var content = JsonConvert.SerializeObject(this, Formatting.Indented);
-                File.WriteAllText(Path.Combine(ThemesFolderName, fileName), content);
-                return true;
-            }
-            catch {return false;}
         }
         public static Theme DefaultDark()
         {
