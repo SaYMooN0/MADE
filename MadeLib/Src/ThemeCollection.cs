@@ -20,6 +20,7 @@ namespace MadeLib.Src
                 _currentThemeName = value?.Name;
             }
         }
+        [JsonProperty("_currentThemeName")]
         public string _currentThemeName { get; private set; }
         private List<string> _themeNames = new();
         private const string FileName = "themes.madeThemes";

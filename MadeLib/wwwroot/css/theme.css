@@ -1,13 +1,13 @@
 :root {
-    --back: #272527;
-    --back-2: #2F2E37;
-    --back-3: #3B3946;
-    --front: #D8D3DC;
-    --front-2: #D4BFFD;
-    --front-3: #A782EA;
-    --bright: #8862D5;
-    --bright-2: #7E54D5;
-    --bright-3: #5A39AD;
-    --warning-main: #7E032A;
-    --warning-bright: #930336;
+    --back: #fd35ff;
+    --back-2: #fd35ff;
+    --back-3: #fd35ff;
+    --front: #fd35ff;
+    --front-2: #fd35ff;
+    --front-3: #fd35ff;
+    --bright: #fd35ff;
+    --bright-2: #fd35ff;
+    --bright-3: #fd35ff;
+    --warning-main: #fd35ff;
+    --warning-bright: #fd35ff;
 }

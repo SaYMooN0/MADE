@@ -1,10 +1,25 @@
 ﻿@inherits LayoutComponentBase
 @namespace MadeLib.Shared
-<PageTitle>Made_Blazor</PageTitle>
+@inject IJSRuntime JSRuntime
+@inject MadeLib.Src.ThemeCollection themeCollection
 
-<div class="page">
-    <div style="height:10vh; width:10vw; background-color:var(--back)"></div>
+
+@code {
+    protected override async Task OnInitializedAsync()
+    {
+        await SetTheme();
+    }
+
+    private async Task SetTheme()
+    {
+        await JSRuntime.InvokeVoidAsync("setTheme", themeCollection.CurrentTheme);
+    }
+}
+
+<div class="page" @onload="SetTheme">
+   <p>Layout start</p>
     <main>
         @Body
     </main>
+    <p>Layout end</p>
 </div>
