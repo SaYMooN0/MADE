@@ -8,7 +8,7 @@ body {
     position: absolute;
     width: 20%;
     height: 30%;
-    top: 60%;
+    top: calc(70vh - 30px);
     left: 40%;
     row-gap: 4%;
     grid-template-rows: 1fr 1fr 1fr;
@@ -21,20 +21,20 @@ body {
     grid-template-columns: 1fr 5fr;
 }
 
-    .main-buttons:hover .project-text {
-        color: var(--third-frontcolor);
+    .main-buttons:hover .btn-text {
+        color: var(--front-3);
     }
 
     .main-buttons:hover .svg-path {
-        fill: var(--third-frontcolor);
+        fill: var(--front-3);
     }
 
-.project-icon {
+.btn-icon {
     width: calc(1vh+1vw);
     align-self: center;
 }
 
-.project-text {
+.btn-text {
     font-size: calc(1.9vw + 1.9vh);
     margin-top: calc(-1.5vh - 0.75vw);
     height: 160%;
@@ -42,11 +42,11 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    color: var(--main-frontcolor);
+    color: var(--front);
     font-family: 'Figtree';
     letter-spacing: 2px;
 }
 
 .svg-path {
-    fill: var(--main-frontcolor);
+    fill: var(--front);
 }

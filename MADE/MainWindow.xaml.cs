@@ -1,11 +1,10 @@
-﻿using System.Windows;
-using Microsoft.Extensions.DependencyInjection;
-using MadeLib;
-using MadeLib.Data;
+﻿using MadeLib.Data;
 using MadeLib.Src;
+using Microsoft.Extensions.DependencyInjection;
 using System.ComponentModel;
 using System.IO;
 using System.Text;
+using System.Windows;
 
 namespace MADE
 {
