@@ -1,0 +1,278 @@
+body {
+    background-color: var(--back);
+}
+
+.project-header {
+    position: absolute;
+    top: calc(2vh + 10px);
+    left: calc(4vw + 20px);
+    text-align: center;
+    display: inline-block;
+    color: var(--front);
+    font-family: 'Figtree';
+    letter-spacing: 2px;
+    font-size: calc(2.3vh + 2vw + 8px);
+    font-weight: 600;
+}
+
+.projects-container {
+    position: absolute;
+    top: 22%;
+    left: calc(3vw + 20px);
+    width: calc(100% - 20px - 36%);
+    height: 65%;
+    overflow-y: auto;
+}
+
+.projects-container::-webkit-scrollbar {
+    width: calc(0.25vw + 0.2vh + 4px);
+
+}
+
+.projects-container::-webkit-scrollbar-track {
+    background: var(--back-3);
+    border-radius: calc(0.1vw + 0.04vh + 2px);
+}
+
+.projects-container::-webkit-scrollbar-thumb {
+    background: var(--front-2);
+    border-radius: calc(0.1vw + 0.04vh + 2px);
+}
+
+.projects-container::-webkit-scrollbar-thumb:hover {
+    background: var(--front-3);
+}
+
+.project-item {
+
+    min-height: 60px;
+    height: calc(20px + 12%);
+    max-width: 100%;
+    width: 99%;
+    margin-top: 0.6%;
+    background-color: var(--back);
+    display: grid;
+    grid-template-rows: 7fr 3fr;
+    grid-template-columns: 7fr 12fr 2fr 1fr;
+    grid-template-areas:
+        "name name vrsn more"
+        "path path path path";
+    border-radius: calc(0.1vw + 0.06vh + 2px);
+    cursor: pointer;
+}
+
+.project-item:hover {
+    background-color: var(--back-2);
+}
+
+.project-text-name {
+    grid-area: name;
+    height: 100%;
+    color: var(--front-2);
+    font-family: 'Bahnschrift';
+    font-size: calc(1.64vh + 1.47vw);
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    font-weight: 700;
+    margin-top: -1.1%;
+    margin-left: 1%;
+    width: 98%;
+
+}
+
+.project-text-path {
+    grid-area: path;
+    height: 80%;
+    color: var(--front);
+    font-family: 'Figtree';
+    font-size: calc(0.63vh + 0.54vw + 2px);
+    text-align: left;
+    margin-top: -2%;
+    margin-left: 1%;
+    width: 92%;
+}
+
+.project-text-version {
+    grid-area: vrsn;
+    height: 80%;
+    color: var(--front-2);
+    font-family: 'Bahnschrift';
+    margin-top: 12%;
+    font-size: calc(1.05vh + 1.15vw);
+    text-align: right;
+    font-weight: 600;
+    margin-right: 20%;
+}
+
+.project-more-button {
+    margin-left: 0%;
+    margin-top: calc(12% + 0.15vw);
+    grid-area: more;
+    width: 80%;
+    aspect-ratio: 1/1;
+    cursor: pointer;
+    
+}
+
+.project-more-button path {
+    fill: var(--front-2);
+}
+
+.project-more-button:hover path {
+    fill: var(--bright-2);
+
+}
+
+.corrupted-sign {
+    margin-top: 8%;
+    grid-area: vrsn;
+    width: calc(6px + 40%);
+    aspect-ratio: 1/1;
+    cursor: pointer;
+    position: relative;
+    right: -26%;
+}
+.corrupted-sign-line
+{
+    stroke:var(--warning-main);
+}
+.corrupted-sign:hover .corrupted-sign-line {
+    stroke:var(--warning-bright);
+    stroke-width: 2.4;
+
+}
+
+.corrupted-sign-dialog {
+    position: absolute;
+    top: 0;
+    bottom: 10%;
+    width: 46%;
+    background-color: var(--back-2);
+    border-radius: calc(0.45vh + 0.45vw);
+    border-width: calc(0.05vh + 0.05vw + 4px);
+    border-color: var(--warning-bright);
+}
+dialog:focus {
+    outline: none;
+  }
+.corrupted-sign-dialog-container {
+    display: grid;
+    grid-template-rows: 8fr 1fr;
+    grid-template-columns: 9fr 2.2fr 1fr 2.2fr 1fr;
+    grid-template-areas:
+        "txt txt txt txt txt"
+        ".  btn-cncl .  btn-dlt . ";
+}
+
+.csd-txt {
+    grid-area: txt;
+    font-size: calc(1.1vh + 1.1vw);
+    color: var(--front);
+    font-family: 'Bahnschrift';
+    font-weight: 400;
+    text-align: justify;
+}
+
+.csd-btn {
+    background-color: var(--bright);
+    width: 100%;
+    grid-area: btn-cncl;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Figtree';
+    font-size: calc(0.75vh + 0.52vw + 2px);
+    letter-spacing: 0.1vw;
+    color: var(--front);
+}
+
+.csd-btn:hover {
+    background-color: var(--bright-3);
+    cursor: pointer;
+}
+
+.csd-btn-cncl {
+    grid-area: btn-cncl;
+}
+
+.csd-btn-dlt {
+    grid-area: btn-dlt;
+}
+
+.action-btns-container {
+    position: absolute;
+    width: calc(76px + 15vw);
+    min-width: 200px;
+    height: calc(21vh + 6vw + 120px);
+    right: 10%;
+    top: 12%;
+    display: grid;
+    grid-template-rows: 1fr 3fr 3fr 3fr;
+    grid-gap: calc(5px + 1vh);
+}
+
+.work-starting-text {
+    height: 100%;
+    font-family: 'Figtree';
+    display: flex;
+    align-items: center;
+    color: var(--front);
+    font-size: calc(1.25vh + 1.25vw + 4px);
+    letter-spacing: 2px;
+    margin-top: 0;
+}
+
+.action-btn {
+    height: 100%;
+    background-color: var(--back-2);
+    border-radius: calc(0.15vh + 0.15vw + 2px);
+    display: grid;
+    display: grid;
+    grid-template-rows: 1.8fr 1fr 1fr;
+    grid-template-columns: 1fr 5fr;
+    grid-template-areas:
+        "icn hdr"
+        "icn inf"
+        "icn inf";
+    cursor: pointer;
+}
+
+    .action-btn:hover {
+        cursor: pointer;
+        background-color: var(--back-3);
+    }
+
+.action-name {
+    height: 100%;
+    grid-area: hdr;
+    display: flex;
+    align-items: end;
+    color: var(--front-3);
+    font-family: 'Bahnschrift';
+    font-size: calc(0.8vw + 0.6vh + 6px);
+    cursor: pointer;
+}
+
+.action-info {
+    padding-right:5px;
+    margin-top: 0;
+    grid-area: inf;
+    color: var(--front);
+    font-family: 'Bahnschrift';
+    font-size: calc(0.62vw + 0.52vh + 2px);
+    cursor: pointer;
+}
+
+.action-icon {
+    align-self: center;
+    grid-area: icn;
+    width: 75%;
+    aspect-ratio: 1/1;
+    margin-left: 14%;
+    cursor: pointer;
+}
+
+.action-icon path {
+    stroke: var(--front-3);
+}
