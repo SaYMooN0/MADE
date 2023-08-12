@@ -1,8 +1,17 @@
 @import url('open-iconic/font/css/open-iconic-bootstrap.min.css');
 
-/*body {
-    background-color:palevioletred;
-}*/
+@font-face {
+    font-family: 'Figtree';
+    src: url('../assets/fonts/Figtree.ttf');
+}
+
+@font-face {
+    font-family: 'Bahnschrift';
+    src: url('../assets/fonts/Bahnschrift.ttf');
+}
+.no-underline{
+    text-decoration:none;
+}
 
 h1:focus {
     outline: none;
