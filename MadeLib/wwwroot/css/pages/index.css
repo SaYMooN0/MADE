@@ -1,0 +1,52 @@
+body {
+    background-color: var(--back);
+}
+
+.button-container {
+    background-color: transparent;
+    display: grid;
+    position: absolute;
+    width: 20%;
+    height: 30%;
+    top: 60%;
+    left: 40%;
+    row-gap: 4%;
+    grid-template-rows: 1fr 1fr 1fr;
+}
+
+.main-buttons {
+    height: 100%;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 5fr;
+}
+
+    .main-buttons:hover .project-text {
+        color: var(--third-frontcolor);
+    }
+
+    .main-buttons:hover .svg-path {
+        fill: var(--third-frontcolor);
+    }
+
+.project-icon {
+    width: calc(1vh+1vw);
+    align-self: center;
+}
+
+.project-text {
+    font-size: calc(1.9vw + 1.9vh);
+    margin-top: calc(-1.5vh - 0.75vw);
+    height: 160%;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--main-frontcolor);
+    font-family: 'Figtree';
+    letter-spacing: 2px;
+}
+
+.svg-path {
+    fill: var(--main-frontcolor);
+}
