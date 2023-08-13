@@ -6,38 +6,43 @@ body {
     background-color: transparent;
     display: grid;
     position: absolute;
-    width: 20%;
-    height: 30%;
-    top: calc(70vh - 30px);
-    left: 40%;
+    width: calc(8vw + 4vh + 100px);
+    height: calc(13vh + 40px + 3vw);
+    bottom: calc(2vh + 10px);
+    left: 50%;
+    transform: translateX(-50%);
     row-gap: 4%;
     grid-template-rows: 1fr 1fr 1fr;
 }
 
-.main-buttons {
+
+.main-btn {
     height: 100%;
     width: 100%;
     display: grid;
-    grid-template-columns: 1fr 5fr;
+    grid-template-columns: calc(10px + 2.2vw + 0.4vh) 1fr;
+    grid-column-gap:calc(2.6vh + 4px - 1.2vw);
+    cursor: pointer;
 }
 
-    .main-buttons:hover .btn-text {
+    .main-btn:hover .btn-text {
         color: var(--front-3);
     }
 
-    .main-buttons:hover .svg-path {
+    .main-btn:hover .svg-path {
         fill: var(--front-3);
     }
 
 .btn-icon {
-    width: calc(1vh+1vw);
+    height: calc(68% + 8px);
     align-self: center;
+    cursor: pointer;
+    aspect-ratio:1/1;
 }
 
 .btn-text {
-    font-size: calc(1.9vw + 1.9vh);
-    margin-top: calc(-1.5vh - 0.75vw);
-    height: 160%;
+    font-size: calc(1.5vw + 1.4vh + 9px);
+    height: 100%;
     text-align: center;
     display: flex;
     align-items: center;
@@ -45,6 +50,7 @@ body {
     color: var(--front);
     font-family: 'Figtree';
     letter-spacing: 2px;
+    cursor: pointer;
 }
 
 .svg-path {
