@@ -19,7 +19,7 @@ namespace MadeLib.Src
         [JsonIgnore]
         public List<MadeProject> PinnedProjects { get; private set; } = new();
 
-        
+
         public void SaveToFile()
         {
             string jsonInstance = JsonConvert.SerializeObject(this, Formatting.Indented);
@@ -29,6 +29,8 @@ namespace MadeLib.Src
         }
         static public ProjectManager Initialize()
         {
+         
+
             if (!File.Exists(FileName))
                 return new ProjectManager();
             else
@@ -37,6 +39,28 @@ namespace MadeLib.Src
                 ProjectManager pm = JsonConvert.DeserializeObject<ProjectManager>(jsonInstance);
                 return pm;
             }
+
+
+            
+        }
+        public bool TryCreateProject(string name,string pathToFolder,string version,Loader loader)
+        {
+            if (!Directory.Exists(pathToFolder))
+                return false;
+            if (AnyMadeProjectFilesInFolder(pathToFolder))
+                return false;
+            string fullPath = pathToFolder+"\\" + name + MadeProject.FileExtension;
+            MadeProject project = new(name, fullPath, pathToFolder, version, loader, DateTime.Now, DateTime.Now, new(), new(), new(), new());
+            project.SaveToFile();
+            Projects.Add(project);
+            return true;    
+        }
+        public bool AnyMadeProjectFilesInFolder(string pathToFolder)
+        {
+            if (!Directory.Exists(pathToFolder))
+                return false;
+            var files = Directory.EnumerateFiles(pathToFolder, "*"+MadeProject.FileExtension);
+            return files.Any();
         }
     }
 }

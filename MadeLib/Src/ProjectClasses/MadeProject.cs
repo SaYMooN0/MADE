@@ -6,7 +6,7 @@ namespace MadeLib.Src.ProjectClasses
     {
         public const string FileExtension = ".madeProject";
         public string Name { get; private set; }
-        public string PathToFile { get; private set; }
+        public string FullPath { get; private set; }
         public string PathToFolder { get; private set; }
         public string Version { get; private set; }
         public Loader Loader { get; private set; }
@@ -19,7 +19,7 @@ namespace MadeLib.Src.ProjectClasses
         public void SaveToFile()
         {
             string jsonInstance = JsonConvert.SerializeObject(this, Formatting.Indented);
-            File.WriteAllText(PathToFile, jsonInstance);
+            File.WriteAllText(FullPath, jsonInstance);
         }
         static MadeProject CreateFromFile( string filePath)
         {
@@ -29,6 +29,20 @@ namespace MadeLib.Src.ProjectClasses
             MadeProject project = JsonConvert.DeserializeObject<MadeProject>(jsonInstance);
             return project;
         }
-        
+        public MadeProject(string name, string fullPath, string pathToFolder, string version, Loader loader, DateTime creationDate, DateTime lastUpdated, List<string> itemsCollection, List<string> tagsCollection, ProjectSettings settings, List<HistoryItem> history)
+        {
+            Name = name;
+            FullPath = fullPath;
+            PathToFolder = pathToFolder;
+            Version = version;
+            Loader = loader;
+            CreationDate = creationDate;
+            LastUpdated = lastUpdated;
+            ItemsCollection = itemsCollection;
+            TagsCollection = tagsCollection;
+            Settings = settings;
+            History = history;
+        }
+
     }
 }
