@@ -46,8 +46,8 @@ namespace MadeLib.Src
         private static ThemeCollection LoadFromFile()
         {
             string jsonInstance = File.ReadAllText(FileName);
-            ThemeCollection _themes = JsonConvert.DeserializeObject<ThemeCollection>(jsonInstance);
-            return _themes;
+            ThemeCollection themes = JsonConvert.DeserializeObject<ThemeCollection>(jsonInstance);
+            return themes;
         }
         public void SaveToFile()
         {

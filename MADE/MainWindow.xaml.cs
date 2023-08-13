@@ -2,8 +2,6 @@
 using MadeLib.Src;
 using Microsoft.Extensions.DependencyInjection;
 using System.ComponentModel;
-using System.IO;
-using System.Text;
 using System.Windows;
 
 namespace MADE
@@ -12,27 +10,23 @@ namespace MADE
     {
         private readonly AppState _appState = new();
         private ThemeCollection _themeCollection = ThemeCollection.Initialize();
+        private ProjectManager _projectManager =  ProjectManager.Initialize();
 
         public MainWindow()
         {
             InitializeComponent();
-        
             var serviceCollection = new ServiceCollection();
             serviceCollection.AddWpfBlazorWebView();
             serviceCollection.AddSingleton(_appState);
             serviceCollection.AddSingleton(_themeCollection);
             Resources.Add("services", serviceCollection.BuildServiceProvider());
+            Closing += WindowClosing;
         }
 
-        private void WriteCount(object sender, CancelEventArgs e)
+        private void WindowClosing(object sender, CancelEventArgs e)
         {
-            using (FileStream fstream = new FileStream("1.txt", FileMode.OpenOrCreate))
-            {
-                string text ="counts "+ _appState.Counter.ToString();
-                byte[] buffer = Encoding.Default.GetBytes(text);
-                // запись массива байтов в файл
-                fstream.Write(buffer, 0, buffer.Length);
-            }
+            _themeCollection.SaveToFile();
+            _projectManager.SaveToFile();
         }
     }
 

@@ -1,6 +1,6 @@
 ﻿namespace MadeLib.Src.ProjectClasses
 {
-    internal class HistoryItem
+    public class HistoryItem
     {
     }
 }
