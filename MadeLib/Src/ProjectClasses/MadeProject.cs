@@ -21,7 +21,7 @@ namespace MadeLib.Src.ProjectClasses
             string jsonInstance = JsonConvert.SerializeObject(this, Formatting.Indented);
             File.WriteAllText(FullPath, jsonInstance);
         }
-        static MadeProject CreateFromFile( string filePath)
+        public static MadeProject CreateFromFile( string filePath)
         {
             string jsonInstance = File.ReadAllText(filePath);
             if(string.IsNullOrEmpty(jsonInstance))
