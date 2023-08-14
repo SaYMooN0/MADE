@@ -19,6 +19,7 @@ namespace MADE
             serviceCollection.AddWpfBlazorWebView();
             serviceCollection.AddSingleton(_appState);
             serviceCollection.AddSingleton(_themeCollection);
+            serviceCollection.AddSingleton(_projectManager);
             Resources.Add("services", serviceCollection.BuildServiceProvider());
             Closing += WindowClosing;
         }

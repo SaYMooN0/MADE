@@ -1,8 +1,32 @@
 @page "/startingActions"
+@inject MadeLib.Src.ProjectManager projectManager
 <link href="_content/MadeLib/css/pages/startingActions.css" rel="stylesheet" />
 
+
 <label id="project-header" class="project-header">Your projects</label>
-<div class="projects-container" id="projects-container"></div>
+<div class="projects-container" id="projects-container">
+    @foreach (MadeProject project in projectManager.PinnedProjects)
+    {
+
+    }
+    @if (projectManager.PinnedProjects != null && projectManager.PinnedProjects.Count > 0)
+    {
+        <div class="pinned-projects-divider"></div>
+    }
+    @foreach (MadeProject project in projectManager.Projects)
+    {
+        <a class="project-item">
+            <label class="project-text-name">@project.Name</label>
+            <label class="project-text-path">@project.FullPath</label>
+            <svg class="project-more-button" fill="#000000" version="1.1" viewBox="0 0 342.382 342.382" xml:space="preserve">
+                <path d="M45.225,125.972C20.284,125.972,0,146.256,0,171.191c0,24.94,20.284,45.219,45.225,45.219c24.926,0,45.219-20.278,45.219-45.219C90.444,146.256,70.151,125.972,45.225,125.972z" />
+                <path d="M173.409,125.972c-24.938,0-45.225,20.284-45.225,45.219c0,24.94,20.287,45.219,45.225,45.219c24.936,0,45.226-20.278,45.226-45.219C218.635,146.256,198.345,125.972,173.409,125.972z" />
+                <path d="M297.165,125.972c-24.932,0-45.222,20.284-45.222,45.219c0,24.94,20.29,45.219,45.222,45.219 c24.926,0,45.217-20.278,45.217-45.219C342.382,146.256,322.091,125.972,297.165,125.972z" />
+            </svg>
+            <label class="project-text-version">@project.Loader @project.Version</label>
+        </a>
+    }
+</div>
 <div class="action-btns-container">
     <p class="work-starting-text">Start working</p>
     <a class="action-btn no-underline" href="createNewProject.html">
