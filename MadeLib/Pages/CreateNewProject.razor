@@ -1,0 +1,37 @@
+﻿@page "/createNewProject"
+<form class="input-container" id="newProjectForm">
+    <header class="new-project-header">Set up new project</header>
+    <p class="new-line"><label class="new-project-label">Project path: </label></p>
+    <p class="new-line">
+        <input class="new-project-input" type="text" id="path-input" name="path" required autocomplete="off">
+        <button id="openFileExplorerBtn" class="open-file-explorer-btn" type="button">...</button>
+    </p>
+    <p id="warning" class="warning"></p>
+    <p class="new-line"> <label class="new-project-label">Name: </label> </p>
+    <p class="new-line">
+        <input class="new-project-input" type="text" id="name-input" name="name" required
+               autocomplete="off">
+    </p>
+    <p class="new-line"> <label class="new-project-label">Version: </label> </p>
+    <p class="new-line">
+        <input class="new-project-input" type="text" id="version-input" name="version" required
+               autocomplete="off" />
+    </p>
+    <p class="new-line"> <label class="new-project-label">Mod loader: </label> </p>
+    <p class="new-line">
+        <select class="loader-select" name="loader" required id="loader-input">
+            <option value="forge" selected>Forge</option>
+            <option value="fabric">Fabric</option>
+        </select>
+    </p>
+    <button class="create-btn" type="submit">Create</button>
+</form>
+<a class="cancel-btn no-underline" href="/startingActions">Cancel</a>
+<dialog id="warningDialog" class="warning-dialog">
+    <p class="warning-dialog-p" id="warningDialogString"></p>
+    <div class="warning-dialog-btns-container">
+        <p></p>
+        <button id="openGithubBtn" class="warning-dialog-btn-open">Open issues page</button>
+        <button id="closeWarningDialog" class="warning-dialog-btn-ok">Ok</button>
+    </div>
+</dialog>

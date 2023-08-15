@@ -5,7 +5,6 @@ namespace MadeLib.Src
 {
     public class Theme
     {
-        
         public string Name { get; private set; }
         private Color _main_back;
         private Color _second_back;
