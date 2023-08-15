@@ -1,0 +1,187 @@
+body {
+	background-color: var(--back);
+}
+
+.input-container {
+	margin-top: 8vh;
+	margin-left: 5vw;
+}
+
+.new-project-header {
+	height: 12vh;
+	display: inline-block;
+	color: var(--front);
+	font-family: 'Figtree';
+	letter-spacing: 2px;
+	font-size: calc(1.8vh + 1.4vw + 6px);
+	font-weight: 500;
+}
+
+.new-line {
+	margin-top: -1.1vh;
+	align-items: center;
+	display: flex;
+	height: 3.2vh;
+}
+
+.new-project-label {
+	display: inline-block;
+	color: var(--front);
+	font-family: 'Figtree';
+	letter-spacing: 1px;
+	font-size: calc(0.9vh + 0.6vw + 3px);
+	font-weight: 200;
+	margin-top: 2vh;
+}
+
+.new-project-input {
+	height: calc(1.5vh + 7px);
+	width: calc(38vw + 30px);
+	background-color: var(--back-2);
+	border: none;
+	margin-top: 0.7vh;
+	font-family: 'Figtree';
+	font-size: calc(0.3vh + 0.7vw + 2px);
+	font-weight: 300;
+	color: var(--front);
+}
+
+input:focus {
+	outline: none;
+	background-color: var(--back-3);
+}
+
+.open-file-explorer-btn {
+	height: calc(1.7vh + 7px);
+	width: 2vw;
+	align-self: center;
+	background-color: var(--back-2);
+	border: none;
+	margin-top: 0.7vh;
+	margin-left: 1vw;
+	color: var(--front);
+	font-size: calc(0.5vh + 0.7vw + 2px);
+	font-weight: 900;
+	letter-spacing: 2px;
+	font-family: 'Figtree';
+	padding-left: 9px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+	.open-file-explorer-btn:hover {
+		background-color: var(--back-3);
+		cursor: pointer;
+	}
+
+.create-btn {
+	position: absolute;
+	bottom: calc(10px + 2vh);
+	right: calc(13px + 1vw + 0.8vh);
+	height: calc(18px + 1.8vh + 0.3vw);
+	width: calc(36px + 1vh + 3.9vw);
+	background-color: var(--back-3);
+	border: none;
+	font-family: 'Figtree';
+	font-size: calc(0.3vh + 0.44vw + 7px);
+	font-weight: 200;
+	color: var(--front);
+}
+
+	.create-btn:hover {
+		background-color: var(--bright-2);
+		cursor: pointer;
+	}
+
+.cancel-btn {
+	position: absolute;
+	bottom: calc(10px + 2vh);
+	right: calc(1vh + 57px + 6vw);
+	height: calc(18px + 1.8vh + 0.3vw);
+	width: calc(36px + 1vh + 3.9vw);
+	background-color: var(--back-3);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-family: 'Figtree';
+	font-size: calc(0.3vh + 0.44vw + 7px);
+	font-weight: 200;
+	color: var(--front);
+}
+
+	.cancel-btn:hover {
+		background-color: var(--bright-2);
+		cursor: pointer;
+	}
+
+.warning {
+	font-family: 'Figtree';
+	color: var(--warning-main);
+	font-size: calc(0.4vh + 0.8vw + 3px);
+	font-weight: 200;
+	width: 60vw;
+	margin-top: -1vh;
+}
+
+.loader-select {
+	margin-top: calc(1.1vh + 6px);
+	width: calc(40px + 7.3vw);
+	background-color: var(--back-2);
+	outline: none;
+	border: none;
+	color: var(--front);
+	height: calc(20px + 1vh);
+	font-size: calc(0.45vh + 0.5vw + 5px);
+	font-family: 'Figtree';
+}
+
+.warning-dialog {
+	position: absolute;
+	top: 0;
+	bottom: 14%;
+	width: 47%;
+	background-color: var(--back-2);
+	border-radius: calc(0.35vh + 0.35vw + 7px);
+	border-width: calc(0.05vh + 0.05vw + 4px);
+	border-color: var(--warning-bright);
+	padding-top: 0;
+	padding-left: 1%;
+	padding-right: 1%;
+}
+
+.warning-dialog-p {
+	font-family: 'Figtree';
+	color: var(--front);
+	font-size: calc(0.4vh + 0.8vw + 3px);
+	font-weight: 200;
+	width: 100%;
+	text-align: justify;
+}
+
+.warning-dialog:focus {
+	outline: none;
+}
+
+.warning-dialog-btns-container {
+	width: 100%;
+	display: grid;
+	grid-template-columns: 4fr 1fr 1fr;
+	column-gap: calc(2vw + 10px);
+}
+
+	.warning-dialog-btns-container button {
+		width: 100%;
+		font-family: 'Figtree';
+		color: var(--front);
+		font-size: calc(0.3vh + 0.5vw + 2px);
+		font-weight: 200;
+		border: 0;
+		outline: none;
+		background-color: var(--back-3);
+	}
+
+		.warning-dialog-btns-container button:hover {
+			background-color: var(--bright-2);
+			cursor: pointer;
+		}
