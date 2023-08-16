@@ -18,10 +18,10 @@ body {
 }
 
 .new-line {
-	margin-top: -1.1vh;
+	margin-top: calc(-0.6vh + 5px);
 	align-items: center;
 	display: flex;
-	height: 3.2vh;
+	height: 3.4vh;
 }
 
 .new-project-label {
@@ -29,13 +29,13 @@ body {
 	color: var(--front);
 	font-family: 'Figtree';
 	letter-spacing: 1px;
-	font-size: calc(0.7vh + 0.4vw + 8px);
+	font-size: calc(0.68vh + 0.38vw + 10px);
 	font-weight: 200;
 	margin-top: 2vh;
 }
 
 .new-project-input {
-	height: calc(1.45vh + 11px);
+	height: calc(1.47vh + 10px);
 	width: calc(30vw + 200px + 9vh);
 	background-color: var(--back-2);
 	border: 1px solid transparent;
@@ -123,16 +123,16 @@ input:focus {
 	color: var(--warning-main);
 	font-size: calc(0.4vh + 0.8vw + 3px);
 	font-weight: 200;
-	width: 60vw;
+	width: calc(30vw + 200px + 9vh);
 	margin-top: -1vh;
 }
 
 .loader-select {
 	color: var(--front);
 	background-color: var(--back-2);
-	height: calc(1.45vh + 11px);
-	width: calc(40px + 7.3vw);
-	font-size: calc(0.45vh + 0.5vw + 5px);
+	height: calc(1vh + 17px + 0.3vw);
+	width: calc(30px + 6vw + 1vh);
+	font-size: calc(0.45vh + 0.5vw + 6px);
 	font-family: 'Figtree';
 	margin-top: calc(1.1vh + 6px);
 	outline: none;

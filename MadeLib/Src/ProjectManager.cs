@@ -18,14 +18,14 @@ namespace MadeLib.Src
         {
             get
             {
-                if(_projectLinks==null || _projectLinks.Count == 0)
+                if (_projectLinks == null || _projectLinks.Count == 0)
                     return new();
                 List<MadeProject> projects = new();
                 MadeProject project = null;
                 foreach (string projectString in _projectLinks)
                 {
-                    project=MadeProject.CreateFromFile(projectString);
-                    if(project != null)
+                    project = MadeProject.CreateFromFile(projectString);
+                    if (project != null)
                         projects.Add(project);
                 }
                 return projects;
@@ -120,9 +120,57 @@ namespace MadeLib.Src
         }
         public ProjectCreationInformation GetInformationToFillCreationForm(string folderPath)
         {
+            string fullPath = Path.Combine(folderPath, "minecraftinstance.json");
             ProjectCreationInformation info = new();
-            info.FolderPath= folderPath;
+            info.FolderPath = folderPath;
+            if (!File.Exists(fullPath))
+                return info;
+            string parentDirName = Path.GetDirectoryName(fullPath);
+            if (parentDirName == null)
+                return info;
+            string contents;
+            try
+            {
+                contents = File.ReadAllText(fullPath);
+            }
+            catch (Exception)
+            {
+                return info;
+            }
+            string name = Path.GetFileName(folderPath);
+            if (string.IsNullOrEmpty(name))
+                return info;
+            info.Name = name;
+
+            string version = GetSubstringBetween(contents, "\"minecraftVersion\":", ",");
+            if (version == null)
+                return info;
+            string cleanVersion = new string(version.Where(c => char.IsDigit(c) || c == '.').ToArray());
+            info.Version = cleanVersion;
+
+            string loaderName = GetSubstringBetween(contents, "\"name\":", "\",");
+            if (loaderName == null)
+                return info;
+            string cleanLoader = loaderName.Split('-').FirstOrDefault() ?? "-1";
+            info.ModLoader = Enum.Parse<Loader>(CapitalizeFirstLetter(cleanLoader));
             return info;
+        }
+        private string GetSubstringBetween(string source, string startStr, string endStr)
+        {
+            int start = source.IndexOf(startStr);
+            if (start == -1) return null;
+            start += startStr.Length;
+            int end = source.IndexOf(endStr, start);
+            if (end == -1) return null;
+            return source.Substring(start, end - start).Trim().Trim(',', '\"');
+        }
+        public static string CapitalizeFirstLetter(string input)
+        {
+            if (string.IsNullOrEmpty(input))
+            {
+                return string.Empty;
+            }
+            return char.ToUpper(input[0]) + input.Substring(1);
         }
     }
 }

@@ -4,7 +4,7 @@
     {
         public string FolderPath { get; set; }
         public string Name{ get; set; }
-        public string Version { get; set; } 
-        public Loader ModLoader {  get; set; }  
+        public string Version { get; set; }
+        public Loader? ModLoader { get; set; } = null;
     }
 }
