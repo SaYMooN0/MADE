@@ -43,7 +43,8 @@
     {
         string path=projectManager.ChooseFolder();
         ProjectCreationInformation creationInformation = projectManager.GetInformationToFillCreationForm(path);
-        ProjectFolderPath = creationInformation.FolderPath;
+        if (!string.IsNullOrEmpty( creationInformation.FolderPath))
+            ProjectFolderPath = creationInformation.FolderPath;
     }
 
 }
