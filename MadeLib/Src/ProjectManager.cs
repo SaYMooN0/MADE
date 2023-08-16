@@ -1,6 +1,6 @@
 ﻿using MadeLib.Src.ProjectClasses;
 using Newtonsoft.Json;
-
+using Microsoft.WindowsAPICodePack.Dialogs;
 namespace MadeLib.Src
 {
     public class ProjectManager
@@ -67,13 +67,6 @@ namespace MadeLib.Src
                 }
             }
         }
-        public void SaveToFile()
-        {
-            string jsonInstance = JsonConvert.SerializeObject(this, Formatting.Indented);
-            File.WriteAllText(FileName, jsonInstance);
-            if (Projects != null && Projects.Count > 0)
-                foreach (var item in Projects) { item.SaveToFile(); }
-        }
         static public ProjectManager Initialize()
         {
             if (!File.Exists(FileName))
@@ -84,6 +77,13 @@ namespace MadeLib.Src
                 ProjectManager pm = JsonConvert.DeserializeObject<ProjectManager>(jsonInstance);
                 return pm;
             }
+        }
+        public void SaveToFile()
+        {
+            string jsonInstance = JsonConvert.SerializeObject(this, Formatting.Indented);
+            File.WriteAllText(FileName, jsonInstance);
+            if (Projects != null && Projects.Count > 0)
+                foreach (var item in Projects) { item.SaveToFile(); }
         }
         public bool TryCreateProject(string name, string pathToFolder, string version, Loader loader)
         {
@@ -104,6 +104,25 @@ namespace MadeLib.Src
                 return false;
             var files = Directory.EnumerateFiles(pathToFolder, "*" + MadeProject.FileExtension);
             return files.Any();
+        }
+        public string ChooseFolder()
+        {
+            using (var dialog = new CommonOpenFileDialog())
+            {
+                dialog.IsFolderPicker = true;
+                if (dialog.ShowDialog() == CommonFileDialogResult.Ok)
+                {
+                    string folder = dialog.FileName;
+                    return folder;
+                }
+                return null;
+            }
+        }
+        public ProjectCreationInformation GetInformationToFillCreationForm(string folderPath)
+        {
+            ProjectCreationInformation info = new();
+            info.FolderPath= folderPath;
+            return info;
         }
     }
 }

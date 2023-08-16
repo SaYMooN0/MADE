@@ -1,11 +1,12 @@
 ﻿@page "/createNewProject"
+@inject MadeLib.Src.ProjectManager projectManager
 <link href="_content/MadeLib/css/pages/createNewProject.css" rel="stylesheet" />
 <form class="input-container" id="newProjectForm">
     <header class="new-project-header">Set up new project</header>
     <p class="new-line"><label class="new-project-label">Project path: </label></p>
     <p class="new-line">
-        <input class="new-project-input" type="text" id="path-input" name="path" required autocomplete="off">
-        <button id="openFileExplorerBtn" class="open-file-explorer-btn" type="button">...</button>
+        <input class="new-project-input" type="text" id="path-input" name="path" required autocomplete="off" @bind="ProjectFolderPath">
+        <button id="openFileExplorerBtn" class="open-file-explorer-btn" type="button" @onclick="FillForm">...</button>
     </p>
     <p id="warning" class="warning"></p>
     <p class="new-line"> <label class="new-project-label">Name: </label> </p>
@@ -36,3 +37,13 @@
         <button id="closeWarningDialog" class="warning-dialog-btn-ok">Ok</button>
     </div>
 </dialog>
+@code{
+    private string ProjectFolderPath { get; set; }
+    private void FillForm()
+    {
+        string path=projectManager.ChooseFolder();
+        ProjectCreationInformation creationInformation = projectManager.GetInformationToFillCreationForm(path);
+        ProjectFolderPath = creationInformation.FolderPath;
+    }
+
+}
