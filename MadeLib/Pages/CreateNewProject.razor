@@ -21,9 +21,11 @@
     </p>
     <p class="new-line"> <label class="new-project-label">Mod loader: </label> </p>
     <p class="new-line">
-        <select class="loader-select" name="loader" required id="loader-input">
-            <option value="forge" selected>Forge</option>
-            <option value="fabric">Fabric</option>
+        <select @bind="ModLoader" class="loader-select" name="loader" required id="loader-input">
+            @foreach (var loader in Loaders)
+            {
+                <option value="@loader">@loader</option>
+            }
         </select>
     </p>
     <button class="create-btn" type="submit">Create</button>
@@ -41,7 +43,8 @@
     private string FolderPath { get; set; }
     private string Name { get; set; }
     private string Version { get; set; }
-    private string ModLoader { get; set; }
+    private Loader ModLoader { get; set; } = Loader.Forge;
+    private IEnumerable<string> Loaders => Enum.GetNames(typeof(Loader));
     private ElementReference WarningDialog;
 
     private void FillForm()
@@ -52,12 +55,11 @@
         {
             FolderPath = path;
             ProjectCreationInformation creationInformation = projectManager.GetInformationToFillCreationForm(path);
-            string loader = creationInformation.ModLoader.ToString();
-            if (!string.IsNullOrEmpty(loader))
+            if (!string.IsNullOrEmpty(creationInformation.ModLoader.ToString()))
             {
                 Name = creationInformation.Name;
                 Version = creationInformation.Version;
-                ModLoader = creationInformation.ModLoader.ToString();
+                ModLoader = (Loader)creationInformation.ModLoader;
                 CloseWarning();
             }
             else
@@ -65,7 +67,7 @@
                 ShowWarning();
                 Name = "";
                 Version = "";
-                ModLoader = Loader.Forge.ToString();
+                ModLoader = Loader.Forge;
             }
         }
     }
