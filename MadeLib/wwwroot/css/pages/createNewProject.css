@@ -3,25 +3,24 @@ body {
 }
 
 .input-container {
-	margin-top: 8vh;
+	margin-top: calc(9vh - 0.55vw);
 	margin-left: 5vw;
 }
 
 .new-project-header {
-	height: 12vh;
 	display: inline-block;
 	color: var(--front);
 	font-family: 'Figtree';
 	letter-spacing: 2px;
-	font-size: calc(1.8vh + 1.4vw + 6px);
+	font-size: calc(2.3vh + 1.1vw + 6px);
 	font-weight: 500;
+	height:calc(8vh + 25px);
 }
 
 .new-line {
-	margin-top: calc(-0.6vh + 5px);
+	margin-top: calc(3vh - 3px);
 	align-items: center;
 	display: flex;
-	height: 3.4vh;
 }
 
 .new-project-label {
@@ -31,18 +30,17 @@ body {
 	letter-spacing: 1px;
 	font-size: calc(0.68vh + 0.38vw + 10px);
 	font-weight: 200;
-	margin-top: 2vh;
 }
 
 .new-project-input {
-	height: calc(1.47vh + 10px);
-	width: calc(30vw + 200px + 9vh);
+	height: calc(1.7vh + 7px + 0.12vw);
+	width: calc(38vw + 180px + 9vh);
 	background-color: var(--back-2);
 	border: 1px solid transparent;
 	border-radius:calc(1px + 0.04vw + 0.1vh);
-	margin-top: 0.8vh;
+	margin-top:calc(-0.5vh - 10px);
 	font-family: 'Figtree';
-	font-size: calc(0.27vh + 0.58vw + 5px);
+	font-size: calc(0.49vh + 0.5vw + 4px);
 	font-weight: 300;
 	color: var(--front);
 }
@@ -53,16 +51,16 @@ input:focus {
 }
 
 .open-file-explorer-btn {
-	height: calc(1.24vh + 15px);
-	width: calc(16px + 0.8vw + 1.2vh);
+	height: calc(1.65vh + 12px + 0.1vw);
+	width: calc(10px + 0.8vw + 1.4vh);
 	align-self: center;
 	background-color: var(--back-2);
 	border: 1px solid transparent;
-	border-radius: calc(1px + 0.04vw + 0.1vh);
-	margin-top: 0.8vh;
+	border-radius: calc(1px + 0.06vw + 0.12vh);
 	margin-left: calc(5px + 0.5vw);
+	margin-top: calc(-0.6vh - 10px);
 	color: var(--front);
-	font-size: calc(0.5vh + 0.7vw + 11px);
+	font-size: calc(0.53vh + 0.72vw + 9px);
 	font-weight: 900;
 	letter-spacing: 2px;
 	font-family: 'Figtree';
@@ -70,7 +68,7 @@ input:focus {
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	padding-bottom:calc(0.14vh + 0.1vw + 1px);
+	padding-bottom: calc(0.14vh + 0.11vw + 3px);
 }
 
 	.open-file-explorer-btn:hover {
@@ -87,9 +85,11 @@ input:focus {
 	background-color: var(--back-3);
 	border: none;
 	font-family: 'Figtree';
-	font-size: calc(0.3vh + 0.44vw + 7px);
+	font-size: calc(0.33vh + 0.48vw + 8px);
 	font-weight: 200;
 	color: var(--front);
+	border: 1px solid transparent;
+	border-radius: calc(1px + 0.04vw + 0.1vh)
 }
 
 	.create-btn:hover {
@@ -108,9 +108,11 @@ input:focus {
 	justify-content: center;
 	align-items: center;
 	font-family: 'Figtree';
-	font-size: calc(0.3vh + 0.44vw + 7px);
+	font-size: calc(0.33vh + 0.48vw + 8px);
 	font-weight: 200;
 	color: var(--front);
+	border: 1px solid transparent;
+	border-radius: calc(1px + 0.04vw + 0.1vh)
 }
 
 	.cancel-btn:hover {
@@ -121,20 +123,20 @@ input:focus {
 .warning {
 	font-family: 'Figtree';
 	color: var(--warning-main);
-	font-size: calc(0.4vh + 0.8vw + 3px);
+	font-size: calc(0.54vh + 0.53vw + 7px);
 	font-weight: 200;
-	width: calc(30vw + 200px + 9vh);
-	margin-top: -1vh;
+	width: calc(42vw + 200px + 9vh);
+	margin-top: calc(1vh - 18px + 0.15vw);
 }
 
 .loader-select {
 	color: var(--front);
 	background-color: var(--back-2);
-	height: calc(1vh + 17px + 0.3vw);
+	height: calc(0.8vh + 19px + 0.4vw);
 	width: calc(30px + 6vw + 1vh);
-	font-size: calc(0.45vh + 0.5vw + 6px);
+	font-size: calc(0.48vh + 0.52vw + 8px);
 	font-family: 'Figtree';
-	margin-top: calc(1.1vh + 6px);
+	margin-top: calc(-0.8vh - 6px);
 	outline: none;
 	border: 1px solid transparent;
 	border-radius: calc(1px + 0.04vw + 0.1vh);
@@ -178,7 +180,7 @@ input:focus {
 		width: 100%;
 		font-family: 'Figtree';
 		color: var(--front);
-		font-size: calc(0.3vh + 0.5vw + 2px);
+		font-size: calc(0.3vh + 0.6vw + 2px);
 		font-weight: 200;
 		border: 0;
 		outline: none;

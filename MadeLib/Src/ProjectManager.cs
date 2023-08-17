@@ -1,6 +1,8 @@
 ﻿using MadeLib.Src.ProjectClasses;
 using Newtonsoft.Json;
 using Microsoft.WindowsAPICodePack.Dialogs;
+using Microsoft.JSInterop;
+
 namespace MadeLib.Src
 {
     public class ProjectManager
@@ -85,6 +87,7 @@ namespace MadeLib.Src
             if (Projects != null && Projects.Count > 0)
                 foreach (var item in Projects) { item.SaveToFile(); }
         }
+        [JSInvokable]
         public bool TryCreateProject(string name, string pathToFolder, string version, Loader loader)
         {
             if (!Directory.Exists(pathToFolder))

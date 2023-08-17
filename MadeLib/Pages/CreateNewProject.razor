@@ -3,25 +3,25 @@
 @inject IJSRuntime JSRuntime;
 
 <link href="_content/MadeLib/css/pages/createNewProject.css" rel="stylesheet" />
-<form class="input-container" id="newProjectForm">
+<form class="input-container" id="newProjectForm" @onsubmit="CreationFormOnsubmit">
     <header class="new-project-header">Set up new project</header>
     <p class="new-line"><label class="new-project-label">Project path: </label></p>
     <p class="new-line">
-        <input class="new-project-input" type="text" id="path-input" name="path" required autocomplete="off" @bind="FolderPath">
+        <input class="new-project-input" type="text" id="path-input" required autocomplete="off" @bind="FolderPath" name="@(DateTime.Now.ToLongDateString()+"FolderPath")">
         <button id="openFileExplorerBtn" class="open-file-explorer-btn" type="button" @onclick="FillForm">...</button>
     </p>
     <p id="warning" class="warning"></p>
     <p class="new-line"> <label class="new-project-label">Name: </label> </p>
     <p class="new-line">
-        <input class="new-project-input" type="text" id="name-input" name="name" required autocomplete="off" @bind="Name">
+        <input class="new-project-input" type="text" id="name-input" required autocomplete="off" @bind="Name" name="@(DateTime.Now.ToLongDateString()+"Name")">
     </p>
     <p class="new-line"> <label class="new-project-label">Version: </label> </p>
     <p class="new-line">
-        <input class="new-project-input" type="text" id="version-input" name="version" required autocomplete="off" @bind="Version" />
+        <input class="new-project-input" type="text" id="version-input" required autocomplete="off" @bind="Version" name="@(DateTime.Now.ToLongDateString()+"Version")" />
     </p>
     <p class="new-line"> <label class="new-project-label">Mod loader: </label> </p>
     <p class="new-line">
-        <select @bind="ModLoader" class="loader-select" name="loader" required id="loader-input">
+        <select @bind="ModLoader" class="loader-select" required id="loader-input">
             @foreach (var loader in Loaders)
             {
                 <option value="@loader">@loader</option>
@@ -60,7 +60,7 @@
                 Name = creationInformation.Name;
                 Version = creationInformation.Version;
                 ModLoader = (Loader)creationInformation.ModLoader;
-                CloseWarning();
+                hideWarning();
             }
             else
             {
@@ -71,8 +71,27 @@
             }
         }
     }
-    private async void ShowWarningDialog() { await JSRuntime.InvokeVoidAsync("showModal", "warningDialog"); }
-    private async void CloseWarningDialog() { await JSRuntime.InvokeVoidAsync("closeModal", "warningDialog"); }
+    private async void CreationFormOnsubmit()
+    {
+        if (await isVersionSupported())
+        {
+            CloseWarningDialog();
+            //if (projectManager.TryCreateProject(Name, FolderPath, Version, ModLoader))
+            //{
+
+            //}
+        }
+        else
+        {
+            ShowWarningDialog();
+        }
+
+
+
+    }
+    private async Task<bool> isVersionSupported() { return await JSRuntime.InvokeAsync<bool>("isVersionSupported", Version, ModLoader.ToString()); }
+    private async void ShowWarningDialog() { await JSRuntime.InvokeVoidAsync("showUnsupportedVersionMessage", Version, ModLoader.ToString()); }
+    private async void CloseWarningDialog() { await JSRuntime.InvokeVoidAsync("closeModal"); }
     private async void ShowWarning() { await JSRuntime.InvokeVoidAsync("showWarning"); }
-    private async void CloseWarning() { await JSRuntime.InvokeVoidAsync("closeWarning"); }
+    private async void hideWarning() { await JSRuntime.InvokeVoidAsync("hideWarning"); }
 }
