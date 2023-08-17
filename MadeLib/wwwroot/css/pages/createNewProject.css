@@ -146,7 +146,7 @@ input:focus {
 	position: absolute;
 	top: 0;
 	bottom: 14%;
-	width: 47%;
+	width: calc(200px + 32%);
 	background-color: var(--back-2);
 	border-radius: calc(0.35vh + 0.35vw + 7px);
 	border-width: calc(0.05vh + 0.05vw + 4px);
@@ -159,7 +159,7 @@ input:focus {
 .warning-dialog-p {
 	font-family: 'Figtree';
 	color: var(--front);
-	font-size: calc(0.4vh + 0.8vw + 3px);
+	font-size: calc(0.6vh + 0.55vw + 6px);
 	font-weight: 200;
 	width: 100%;
 	text-align: justify;
@@ -172,19 +172,23 @@ input:focus {
 .warning-dialog-btns-container {
 	width: 100%;
 	display: grid;
-	grid-template-columns: 4fr 1fr 1fr;
-	column-gap: calc(2vw + 10px);
+	grid-template-columns: 1fr calc(36px + 1vh + 3.9vw) calc(36px + 1vh + 3.9vw);
+	column-gap: calc(1vw + 5px);
 }
 
 	.warning-dialog-btns-container button {
 		width: 100%;
-		font-family: 'Figtree';
-		color: var(--front);
-		font-size: calc(0.3vh + 0.6vw + 2px);
-		font-weight: 200;
-		border: 0;
-		outline: none;
+		height: calc(18px + 1.8vh + 0.3vw);
 		background-color: var(--back-3);
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		font-family: 'Figtree';
+		font-size: calc(0.33vh + 0.48vw + 8px);
+		font-weight: 200;
+		color: var(--front);
+		border: 1px solid transparent;
+		border-radius: calc(1px + 0.04vw + 0.1vh)
 	}
 
 		.warning-dialog-btns-container button:hover {
