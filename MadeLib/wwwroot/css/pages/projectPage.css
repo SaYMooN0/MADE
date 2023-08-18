@@ -1,0 +1,294 @@
+body {
+    background-color: var(--back);
+    margin: 0;
+}
+
+#sortable {
+    width: 100%;
+    margin-left: 0;
+    padding: 0;
+    font-size: 0;
+    list-style-type: none;
+    white-space: nowrap;
+
+}
+
+.tab-item {
+    font-size: calc(0.22vh + 0.4vw + 8px);
+    font-weight: 400;
+    background-color: var(--back-2);
+    border: calc(0.04vw + 1px) solid var(--back-3);
+    float: left;
+    height: 90%;
+    display: flex;
+    cursor: pointer;
+    padding-right: 0;
+}
+
+.tab-item path {
+    display: none;
+}
+
+.tab-item:hover {
+    background-color: var(--back-3);
+}
+
+.tab-item:hover path {
+    display: block;
+}
+
+.tab-item a {
+    height: 100%;
+    text-decoration: none;
+    align-self: center;
+    color: var(--front);
+    font-family: 'Bahnschrift';
+    display: flex;
+    align-items: center;
+    padding-left: calc(0.3vw + 5px);
+
+
+}
+
+.tabsContainer {
+    margin-top: calc(10px + 1.4vh);
+    background-color: var(--back-2);
+    height: calc(0.8vh + 25px);
+    list-style-type: none;
+    padding: 0;
+    overflow: hidden;
+
+}
+
+.action-choosing-part {
+    background-color: var(--back-2);
+    padding-top: calc(10px + 1.4vh);
+    width: calc(9.5vw + 80px);
+    height: calc(98.6vh - 10px);
+    position: relative;
+    left: 0;
+}
+
+.modification-part {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: calc(90.5vw - 80px);
+    height: 100vh;
+}
+
+.tabPage {
+    height: calc(97.4vh - 25px - 30px);
+    clear: both;
+}
+
+.new-modification-btn {
+    margin-top: calc(0.1vw + 2px);
+    width: 100%;
+    height: calc(32px + 2.2vh);
+    display: grid;
+    grid-template-columns: 1fr 4fr;
+    cursor: pointer;
+
+}
+
+.new-modification-btn:hover {
+    border-left: var(--front-2) calc(0.07vw + 2px) solid;
+
+}
+
+.action-icon-recipe {
+    height: calc(6px + 40%);
+    aspect-ratio: 1/1;
+    margin-top: calc(11% + 6px);
+    margin-left: 4%;
+}
+
+.action-icon-recipe path {
+    fill: var(--front-2);
+
+}
+
+.action-icon-tags {
+    height: calc(6px + 56%);
+    aspect-ratio: 1/1;
+    margin-top: calc(8px - 7%);
+    stroke: var(--front-2);
+}
+
+.action-icon-tags path {
+    stroke: var(--front-2);
+}
+
+.action-icon-item {
+    height: calc(6px + 33%);
+    aspect-ratio: 1/1;
+    margin-top: calc(6% + 11px);
+    margin-left: calc(2px + 0.4vw);
+}
+
+.action-icon-item path {
+    fill: var(--front-2);
+}
+
+.action-icon-item-plus {
+    stroke: var(--front-2);
+}
+
+.action-icon-textmode {
+    height: calc(6px + 37%);
+    aspect-ratio: 1/1;
+    margin-top: calc(8% + 9px);
+    margin-left: calc(2px + 0.4vw);
+}
+
+.action-icon-textmode path {
+    stroke: var(--front-2);
+}
+
+.action-icon-multiblock {
+    height: calc(6px + 42%);
+    aspect-ratio: 1/1;
+    margin-top: calc(1% + 8px);
+    margin-left: calc(1px + 0.26vw);
+}
+
+.action-icon-multiblock path {
+    fill: var(--front-2);
+    stroke: var(--front-2);
+    stroke-width: 12;
+}
+
+.action-icon-block {
+    height: calc(6px + 48%);
+    aspect-ratio: 1/1;
+    margin-top: calc(1% + 7px);
+    margin-left: calc(1px + 0.1vw);
+}
+
+.action-icon-block path {
+    stroke: var(--front-2);
+    stroke-width: 1.6;
+}
+
+.action-icon-machine {
+    height: calc(6px + 38%);
+    aspect-ratio: 1/1;
+    margin-top: calc(10px - 1%);
+    margin-left: calc(1px + 0.3vw);
+}
+
+.action-icon-machine rect {
+    stroke: var(--front-2);
+    stroke-width: 3.4;
+}
+
+.action-icon-machine line {
+    stroke: var(--front-2);
+    stroke-width: 3.4;
+}
+
+.action-icon-remove {
+    height: 50%;
+    margin-left: 4px;
+    aspect-ratio: 1/1;
+    margin-top: calc(10px - 1%);
+}
+
+.action-icon-remove path {
+    stroke: var(--front-2);
+}
+
+.action-label {
+    font-family: 'Bahnschrift';
+    font-size: calc(0.74vh + 0.95vw + 2px);
+    margin-top: calc(17px - 2.2%);
+    font-weight: 400;
+    color: var(--front-2);
+    margin-left: calc(6px - 0.15vw);
+}
+
+.action-machinery-label {
+    font-family: 'Bahnschrift';
+    font-size: calc(0.9vh + 0.8vw + 2px);
+    margin-top: calc(35px - 18%);
+    font-weight: 400;
+    color: var(--front-2);
+}
+
+.bottom-action-btns-container {
+    position: absolute;
+    width: 100%;
+    bottom: calc(1vh - 4px);
+    display: grid;
+    grid-template-rows: 1fr 1fr 1fr;
+    row-gap: calc(0.1vh + 1px);
+    height: calc(32px * 3 + 2.2vh * 3);
+}
+
+.bottom-action-btn {
+    height: 100%;
+    display: grid;
+    grid-template-columns: 1fr 5fr;
+    cursor: pointer;
+
+}
+
+.bottom-action-btn path {
+    fill: var(--front-2);
+
+}
+
+.bottom-action-btn:hover {
+    border-left: var(--front-2) calc(0.07vw + 2px) solid;
+}
+
+.collection-btn {
+    height: calc(98% - 16px);
+    margin-left: 12%;
+    aspect-ratio: 1/1;
+    align-self: center;
+}
+
+.history-btn {
+    height: calc(92% - 12px);
+    margin-left: 7%;
+    aspect-ratio: 1/1;
+    align-self: center;
+}
+
+.settings-btn {
+    height: calc(94% - 10px);
+    margin-left: 4%;
+    aspect-ratio: 1/1;
+    align-self: center;
+
+}
+
+.bottom-action-label {
+    font-family: 'Bahnschrift';
+    font-size: calc(0.74vh + 0.95vw + 2px);
+    align-self: center;
+    font-weight: 400;
+    color: var(--front-2);
+    margin-left: calc(15px - 0.3vw);
+}
+
+.tab-cross-btn {
+    height: calc(9px + 1.3vh);
+    aspect-ratio: 1/1;
+    align-self: center;
+    margin-top: 0.08vh;
+    margin-left:0;
+}
+
+.tab-cross-btn:hover path {
+
+    stroke: var(--front-3);
+    stroke-width: 2.6;
+}
+
+.tab-cross-btn path {
+    stroke: var(--front);
+    stroke-width: 2;
+}

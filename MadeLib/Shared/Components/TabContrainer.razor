@@ -1,0 +1,43 @@
+﻿@code {
+    [Parameter] public RenderFragment ChildContent { get; set; }
+    private int _activeTabIndex = 0;
+
+    private void SetActiveTab(int index)
+    {
+        _activeTabIndex = index;
+        StateHasChanged();
+    }
+}
+
+<div class="tabs-header">
+    @for (var i = 0; i < TabComponents.Count; i++)
+    {
+        var index = i;
+        <button @onclick="() => SetActiveTab(index)" class="@($"tab-button {(index == _activeTabIndex ? "active" : string.Empty)}")">
+            @TabComponents[i].Title
+        </button>
+    }
+</div>
+
+<CascadingValue Value="this">
+    @ChildContent
+</CascadingValue>
+
+@code {
+    internal List<Tab> TabComponents = new List<Tab>();
+
+    public void RegisterTab(Tab tab)
+    {
+        TabComponents.Add(tab);
+        StateHasChanged();
+    }
+
+    public void SetTabActive(Tab tab)
+    {
+        int index = TabComponents.IndexOf(tab);
+        if (index >= 0)
+        {
+            SetActiveTab(index);
+        }
+    }
+}
