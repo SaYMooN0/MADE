@@ -1,0 +1,18 @@
+﻿@code {
+    private string currentTab = "Tab1";
+
+    private void HandleTabSelected(string tabName)
+    {
+        currentTab = tabName;
+    }
+}
+
+<TabsHeader OnTabSelected="HandleTabSelected" />
+@if (currentTab == "Tab1")
+{
+    <ModifyTags />
+}
+else if (currentTab == "Tab2")
+{
+    <Welcome />
+}

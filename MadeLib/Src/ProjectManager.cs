@@ -100,6 +100,7 @@ namespace MadeLib.Src
             project.SaveToFile();
             Projects.Add(project);
             _projectLinks.Add(project.FullPath);
+            this.SaveToFile();
             return true;
         }
         public bool AnyMadeProjectFilesInFolder(string pathToFolder)

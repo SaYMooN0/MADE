@@ -1,0 +1,18 @@
+﻿@code {
+    [Parameter]
+    public EventCallback<string> OnTabSelected { get; set; }
+
+    private string Tab1Name => "Tab1";
+    private string Tab2Name => "Tab2";
+    private void SelectTab(string tabName)
+    {
+        OnTabSelected.InvokeAsync(tabName);
+    }
+}
+}
+
+<div class="tabs-header">
+    <button @onclick="() => SelectTab(Tab1Name)">Вкладка 1</button>
+    <button @onclick="() => SelectTab(Tab2Name)">Вкладка 2</button>
+
+</div>
