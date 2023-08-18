@@ -2,6 +2,13 @@
 @inject MadeLib.Src.ProjectManager projectManager
 @inject IJSRuntime JSRuntime;
 
-<TabsContrainer>
 
-</TabsContrainer>
+<p>@ProjectManager.CurrentProject.Name</p>
+<p>@ProjectManager.CurrentProject.FullPath</p>
+<TabsContrainer/>
+
+
+
+<h3>Страница с Перетаскиваемыми Вкладками</h3>
+
+<DraggableTabs />

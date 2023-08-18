@@ -75,7 +75,7 @@ body {
     margin-top: 2px;
     margin-left: 1%;
     width: 98%;
-
+    cursor: pointer;
 }
 
 .project-text-path {
@@ -88,6 +88,7 @@ body {
     margin-top: 6px;
     margin-left: 1%;
     width: 92%;
+    cursor: pointer;
 }
 
 .project-text-version {
@@ -98,6 +99,7 @@ body {
     font-size: calc(0.9vh + 0.9vw + 3px);
     text-align: right;
     font-weight: 600;
+    cursor: pointer;
 }
 
 .project-more-button {
@@ -107,7 +109,7 @@ body {
     width: calc(1.3vw + 9px);
     aspect-ratio: 1/1;
     cursor: pointer;
-    
+    cursor: pointer;
 }
 
 .project-more-button path {

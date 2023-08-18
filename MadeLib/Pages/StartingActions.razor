@@ -1,5 +1,6 @@
 @page "/startingActions"
 @inject MadeLib.Src.ProjectManager projectManager
+@inject NavigationManager NavManager
 <link href="_content/MadeLib/css/pages/startingActions.css" rel="stylesheet" />
 
 
@@ -15,7 +16,7 @@
     }
     @foreach (MadeProject project in projectManager.Projects)
     {
-        <a class="project-item">
+        <div class="project-item" @onclick="() => projectItemClicked(project.PathToFolder)">
             <label class="project-text-name">@project.Name</label>
             <label class="project-text-path">@project.FullPath</label>
             <svg class="project-more-button" fill="#000000" version="1.1" viewBox="0 0 342.382 342.382" xml:space="preserve">
@@ -24,7 +25,7 @@
                 <path d="M297.165,125.972c-24.932,0-45.222,20.284-45.222,45.219c0,24.94,20.29,45.219,45.222,45.219 c24.926,0,45.217-20.278,45.217-45.219C342.382,146.256,322.091,125.972,297.165,125.972z" />
             </svg>
             <label class="project-text-version">@project.Loader @project.Version</label>
-        </a>
+        </div>
     }
 </div>
 <div class="action-btns-container">
@@ -54,3 +55,11 @@
         <label class="action-info">Use Made functionality without mod pack</label>
     </div>
 </div>
+@code{
+    private EventCallback projectItemClicked(string FolderPath)
+    {
+        ProjectManager.CurrentProject = projectManager.Projects.FirstOrDefault(i => i.PathToFolder == FolderPath);
+        NavManager.NavigateTo("/projectPage");
+        return new EventCallback();
+    }
+}
