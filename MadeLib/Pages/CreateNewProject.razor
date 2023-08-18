@@ -1,6 +1,7 @@
 ﻿@page "/createNewProject"
 @inject MadeLib.Src.ProjectManager projectManager
 @inject IJSRuntime JSRuntime;
+@inject NavigationManager NavManager
 
 <link href="_content/MadeLib/css/pages/createNewProject.css" rel="stylesheet" />
 <form class="input-container" id="newProjectForm" @onsubmit="CreationFormOnsubmit">
@@ -73,25 +74,29 @@
     }
     private async void CreationFormOnsubmit()
     {
-        if (await isVersionSupported())
-        {
-            CloseWarningDialog();
-            //if (projectManager.TryCreateProject(Name, FolderPath, Version, ModLoader))
-            //{
-
-            //}
-        }
-        else
+        if (!await isVersionSupported())
         {
             ShowWarningDialog();
+            return;
         }
-
-
-
+        if (projectManager.TryCreateProject(Name, FolderPath, Version, ModLoader))
+        {
+            ProjectManager.CurrentProject = projectManager.Projects.FirstOrDefault(i => i.PathToFolder == FolderPath);
+            if (ProjectManager.CurrentProject == null)
+            {
+                showCreationError();
+                return;
+            }
+            ProjectManager.CurrentProject.SaveToFile();
+            NavManager.NavigateTo("/projectPage");
+        }
+        else
+            showCreationError();
     }
     private async Task<bool> isVersionSupported() { return await JSRuntime.InvokeAsync<bool>("isVersionSupported", Version, ModLoader.ToString()); }
     private async void ShowWarningDialog() { await JSRuntime.InvokeVoidAsync("showUnsupportedVersionMessage", Version, ModLoader.ToString()); }
     private async void CloseWarningDialog() { await JSRuntime.InvokeVoidAsync("closeModal"); }
     private async void ShowWarning() { await JSRuntime.InvokeVoidAsync("showWarning"); }
     private async void hideWarning() { await JSRuntime.InvokeVoidAsync("hideWarning"); }
+    private async void showCreationError() { await JSRuntime.InvokeVoidAsync("showErrorMessage"); }
 }

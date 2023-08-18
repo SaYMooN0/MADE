@@ -69,6 +69,8 @@ namespace MadeLib.Src
                 }
             }
         }
+        [JsonIgnore]
+        static public MadeProject CurrentProject { get;set; }
         static public ProjectManager Initialize()
         {
             if (!File.Exists(FileName))
@@ -87,7 +89,6 @@ namespace MadeLib.Src
             if (Projects != null && Projects.Count > 0)
                 foreach (var item in Projects) { item.SaveToFile(); }
         }
-        [JSInvokable]
         public bool TryCreateProject(string name, string pathToFolder, string version, Loader loader)
         {
             if (!Directory.Exists(pathToFolder))
