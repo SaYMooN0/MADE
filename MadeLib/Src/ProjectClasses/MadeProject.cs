@@ -23,11 +23,17 @@ namespace MadeLib.Src.ProjectClasses
         }
         public static MadeProject CreateFromFile( string filePath)
         {
-            string jsonInstance = File.ReadAllText(filePath);
-            if(string.IsNullOrEmpty(jsonInstance))
-                return null;
-            MadeProject project = JsonConvert.DeserializeObject<MadeProject>(jsonInstance);
-            return project;
+            try
+            {
+                string jsonInstance = File.ReadAllText(filePath);
+                if (string.IsNullOrEmpty(jsonInstance))
+                    return null;
+                MadeProject project = JsonConvert.DeserializeObject<MadeProject>(jsonInstance);
+                return project;
+            }
+            catch { 
+                return null; 
+            }
         }
         public MadeProject(string name, string fullPath, string pathToFolder, string version, Loader loader, DateTime creationDate, DateTime lastUpdated, List<string> itemsCollection, List<string> tagsCollection, ProjectSettings settings, List<HistoryItem> history)
         {

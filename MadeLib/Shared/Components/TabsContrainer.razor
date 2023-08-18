@@ -1,18 +1,18 @@
 ﻿@code {
-    private string currentTab = "Tab1";
+    private string currentTab = "Welcome";
 
     private void HandleTabSelected(string tabName)
     {
         currentTab = tabName;
     }
 }
+<TabsHeader  OnTabSelected="HandleTabSelected" />
 
-<TabsHeader OnTabSelected="HandleTabSelected" />
-@if (currentTab == "Tab1")
+@if (currentTab == "Tags")
 {
     <ModifyTags />
 }
-else if (currentTab == "Tab2")
+else if (currentTab == "Welcome")
 {
     <Welcome />
 }
