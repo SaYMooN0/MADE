@@ -1,0 +1,14 @@
+﻿@code {
+    [Parameter] public string SvgIcon { get; set; } = "";
+    [Parameter] public string Label { get; set; } = "";
+    [Parameter] public bool IsDisplayNone { get; set; } = false;
+}
+
+<div class="left-panel-btn" style="@GetDisplayStyle()">
+    @((MarkupString)SvgIcon)
+    <p class="action-label">@Label</p>
+</div>
+
+@code {
+    private string GetDisplayStyle() { return IsDisplayNone ? "display:none;" : ""; }
+}
