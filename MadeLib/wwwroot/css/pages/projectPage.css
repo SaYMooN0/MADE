@@ -21,13 +21,15 @@ body {
 
     #sortable::-webkit-scrollbar-thumb {
         border-radius: 5px;
+        background-color: var(--front-2);
     }
     #sortable::-webkit-scrollbar {
         width: calc(0.3vw + 6px);
     }
 
-    #sortable::-webkit-scrollbar-thumb {
-        background-color: var(--front-3);
+    #sortable::-webkit-scrollbar-thumb:hover {
+        background-color: var(--bright);
+       
     }
 
 

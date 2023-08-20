@@ -4,17 +4,8 @@ $(function () {
         containment: "parent"
     });
     $("#sortable").disableSelection();
-    addTab("<p>Content 1</p>", "14123   r123fadf");
-    addTab("<h1>Content 2</h1>", "2fasdfasfsaf");
-    addTab("<h4>Content 3</h4>", "3safaefbhsaf");
-    addTab("<h4>Content 3</h4>", "4sfnbdbds");
-    addTab("<h4>Content 3</h4>", "5ndsndfsn");
-    addTab("<h4>Content 3</h4>", "6nsdndndsdsfndsndsnsndsnfsd");
-    addTab("<h4>Content 3</h4>", "7sdnfnre3efeserg3rgwrgw3");
-
-    switchToTab("2");
+    createWelcomeIfNecessary();
 });
-
 function addTab(content, name) {
     if (!name) {
         name = ($("#sortable .tab-item").length + 1);
@@ -47,14 +38,24 @@ function switchToTab(tabName) {
     $(".tab-item").removeClass("active-tab");
     $(".tab-item[data-tab='" + newTabId + "']").addClass("active-tab");
 }
-
-
 function closeTab(event) {
     event.stopPropagation();
     let tabItem = $(this).closest('.tab-item');
     let tabId = tabItem.attr('data-tab');
     tabItem.remove();
     $("#" + tabId).remove();
+    createWelcomeIfNecessary();
     let firstRemainingTabName = $(".tab-item").first().attr("data-tab").replace("tab-", "");
     switchToTab(firstRemainingTabName);
+}
+function createWelcome() {
+    addTab("<h1>Welcome</h1>","welcome");
+    switchToTab("welcome");
+}
+function createWelcomeIfNecessary()
+{
+    let tabCount = $("#sortable .tab-item").length;
+    if (tabCount < 1) {
+        createWelcome();
+    }
 }
