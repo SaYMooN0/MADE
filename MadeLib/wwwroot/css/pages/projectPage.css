@@ -5,12 +5,31 @@ body {
 
 #sortable {
     width: 100%;
+    max-width: 100%;
     margin-left: 0;
     padding: 0;
     font-size: 0;
     list-style-type: none;
     white-space: nowrap;
+    overflow-y: auto;
 }
+
+
+    #sortable::-webkit-scrollbar {
+        height: calc(40% + 9px);
+    }
+
+    #sortable::-webkit-scrollbar-thumb {
+        border-radius: 5px;
+    }
+    #sortable::-webkit-scrollbar {
+        width: calc(0.3vw + 6px);
+    }
+
+    #sortable::-webkit-scrollbar-thumb {
+        background-color: var(--front-3);
+    }
+
 
 .tab-item {
     font-size: calc(0.22vh + 0.3vw + 10px);
@@ -19,7 +38,7 @@ body {
     border: calc(0.04vw + 1px) solid var(--back-3);
     float: left;
     height: 90%;
-    display: flex;
+    display: inline-flex;
     cursor: pointer;
     padding-right: 0;
 }
@@ -69,7 +88,8 @@ body {
     position: absolute;
     top: 0;
     right: 0;
-    width: calc(100% - 4vw - 110px - 6vh);
+    width: calc(96vw - 110px - 6vh);
+    max-width: calc(96vw - 110px - 6vh);
     height: 100vh;
 }
 
@@ -143,3 +163,7 @@ body {
     .tab-cross-btn path {
         fill: var(--front);
     }
+
+.active-tab label {
+    color: var(--front-3);
+}
