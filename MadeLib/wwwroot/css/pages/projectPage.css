@@ -80,7 +80,7 @@ body {
 .action-choosing-part {
     background-color: var(--back-2);
     padding-top: calc(10px + 1.4vh);
-    width: calc(4vw + 110px + 6vh);
+    width: calc(4vw + 100px + 7vh);
     height: calc(98.6vh - 10px);
     position: relative;
     left: 0;
@@ -90,7 +90,7 @@ body {
     position: absolute;
     top: 0;
     right: 0;
-    width: calc(96vw - 110px - 6vh);
+    width: calc(96vw - 100px - 7vh);
     max-width: calc(96vw - 110px - 6vh);
     height: 100vh;
 }
@@ -101,15 +101,28 @@ body {
 }
 
 .left-panel-btn {
-    margin-top: calc(0.1vw + 2px);
-    width: 100%;
+    margin-top: calc(0.1vw);
+    width: 94%;
     height: calc(32px + 2.2vh);
     display: flex;
     cursor: pointer;
+    margin-left: 2.5%;
+    border: 1px solid transparent;
 }
 
     .left-panel-btn:hover {
-        border-left: var(--front-2) calc(0.07vw + 2px) solid;
+        background-color: var(--back-3);
+       
+        border-radius:calc(0.2vw + 0.2vh + 2px);
+    }
+    .left-panel-btn:hover .action-label {
+        color: var(--front-2);
+    }
+    .left-panel-btn:hover .left-panel-btn-icon-fill path {
+        fill: var(--front-2);
+    }
+    .left-panel-btn:hover .left-panel-btn-icon-stroke path {
+        stroke: var(--front-2);
     }
 
 .left-panel-btn-icon {
@@ -121,22 +134,32 @@ body {
 
 .left-panel-btn-icon-big {
     height: calc(72% - 7px);
+    margin-left: calc(1px + 0.2vw + 0.1vh);
+    padding-right: calc(2% + 5px);
+    align-self: center;
+    aspect-ratio: 1/1;
 }
 
 .left-panel-btn-icon-fill path {
-    fill: var(--front-2);
+    fill: var(--front);
 }
+/*.left-panel-btn-icon-fill:hover path {
+    fill: var(--front-2);
+}*/
 
 .left-panel-btn-icon-stroke path {
-    stroke: var(--front-2);
+    stroke: var(--front);
 }
+/*.left-panel-btn-icon-stroke:hover path {
+    stroke: var(--front-2);
+}*/
 
 .action-label {
     font-family: 'Bahnschrift';
-    font-size: calc(1.4vh + 0.45vw + 6px);
+    font-size: calc(1vh + 0.5vw + 7px);
     align-self: center;
     font-weight: 400;
-    color: var(--front-2);
+    color: var(--front);
     margin-left: calc(3px + 0.2vw + 0.1vh);
     padding-top: calc(0.24vh + 1px);
 }

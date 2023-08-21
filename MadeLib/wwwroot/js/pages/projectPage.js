@@ -4,6 +4,7 @@ $(function () {
         containment: "parent"
     });
     $("#sortable").disableSelection();
+    
     createWelcomeIfNecessary();
 });
 function addTab(content, name) {
@@ -49,11 +50,15 @@ function closeTab(event) {
     switchToTab(firstRemainingTabName);
 }
 function createWelcome() {
-    addTab("<h1>Welcome</h1>","welcome");
+    let welcomeTabContent = `
+        <link href="_content/MadeLib/css/tab_content/welcome.css" rel="stylesheet" />
+        <p class="welcome-header">Welcome to Made</p>
+        <h5 class="welcome-reminder">Make sure you have downloaded KubeJS of the required version before you start working. If not yet, you can download KubeJS <a href="https://www.curseforge.com/minecraft/mc-mods/kubejs/files" target="_blank">here</a></h5>
+    `;
+    addTab(welcomeTabContent, "welcome");
     switchToTab("welcome");
 }
-function createWelcomeIfNecessary()
-{
+function createWelcomeIfNecessary() {
     let tabCount = $("#sortable .tab-item").length;
     if (tabCount < 1) {
         createWelcome();
