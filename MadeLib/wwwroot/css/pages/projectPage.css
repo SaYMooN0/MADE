@@ -90,8 +90,8 @@ body {
     position: absolute;
     top: 0;
     right: 0;
-    width: calc(96vw - 100px - 7vh);
-    max-width: calc(96vw - 110px - 6vh);
+    width: calc(96vw - 99px - 7vh);
+    max-width: calc(96vw - 99px - 6vh);
     height: 100vh;
 }
 
@@ -115,14 +115,14 @@ body {
        
         border-radius:calc(0.2vw + 0.2vh + 2px);
     }
-    .left-panel-btn:hover .action-label {
-        color: var(--front-2);
-    }
+        .left-panel-btn:hover .left-panel-label {
+            color: var(--front-3);
+        }
     .left-panel-btn:hover .left-panel-btn-icon-fill path {
-        fill: var(--front-2);
+        fill: var(--front-3);
     }
     .left-panel-btn:hover .left-panel-btn-icon-stroke path {
-        stroke: var(--front-2);
+        stroke: var(--front-3);
     }
 
 .left-panel-btn-icon {
@@ -143,18 +143,10 @@ body {
 .left-panel-btn-icon-fill path {
     fill: var(--front);
 }
-/*.left-panel-btn-icon-fill:hover path {
-    fill: var(--front-2);
-}*/
-
 .left-panel-btn-icon-stroke path {
     stroke: var(--front);
 }
-/*.left-panel-btn-icon-stroke:hover path {
-    stroke: var(--front-2);
-}*/
-
-.action-label {
+.left-panel-label {
     font-family: 'Bahnschrift';
     font-size: calc(1vh + 0.5vw + 7px);
     align-self: center;
