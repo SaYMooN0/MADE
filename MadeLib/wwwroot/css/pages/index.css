@@ -20,11 +20,14 @@ body {
     height: 100%;
     width: 100%;
     display: grid;
-    grid-template-columns: calc(10px + 2.2vw + 0.4vh) 1fr;
-    grid-column-gap:calc(2.6vh + 4px - 1.2vw);
+    grid-template-columns: calc(4px + 1.6vw + 0.6vh) 1fr;
+    grid-column-gap: calc(3vh + 8px - 1.2vw);
     cursor: pointer;
+    transition: 0.08s;
 }
-
+    .main-btn:hover {
+        transform: scale(1.02);
+    }
     .main-btn:hover .btn-text {
         color: var(--front-3);
     }
@@ -37,7 +40,8 @@ body {
     height: calc(67% + 2px);
     align-self: center;
     cursor: pointer;
-    aspect-ratio:1/1;
+    aspect-ratio: 1/1;
+    transition: 0.08s;
 }
 
 .btn-text {
@@ -51,6 +55,7 @@ body {
     font-family: 'Figtree';
     letter-spacing: 2px;
     cursor: pointer;
+    transition: 0.08s;
 }
 
 .svg-path {

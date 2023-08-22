@@ -5,7 +5,7 @@ body {
 .project-header {
     position: absolute;
     top: calc(3.8vh + 12px);
-    left: calc(3vw + 10px);
+    left: calc(2vw + 12px);
     text-align: center;
     display: inline-block;
     color: var(--front);
@@ -17,9 +17,9 @@ body {
 
 .projects-container {
     position: absolute;
-    top: calc(9vh + 26px + 2vw);
-    left: calc(3vw + 10px);
-    width: calc(100% - 110px - 24vw);
+    top: calc(9.5vh + 26px + 3vw);
+    left: calc(2vw + 10px);
+    width: calc(100% - 32px - 32vw);
     height: 65%;
     overflow-y: auto;
 }
@@ -46,7 +46,8 @@ body {
 .project-item {
     min-height: 60px;
     height: calc(32px + 5.4vh + 1vw);
-    width: 99%;
+    margin-left: 0.5%;
+    width: 96%;
     margin-top: 0.6%;
     background-color: var(--back);
     display: grid;
@@ -55,13 +56,14 @@ body {
     grid-template-areas:
         "name name vrsn more"
         "path path path path";
-    border-radius: calc(0.1vw + 0.06vh + 2px);
+    border-radius: calc(0.12vw + 0.07vh + 3px);
     cursor: pointer;
+    transition: 0.09s;
 }
 
-.project-item:hover {
-    background-color: var(--back-2);
-}
+    .project-item:hover {
+        background-color: var(--back-2);
+    }
 
 .project-text-name {
     grid-area: name;
@@ -72,7 +74,7 @@ body {
     display: flex;
     align-items: center;
     font-weight: 700;
-    margin-top: 2px;
+    margin-top: 0.4vh;
     margin-left: 1%;
     width: 98%;
     cursor: pointer;
@@ -85,7 +87,7 @@ body {
     font-family: 'Figtree';
     font-size: calc(0.5vh + 0.5vw + 4px);
     text-align: left;
-    margin-top: 6px;
+    margin-top: 2px;
     margin-left: 1%;
     width: 92%;
     cursor: pointer;
@@ -233,9 +235,11 @@ dialog:focus {
         "icn inf"
         "icn inf";
     cursor: pointer;
+    transition: 0.12s;
 }
 
     .action-btn:hover {
+        transform: scale(1.01);
         cursor: pointer;
         background-color: var(--back-3);
     }

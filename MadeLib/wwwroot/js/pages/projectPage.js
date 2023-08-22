@@ -24,7 +24,7 @@ function addTab(content, name) {
     });
 
     $("#sortable").append(tabItem);
-    let tabPage = $("<div class='tabPage' id='" + newTabId + "'>" + content + "</div>");
+    let tabPage = $("<div class='tabPage' id='" + newTabId + "'><div class='main-tab-container'>" + content + "</div></div>");
     tabPage.css('display', 'none');
     $("#containerForPages").append(tabPage);
     $("#sortable").sortable("refresh");
@@ -50,11 +50,12 @@ function closeTab(event) {
     switchToTab(firstRemainingTabName);
 }
 function createWelcome() {
-    let welcomeTabContent = `
+    let welcomeTabContent = `<div style='width:100%;height:100%;'>
         <link href="_content/MadeLib/css/tab_content/welcome.css" rel="stylesheet" />
         <p class="welcome-header">Welcome to Made</p>
         <h5 class="welcome-reminder">Make sure you have downloaded KubeJS of the required version before you start working. If not yet, you can download KubeJS <a href="https://www.curseforge.com/minecraft/mc-mods/kubejs/files" target="_blank">here</a></h5>
-    `;
+        </div>
+        `;
     addTab(welcomeTabContent, "welcome");
     switchToTab("welcome");
 }
