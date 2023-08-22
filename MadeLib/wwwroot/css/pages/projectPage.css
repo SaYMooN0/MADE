@@ -69,9 +69,9 @@ body {
     }
 
 .tabsContainer {
-    margin-top: calc(10px + 1.4vh);
+    margin-top: calc(6px + 0.4vh);
     background-color: var(--back-2);
-    height: calc(0.8vh + 25px);
+    height: calc(0.8vh + 24px);
     list-style-type: none;
     padding: 0;
     overflow: hidden;
@@ -79,9 +79,9 @@ body {
 
 .action-choosing-part {
     background-color: var(--back-2);
-    padding-top: calc(10px + 1.4vh);
+    padding-top: calc(6px + 0.4vh);
     width: calc(4vw + 100px + 7vh);
-    height: calc(98.6vh - 10px);
+    height: calc(99.6vh - 6px);
     position: relative;
     left: 0;
 }
@@ -90,13 +90,13 @@ body {
     position: absolute;
     top: 0;
     right: 0;
-    width: calc(96vw - 99px - 7vh);
-    max-width: calc(96vw - 99px - 6vh);
+    width: calc(96vw - 100px - 7vh);
+    max-width: calc(96vw - 100px - 7vh);
     height: 100vh;
 }
 
 .tabPage {
-    height: calc(97.4vh - 25px - 30px);
+    height: calc(98vh - 40px);
     clear: both;
 }
 

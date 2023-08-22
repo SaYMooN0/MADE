@@ -1,8 +1,22 @@
-.action-button{
-    background-color:firebrick;
+.action-buttons-container-5 {
+    height:100%;
+    width:100%;
+    background-color:gray;
+    display:flex;
+    gap:2px;
 }
-.recipes-action-buttons-container
+
+.action-button {
+    margin-top:10px;
+    background-color: firebrick;
+    width: calc(2vh + 12vw + 30px);
+    height: calc(6vh + 1vw + 50px);
+    background-color:mediumpurple;
+}
+.action-button-main-label {
+
+}
+.action-button-hint-label
 {
-    background-color:darkblue;
-    padding:6%;
+
 }
