@@ -8,23 +8,23 @@
 
 		   "<div id=\"newRecipeDiv\" class=\"action-button\">" +
                 "<label class=\"action-button-main-label\">Add vanilla recipe</label><br/>"+
-                "<label class=\"action-button-hint-label\">Create a new recipe for vanilla minecraft, for example, for a crafting table, furnace, etc.</label>" +
+                "<label class=\"action-button-hint-label\">Create recipes for crafting table, furnace, stonecutter and so on </label>" +
             "</div>" +
            "<div id=\"deleteRecipeDiv\" class=\"action-button\">" +
                 "<label class=\"action-button-main-label\">Delete existing recipe</label><br/>" +
-                "<label class=\"action-button-hint-label\">Create a new recipe for vanilla minecraft, for example, for a crafting table, furnace, etc.</label>" +
+                "<label class=\"action-button-hint-label\">Delete creation recipes for items and tags</label>" +
             "</div>" +
            "<div id=\"changeRecipeDiv\" class=\"action-button\">" +
                 "<label class=\"action-button-main-label\">Change existing recipe</label><br/>" +
-                "<label class=\"action-button-hint-label\">Create a new recipe for vanilla minecraft, for example, for a crafting table, furnace, etc.</label>" +
+                "<label class=\"action-button-hint-label\">Edit the recipes you have already created</label>" +
             "</div>" +
-            "<div id=\"newRecipeDiv\" class=\"action-button\">" +
+            "<div id=\"moddedRecipeDiv\" class=\"action-button\">" +
                 "<label class=\"action-button-main-label\">Add new modded recipe</label><br/>" +
-                "<label class=\"action-button-hint-label\">Create a new recipe for vanilla minecraft, for example, for a crafting table, furnace, etc.</label>" +
+                "<label class=\"action-button-hint-label\">Create recipes for different mods that are supported by Made</label>" +
             "</div>" +
-           "<div id=\"newRecipeDiv\" class=\"action-button\">" +
+           "<div id=\"groupRecipeDiv\" class=\"action-button\">" +
                 "<label class=\"action-button-main-label\">Add recipe group</label><br/>" +
-                "<label class=\"action-button-hint-label\">Create a new recipe for vanilla minecraft, for example, for a crafting table, furnace, etc.</label>" +
+                "<label class=\"action-button-hint-label\">Create recipes for crushers, sawmills and other modded machines in one go</label>" +
             "</div>" +
 
            "</div>";

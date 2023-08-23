@@ -58,7 +58,6 @@ body {
         "path path path path";
     border-radius: calc(0.12vw + 0.07vh + 3px);
     cursor: pointer;
-    transition: 0.09s;
 }
 
     .project-item:hover {
