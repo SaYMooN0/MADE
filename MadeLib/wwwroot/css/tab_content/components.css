@@ -1,25 +1,42 @@
 .action-buttons-container-5 {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-evenly;
+    justify-content: center;
     align-content: center;
-    gap: calc(2px + 1.6vw);
-    padding-left:12vw;
-    padding-right:12vw;
+    gap: 2.5vw;
+    padding-left: calc(9vw - 10px - 1vh);
+    padding-right: calc(9vw - 10px - 1vh);
 }
 
 
 .action-button {
-    height: calc(6vh + 3vw + 50px);
-    width: calc(12vw + 80px);
     box-sizing: border-box;
+    height: calc(10vh + 1vw + 55px);
+    width: calc(11vw + 2vh + 80px);
+    border: 1px solid red;
+    display: grid;
+    padding: 1%;
 }
 .action-button-main-label {
     color: var(--bright);
     font-family: 'Figtree';
-    
+    font-size: calc(0.85vh + 0.72vw + 8px);
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content:center;
+
+
+    background-color:cadetblue;
+    height:100%;
 }
 .action-button-hint-label {
     color: var(--front-2);
     font-family: 'Bahnschrift';
+    font-size: calc(0.5vh + 0.5vw + 8px);
+    text-align: center;
+    padding-left: 4%;
+    padding-right: 4%;
+    background-color: violet;
+    height: 100%;
 }

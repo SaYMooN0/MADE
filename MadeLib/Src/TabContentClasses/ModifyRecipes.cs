@@ -24,7 +24,7 @@
             "</div>" +
            "<div id=\"groupRecipeDiv\" class=\"action-button\">" +
                 "<label class=\"action-button-main-label\">Add recipe group</label><br/>" +
-                "<label class=\"action-button-hint-label\">Create recipes for crushers, sawmills and other modded machines in one go</label>" +
+                "<label class=\"action-button-hint-label\">Create recipes for machines from mods in one go</label>" +
             "</div>" +
 
            "</div>";
