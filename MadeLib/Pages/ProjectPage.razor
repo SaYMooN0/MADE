@@ -134,6 +134,7 @@
     }
     private async Task OnModifyRecipesClick()
     {
+		await JSRuntime.InvokeVoidAsync("eval", "let scr = document.createElement('script');scr.src = '/_content/MadeLib/js/tab_content/recipes.js'; document.head.appendChild(scr);");
         await JSRuntime.InvokeVoidAsync("addTab", ModifyRecipes.Main, "recipes");
     }
 }
