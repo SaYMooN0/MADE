@@ -1,0 +1,9 @@
+.vanila-recipe-container {
+    height: 100%;
+    width: 100%;
+}
+.vanila-type-select {
+    height: calc(0.8vh + 25px + 0.4vw);
+    width: calc(80px + 6vw + 1vh);
+    font-size: calc(0.45vh + 0.5vw + 7px);
+}

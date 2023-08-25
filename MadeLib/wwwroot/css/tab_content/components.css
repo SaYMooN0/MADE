@@ -1,4 +1,4 @@
-.action-buttons-container-5 {
+.action-buttons-container {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -11,10 +11,10 @@
 
 .action-button {
     box-sizing: border-box;
-    height: calc(5.2vh + 1.7vw + 65px);
+    height: calc(5vh + 2.1vw + 60px);
     width: calc(10vw + 2vh + 100px);
     display: grid;
-    grid-template-rows: 1fr 1fr;
+    grid-template-rows:4fr 7fr;
     border: calc(0.12vw + 0.12vh) solid var(--front);
     border-radius: calc(0.25vw + 0.25vh + 8px);
     padding: 1vh;
@@ -41,4 +41,13 @@
     font-size: calc(0.5vh + 0.5vw + 8px);
     text-align: center;
     cursor: pointer;
+}
+
+.default-select {
+    color: var(--front);
+    background-color: var(--back-2);
+    font-family: 'Figtree';
+    outline: none;
+    border: 1px solid transparent;
+    border-radius: calc(1px + 0.04vw + 0.1vh);
 }
