@@ -7,7 +7,7 @@
 		   //"<script src=\"_content/MadeLib/js/tab_content/recipes.js\"></script>" +
 		   "<div class=\"action-buttons-container-5\">" +
 
-		   "<div id=\"newRecipeDiv\" class=\"action-button\" onclick=\"createActionOnClick()\">" +
+		   "<div id=\"newRecipeDiv\" class=\"action-button\" onclick=\"createActionOnClick(event)\">" +
                 "<label class=\"action-button-main-label\">Add vanilla recipe</label>"+
                 "<label class=\"action-button-hint-label\">Create recipes for crafting stations from vanilla minecraft </label>" +
             "</div>" +
