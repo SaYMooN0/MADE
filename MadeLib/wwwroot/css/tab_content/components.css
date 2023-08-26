@@ -76,3 +76,6 @@ input[data-suggestions] {
 [data-type="suggestions-container"] div:hover {
     background-color: #eee;
 }
+[data-type="suggestions-container"] .active {
+    background-color: #e0e0e0;
+}

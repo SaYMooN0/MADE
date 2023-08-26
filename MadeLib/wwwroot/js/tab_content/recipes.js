@@ -1,5 +1,41 @@
-
-
+var activeSuggestionIndex = -1;
+document.addEventListener('keydown', function (e) {
+    if (e.keyCode == 27) {
+        hideAllSuggestions();
+        return;
+    }
+    const input = e.target;
+    if (input.dataset.suggestions !== undefined) {
+        const container = document.querySelector('[data-type="suggestions-container"]');
+        if (container && container.dataset.type === "suggestions-container" && container.children.length) {
+            if (e.key === "ArrowDown") {
+                e.preventDefault();
+                if (activeSuggestionIndex > -1 && container.children[activeSuggestionIndex]) {
+                    container.children[activeSuggestionIndex].classList.remove('active');
+                }
+                activeSuggestionIndex = (activeSuggestionIndex + 1) % container.children.length;
+                container.children[activeSuggestionIndex].classList.add('active');
+            }
+            else if (e.key === "ArrowUp") {
+                e.preventDefault();
+                if (activeSuggestionIndex > -1 && container.children[activeSuggestionIndex]) {
+                    container.children[activeSuggestionIndex].classList.remove('active');
+                }
+                activeSuggestionIndex--;
+                if (activeSuggestionIndex < 0) {
+                    activeSuggestionIndex = container.children.length - 1;
+                }
+                container.children[activeSuggestionIndex].classList.add('active');
+            }
+            else if ((e.key === "Tab" || e.key === "Enter")  && activeSuggestionIndex > -1) {
+                e.preventDefault();
+                input.value = container.children[activeSuggestionIndex].innerText;
+                container.remove();
+                activeSuggestionIndex = -1;
+            }
+        }
+    }
+});
 function createActionOnClick(event) {
     tabCreationResult = addTab(`
         <link href="_content/MadeLib/css/tab_content/recipes.css" rel="stylesheet" />
@@ -83,7 +119,6 @@ function hideSuggestions(inputElem) {
         container.remove();
     }
 }
-document.addEventListener('keydown', function (e) { if (e.keyCode === 27) { hideAllSuggestions(); } });
 function displaySuggestions(inputElem, suggestions) {
     let container = inputElem.nextElementSibling;
 
@@ -91,14 +126,14 @@ function displaySuggestions(inputElem, suggestions) {
     if (!container || container.dataset.type !== "suggestions-container") {
         container = document.createElement('div');
         container.dataset.type = "suggestions-container";
-        document.body.appendChild(container);  // добавляем контейнер в body
+        document.body.appendChild(container);
     }
 
-    const rect = inputElem.getBoundingClientRect();  // получаем позицию и размеры инпута
+    const rect = inputElem.getBoundingClientRect();
 
-    container.style.top = `${rect.bottom + window.scrollY}px`; // позиция с учетом прокрутки страницы
+    container.style.top = `${rect.bottom + window.scrollY}px`;
     container.style.left = `${rect.left + window.scrollX}px`;
-    container.style.width = `${rect.width}px`; // чтобы ширина контейнера была такой же, как у инпута
+    container.style.width = `${rect.width}px`;
 
     container.innerHTML = '';
 
@@ -107,7 +142,7 @@ function displaySuggestions(inputElem, suggestions) {
         div.innerText = suggestion;
         div.addEventListener('click', function () {
             inputElem.value = suggestion;
-            container.remove(); // удаляем контейнер после выбора
+            container.remove();
         });
         container.appendChild(div);
     }
