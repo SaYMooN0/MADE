@@ -49,5 +49,5 @@
     font-family: 'Figtree';
     outline: none;
     border: 1px solid transparent;
-    border-radius: calc(1px + 0.04vw + 0.1vh);
+    border-radius: calc(2px + 0.12vw + 0.12vh);
 }

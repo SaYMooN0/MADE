@@ -7,3 +7,8 @@
     width: calc(80px + 6vw + 1vh);
     font-size: calc(0.45vh + 0.5vw + 7px);
 }
+
+#furnace-recipe-content,
+#stonecutter-recipe-content {
+    display: none;
+}
