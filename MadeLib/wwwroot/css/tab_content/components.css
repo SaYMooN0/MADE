@@ -14,17 +14,19 @@
     height: calc(5vh + 2.1vw + 60px);
     width: calc(10vw + 2vh + 100px);
     display: grid;
-    grid-template-rows:4fr 7fr;
+    grid-template-rows: 4fr 7fr;
     border: calc(0.12vw + 0.12vh) solid var(--front);
     border-radius: calc(0.25vw + 0.25vh + 8px);
     padding: 1vh;
     cursor: pointer;
     transition: 0.1s;
 }
+
     .action-button:hover {
         transform: scale(1.03);
         background-color: var(--back-2);
     }
+
 .action-button-main-label {
     color: var(--front-3);
     font-family: 'Figtree';
@@ -35,6 +37,7 @@
     justify-content: center;
     cursor: pointer;
 }
+
 .action-button-hint-label {
     color: var(--front);
     font-family: 'Bahnschrift';
@@ -50,4 +53,26 @@
     outline: none;
     border: 1px solid transparent;
     border-radius: calc(2px + 0.12vw + 0.12vh);
+}
+
+
+[data-type="suggestions-container"] {
+    position: absolute;
+    max-height: calc(80px + 8vh);
+    overflow-y: auto;
+    width: 200px; 
+    z-index: 1000; 
+    background-color: #fff;
+}
+
+input[data-suggestions] {
+    position: relative;
+}
+
+.input-container {
+    position: relative;
+}
+
+[data-type="suggestions-container"] div:hover {
+    background-color: #eee;
 }

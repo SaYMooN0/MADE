@@ -1,3 +1,5 @@
+
+
 function createActionOnClick(event) {
     tabCreationResult = addTab(`
         <link href="_content/MadeLib/css/tab_content/recipes.css" rel="stylesheet" />
@@ -9,11 +11,18 @@ function createActionOnClick(event) {
         <option value="stonecutter">Stonecutter</option>
         </select>
         <div id="crafting-table-recipe-content"> <label>crafting-table </label> </div>
-        <div id="furnace-recipe-content"> <label>furnace </label> </div>
+        <div id="furnace-recipe-content"> 
+
+
+
+        <input type="text" data-suggestions>
+        
+        
+        </div>
         <div id="stonecutter-recipe-content"> 
         <form onsubmit="formSaveButtonClicked(event,'stonecutter')">
-            <p class="input-line"><label class="default-input-label"> input: </label> <input class="default-input" type="text"></p>
-            <p class="input-line"><label class="default-input-label"> output: </label> <input class="default-input" type="text"> <input class="default-input-num" type="number"></p>
+            <p class="input-line"><label class="default-input-label"> input: </label> <input class="default-input" type="text" data-suggestions></p>
+            <p class="input-line"><label class="default-input-label"> output: </label> <input class="default-input" type="text" data-suggestions> <input class="default-input-num" type="number"></p>
             <p class="default-submit"><input type="submit"></p>
         </form>
         </div>
@@ -52,5 +61,54 @@ function handleSelectionChange(selectElement) {
 function formSaveButtonClicked(e, type) {
     e.preventDefault();
     alert(type);
-    
+
+}
+document.addEventListener('input', function (e) {
+    const data = ['Apple', 'Banana', 'Cherry', 'Date', 'Fig', 'Grape', 'Kiwi'];
+    if (e.target.dataset.suggestions !== undefined) {
+        hideAllSuggestions()
+        const query = e.target.value.toLowerCase();
+        const suggestions = data.filter(item => item.toLowerCase().includes(query));
+        displaySuggestions(e.target, suggestions);
+    }
+});
+function hideAllSuggestions() {
+    const allContainers = document.querySelectorAll('[data-type="suggestions-container"]');
+    allContainers.forEach(container => container.remove());
+}
+
+function hideSuggestions(inputElem) {
+    let container = inputElem.nextElementSibling;
+    if (container && container.dataset.type === "suggestions-container") {
+        container.remove();
+    }
+}
+document.addEventListener('keydown', function (e) { if (e.keyCode === 27) { hideAllSuggestions(); } });
+function displaySuggestions(inputElem, suggestions) {
+    let container = inputElem.nextElementSibling;
+
+    // Если контейнер для подсказок не существует, создайте его
+    if (!container || container.dataset.type !== "suggestions-container") {
+        container = document.createElement('div');
+        container.dataset.type = "suggestions-container";
+        document.body.appendChild(container);  // добавляем контейнер в body
+    }
+
+    const rect = inputElem.getBoundingClientRect();  // получаем позицию и размеры инпута
+
+    container.style.top = `${rect.bottom + window.scrollY}px`; // позиция с учетом прокрутки страницы
+    container.style.left = `${rect.left + window.scrollX}px`;
+    container.style.width = `${rect.width}px`; // чтобы ширина контейнера была такой же, как у инпута
+
+    container.innerHTML = '';
+
+    for (const suggestion of suggestions) {
+        const div = document.createElement('div');
+        div.innerText = suggestion;
+        div.addEventListener('click', function () {
+            inputElem.value = suggestion;
+            container.remove(); // удаляем контейнер после выбора
+        });
+        container.appendChild(div);
+    }
 }
