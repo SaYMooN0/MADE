@@ -68,6 +68,7 @@
     font-family: Bahnschrift;
     font-weight: 600;
     font-size: calc(0.36vh + 0.36vw + 9px);
+    margin-left: 16px;
 }
 
     [data-type="suggestions-container"] .active {
@@ -103,6 +104,49 @@ input[data-suggestions] {
     position: relative;
 }
 
-.input-container {
-    position: relative;
+.default-input-label {
+    color: var(--front);
+    font-family: 'Figtree';
+    font-weight: 600;
+    font-size: calc(0.9vh + 0.71vw + 8px);
+    padding-right: calc(1px + 0.25vw + 0.25vh);
+}
+
+.default-input {
+    height: calc(1.8vh + 11px + 0.1vw);
+    width: calc(20vw + 80px + 2vh);
+    background-color: var(--back-2);
+    border: 1px solid transparent;
+    border-radius: calc(2px + 0.05vw + 0.1vh);
+    font-family: 'Figtree';
+    font-size: calc(0.82vh + 0.68vw + 7px);
+    font-weight: 300;
+    color: var(--front);
+    padding-left: calc(1px + 0.25vw + 0.25vh);
+    padding-right: calc(1px + 0.25vw + 0.25vh);
+}
+
+.default-input-num {
+    height: calc(2vh + 10px + 0.12vw);
+    width: calc(2vw + 10px + 2vh);
+    background-color: var(--back-2);
+    border: 1px solid transparent;
+    border-radius: calc(1px + 0.04vw + 0.1vh);
+    font-family: 'Figtree';
+    font-size: calc(0.49vh + 0.5vw + 4px);
+    font-weight: 300;
+    color: var(--front); 
+}
+    .default-input-num::-webkit-inner-spin-button,
+    .default-input-num::-webkit-outer-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+    }
+input:focus {
+    outline: none;
+    background-color: var(--back-3);
+    
+}
+.count-margin-left {
+    margin-left:calc(2vw + 10px + 1vh);
 }

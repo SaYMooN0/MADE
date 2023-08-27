@@ -15,6 +15,7 @@ document.addEventListener('keydown', function (e) {
                 }
                 activeSuggestionIndex = (activeSuggestionIndex + 1) % container.children.length;
                 container.children[activeSuggestionIndex].classList.add('active');
+                container.children[activeSuggestionIndex].scrollIntoView(false);
             }
             else if (e.key === "ArrowUp") {
                 e.preventDefault();
@@ -26,6 +27,7 @@ document.addEventListener('keydown', function (e) {
                     activeSuggestionIndex = container.children.length - 1;
                 }
                 container.children[activeSuggestionIndex].classList.add('active');
+                container.children[activeSuggestionIndex].scrollIntoView(true);
             }
             else if ((e.key === "Tab" || e.key === "Enter") && activeSuggestionIndex > -1) {
                 e.preventDefault();

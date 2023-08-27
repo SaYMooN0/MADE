@@ -21,8 +21,8 @@ function createActionOnClick(event) {
         <div id="stonecutter-recipe-content"> 
         <form onsubmit="stonecutterSaveButtonClick(event,'stonecutter')">
             <p class="input-line"><label class="default-input-label"> input: </label> <input class="default-input" type="text" data-suggestions></p>
-            <p class="input-line"><label class="default-input-label"> output: </label> <input class="default-input" type="text" data-suggestions> <input class="default-input-num" type="number"></p>
-            <p class="default-submit"><input type="submit"></p>
+            <p class="input-line"><label class="default-input-label"> output: </label> <input class="default-input" type="text" data-suggestions><label class="default-input-label count-margin-left"> count: </label><input class="default-input-num" type="number"></p>
+            <p class="default-submit"><input type="submit" value="save"></p>
         </form>
         </div>
     </div>`, "new-recipe");
