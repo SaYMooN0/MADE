@@ -60,22 +60,42 @@
     position: absolute;
     max-height: calc(80px + 8vh);
     overflow-y: auto;
-    width: 200px; 
-    z-index: 1000; 
-    background-color: #fff;
+    width: 200px;
+    z-index: 1000;
+    background-color: var(--back);
+    border: 1px solid var(--back-3);
+    color: var(--front);
 }
 
-input[data-suggestions] {
+    [data-type="suggestions-container"] div:hover {
+        background-color: var(--back-2);
+    }
+
+    [data-type="suggestions-container"] .active {
+        background-color: var(--back-3);
+    }
+
+    [data-type="suggestions-container"]::-webkit-scrollbar {
+        width: calc(0.3vw + 4px);
+        max-width: calc(9px);
+    }
+    [data-type="suggestions-container"]::-webkit-scrollbar-track {
+        background-color: var(--back-2);
+    }
+
+    [data-type="suggestions-container"]::-webkit-scrollbar-thumb {
+        background-color: var(--front-2);
+        height: calc(2vh + 5px);
+    }
+
+        [data-type="suggestions-container"]::-webkit-scrollbar-thumb:hover {
+            background-color: var(--bright);
+        }
+
+input[data-suggestions] {  
     position: relative;
 }
 
 .input-container {
     position: relative;
-}
-
-[data-type="suggestions-container"] div:hover {
-    background-color: #eee;
-}
-[data-type="suggestions-container"] .active {
-    background-color: #e0e0e0;
 }

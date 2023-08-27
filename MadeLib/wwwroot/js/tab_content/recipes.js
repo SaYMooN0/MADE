@@ -1,4 +1,4 @@
-var activeSuggestionIndex = -1;
+var activeSuggestionIndex = 0;
 document.addEventListener('keydown', function (e) {
     if (e.keyCode == 27) {
         hideAllSuggestions();
@@ -107,12 +107,16 @@ function formSaveButtonClicked(e, type) {
 }
 document.addEventListener('blur', function (e) { if (e.target.tagName === 'INPUT') { hideAllSuggestions(); } }, true);
 document.addEventListener('input', function (e) {
-    const data = ['Apple', 'Banana', 'Cherry', 'Date', 'Fig', 'Grape', 'Kiwi'];
+    const data = ['Apple', 'Banana', 'Cherry', 'Date', 'Fig', 'Grape', 'Ki', 'Kwi', 'awi', 'cxziwi', 'Kdasaswi', 'Kweiwi'];
+    hideAllSuggestions();
+
     if (e.target.dataset.suggestions !== undefined) {
         hideAllSuggestions()
         const query = e.target.value.toLowerCase();
         const suggestions = data.filter(item => item.toLowerCase().includes(query));
-        displaySuggestions(e.target, suggestions);
+        if (suggestions.length > 0) {
+            displaySuggestions(e.target, suggestions);
+        }
     }
 });
 function hideAllSuggestions() {
@@ -134,22 +138,28 @@ function displaySuggestions(inputElem, suggestions) {
         container.addEventListener('mousedown', function (e) { e.preventDefault(); });
         document.body.appendChild(container);
     }
-
     const rect = inputElem.getBoundingClientRect();
-
     container.style.top = `${rect.bottom + window.scrollY}px`;
     container.style.left = `${rect.left + window.scrollX}px`;
     container.style.width = `${rect.width}px`;
-
     container.innerHTML = '';
-
     for (const suggestion of suggestions) {
         const div = document.createElement('div');
         div.innerText = suggestion;
         div.addEventListener('click', function () {
+            if (activeSuggestionIndex !== null && container.children[activeSuggestionIndex]) {
+                container.children[activeSuggestionIndex].classList.remove('active');
+            }
+            activeSuggestionIndex = Array.from(container.children).indexOf(this);
+            this.classList.add('active');
+        });
+        div.addEventListener('dblclick', function () {
             inputElem.value = this.textContent;
             hideAllSuggestions();
         });
+
         container.appendChild(div);
     }
+    activeSuggestionIndex = 0;
+    container.children[activeSuggestionIndex].classList.add('active');
 }
