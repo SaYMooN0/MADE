@@ -65,20 +65,25 @@
     background-color: var(--back);
     border: 1px solid var(--back-3);
     color: var(--front);
+    font-family: Bahnschrift;
+    font-weight: 600;
+    font-size: calc(0.36vh + 0.36vw + 9px);
 }
+
+    [data-type="suggestions-container"] .active {
+        background-color: var(--back-3);
+        color: var(--front-3);
+    }
 
     [data-type="suggestions-container"] div:hover {
         background-color: var(--back-2);
     }
 
-    [data-type="suggestions-container"] .active {
-        background-color: var(--back-3);
+    [data-type="suggestions-container"]::-webkit-scrollbar {
+        width: calc(0.15vw + 5px);
+        max-width: calc(6px);
     }
 
-    [data-type="suggestions-container"]::-webkit-scrollbar {
-        width: calc(0.3vw + 4px);
-        max-width: calc(9px);
-    }
     [data-type="suggestions-container"]::-webkit-scrollbar-track {
         background-color: var(--back-2);
     }
@@ -86,13 +91,15 @@
     [data-type="suggestions-container"]::-webkit-scrollbar-thumb {
         background-color: var(--front-2);
         height: calc(2vh + 5px);
+        border: 1px solid transparent;
+        border-radius: calc(2px + 0.12vw + 0.12vh);
     }
 
         [data-type="suggestions-container"]::-webkit-scrollbar-thumb:hover {
             background-color: var(--bright);
         }
 
-input[data-suggestions] {  
+input[data-suggestions] {
     position: relative;
 }
 

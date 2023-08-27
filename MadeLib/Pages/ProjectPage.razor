@@ -127,12 +127,16 @@
 </div>
 
 @code {
-    protected override async Task OnAfterRenderAsync(bool firstRender)
-    {
-        if (firstRender)
-            await JSRuntime.InvokeVoidAsync("eval", "let scr = document.createElement('script');scr.src = '/_content/MadeLib/js/pages/projectPage.js'; document.head.appendChild(scr);");
-    }
-    private async Task OnModifyRecipesClick()
+	protected override async Task OnAfterRenderAsync(bool firstRender)
+	{
+		if (firstRender)
+		{
+			await JSRuntime.InvokeVoidAsync("eval", "let scr = document.createElement('script');scr.src = '/_content/MadeLib/js/pages/projectPage.js'; document.head.appendChild(scr);");
+			await JSRuntime.InvokeVoidAsync("eval", "let scr = document.createElement('script');scr.src = '/_content/MadeLib/js/tab_content/components.js'; document.head.appendChild(scr);");
+
+		}
+	}
+	private async Task OnModifyRecipesClick()
     {
 		await JSRuntime.InvokeVoidAsync("eval", "let scr = document.createElement('script');scr.src = '/_content/MadeLib/js/tab_content/recipes.js'; document.head.appendChild(scr);");
         await JSRuntime.InvokeVoidAsync("addTab", ModifyRecipes.Main, "recipes");

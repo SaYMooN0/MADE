@@ -45,7 +45,7 @@ body {
 
 .project-item {
     min-height: 60px;
-    height: calc(32px + 5.4vh + 1vw);
+    height: calc(32px + 5vh + 1.2vw);
     margin-left: 0.5%;
     width: 96%;
     margin-top: 0.6%;
@@ -69,7 +69,7 @@ body {
     height: 100%;
     color: var(--front-3);
     font-family: 'Bahnschrift';
-    font-size: calc(1.64vh + 1.47vw);
+    font-size: calc(1.35vh + 1.3vw + 4px);
     display: flex;
     align-items: center;
     font-weight: 700;
@@ -200,9 +200,9 @@ dialog:focus {
 
 .action-btns-container {
     position: absolute;
-    width: calc(76px + 15vw);
+    width: calc(76px + 14vw + 3vh);
     min-width: 200px;
-    height: calc(21vh + 6vw + 120px);
+    height: calc(18vh + 8vw + 120px);
     right: calc(7vw - 26px);
     top: 12%;
     display: grid;
@@ -250,7 +250,7 @@ dialog:focus {
     align-items: end;
     color: var(--front-3);
     font-family: 'Bahnschrift';
-    font-size: calc(0.8vw + 0.6vh + 6px);
+    font-size: calc(0.92vw + 0.4vh + 6px);
     cursor: pointer;
 }
 
