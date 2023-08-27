@@ -27,7 +27,7 @@ document.addEventListener('keydown', function (e) {
                 }
                 container.children[activeSuggestionIndex].classList.add('active');
             }
-            else if ((e.key === "Tab" || e.key === "Enter")  && activeSuggestionIndex > -1) {
+            else if ((e.key === "Tab" || e.key === "Enter") && activeSuggestionIndex > -1) {
                 e.preventDefault();
                 input.value = container.children[activeSuggestionIndex].innerText;
                 container.remove();
@@ -96,9 +96,16 @@ function handleSelectionChange(selectElement) {
 }
 function formSaveButtonClicked(e, type) {
     e.preventDefault();
-    alert(type);
+    let inputs = e.target.elements;
+    inputs = [inputs[0].value, inputs[1].value, inputs[2].value];
+    if (inputs.some(input => input === null || input === undefined || input === '')) {
+        alert("Nonioonononon");
+        return;
+    }
+    alert(inputs);
 
 }
+document.addEventListener('blur', function (e) { if (e.target.tagName === 'INPUT') { hideAllSuggestions(); } }, true);
 document.addEventListener('input', function (e) {
     const data = ['Apple', 'Banana', 'Cherry', 'Date', 'Fig', 'Grape', 'Kiwi'];
     if (e.target.dataset.suggestions !== undefined) {
@@ -121,11 +128,10 @@ function hideSuggestions(inputElem) {
 }
 function displaySuggestions(inputElem, suggestions) {
     let container = inputElem.nextElementSibling;
-
-    // Если контейнер для подсказок не существует, создайте его
     if (!container || container.dataset.type !== "suggestions-container") {
         container = document.createElement('div');
         container.dataset.type = "suggestions-container";
+        container.addEventListener('mousedown', function (e) { e.preventDefault(); });
         document.body.appendChild(container);
     }
 
@@ -141,8 +147,8 @@ function displaySuggestions(inputElem, suggestions) {
         const div = document.createElement('div');
         div.innerText = suggestion;
         div.addEventListener('click', function () {
-            inputElem.value = suggestion;
-            container.remove();
+            inputElem.value = this.textContent;
+            hideAllSuggestions();
         });
         container.appendChild(div);
     }
