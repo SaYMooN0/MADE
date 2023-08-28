@@ -71,7 +71,8 @@ namespace MadeLib.Src
         }
         [JsonIgnore]
         static public MadeProject CurrentProject { get;set; }
-        static public ProjectManager Initialize()
+		[JSInvokable]
+		static public ProjectManager Initialize()
         {
             if (!File.Exists(FileName))
                 return new ProjectManager();
@@ -177,5 +178,5 @@ namespace MadeLib.Src
             }
             return char.ToUpper(input[0]) + input.Substring(1);
         }
-    }
+	}
 }

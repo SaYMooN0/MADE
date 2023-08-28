@@ -23,6 +23,7 @@ function createActionOnClick(event) {
             <p class="input-line"><label class="default-input-label"> input: </label> <input class="default-input" type="text" data-suggestions></p>
             <p class="input-line"><label class="default-input-label"> output: </label> <input class="default-input" type="text" data-suggestions><label class="default-input-label count-margin-left"> count: </label><input class="default-input-num" type="number"></p>
             <p class="input-line"><input class="default-submit" type="submit" value="Save to file"></p>
+            <label class="default-error-label">error</label >
         </form>
         </div>
     </div>`, "new-recipe");
@@ -62,6 +63,15 @@ function stonecutterSaveButtonClick(e, type) {
         alert("Nonioonononon");
         return;
     }
-    alert(inputs);
+    addNewRecipeFromJS('someType', 'someJsonStringContent');
 
+
+
+}
+function addNewRecipeFromJS(type, jsonStringContent) {
+    alert("in addNewRecipeFromJS");
+    DotNet.invokeMethodAsync('MadeLib', 'AddNewRecipeFromJS', type, jsonStringContent)
+        .then(result => {
+            alert("success");
+        });
 }

@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using Microsoft.JSInterop;
+using Newtonsoft.Json;
 
 namespace MadeLib.Src.ProjectClasses
 {
@@ -49,6 +50,15 @@ namespace MadeLib.Src.ProjectClasses
             Settings = settings;
             History = history;
         }
+	
+		public void AddNewRecipe(ActionType type, string jsonStringContent)
+        {
+            //change lust updated
+			//add to history
+			//add to js file
+		}
+		
 
-    }
+
+	}
 }

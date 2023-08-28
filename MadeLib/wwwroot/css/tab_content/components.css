@@ -173,3 +173,6 @@ input:focus {
     .default-submit:hover {
         background-color: var(--bright-3);
     }
+.default-error-label {
+    color: var(--warning-main);
+}
