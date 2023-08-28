@@ -1,14 +1,37 @@
 .vanila-recipe-container {
     height: 100%;
     width: 100%;
+ 
 }
 .vanila-type-select {
-    height: calc(0.8vh + 25px + 0.4vw);
-    width: calc(80px + 6vw + 1vh);
-    font-size: calc(0.45vh + 0.5vw + 7px);
+    height: calc(1vh + 25px + 0.6vw);
+    width: calc(80px + 7vw + 2vh);
+    font-size: calc(0.78vh + 0.58vw + 7px);
+    position: absolute;
+    top:4%;
+    left:3%;
+    z-index:100;
 }
 
+
+#stonecutter-recipe-content {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom:6%;
+    height: 90%;
+    width: 90%;
+    display: block;
+}
 #furnace-recipe-content,
 #stonecutter-recipe-content {
     display: none;
+}
+.stonecutter-form {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction:column;
+    justify-content: center;
+    align-items: center;
 }

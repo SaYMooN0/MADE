@@ -113,13 +113,13 @@ input[data-suggestions] {
 }
 
 .default-input {
-    height: calc(1.8vh + 11px + 0.1vw);
-    width: calc(20vw + 80px + 2vh);
+    height: calc(1.6vh + 8px + 0.25vw);
+    width: calc(20vw + 60px + 1vh);
     background-color: var(--back-2);
     border: 1px solid transparent;
     border-radius: calc(2px + 0.05vw + 0.1vh);
     font-family: 'Figtree';
-    font-size: calc(0.82vh + 0.68vw + 7px);
+    font-size: calc(0.88vh + 0.6vw + 7px);
     font-weight: 300;
     color: var(--front);
     padding-left: calc(1px + 0.25vw + 0.25vh);
@@ -127,15 +127,16 @@ input[data-suggestions] {
 }
 
 .default-input-num {
-    height: calc(2vh + 10px + 0.12vw);
-    width: calc(2vw + 10px + 2vh);
+    height: calc(1.6vh + 8px + 0.25vw);
+    width: calc(2.5vw + 5px + 1vh);
     background-color: var(--back-2);
     border: 1px solid transparent;
     border-radius: calc(1px + 0.04vw + 0.1vh);
     font-family: 'Figtree';
-    font-size: calc(0.49vh + 0.5vw + 4px);
+    font-size: calc(0.88vh + 0.6vw + 7px);
     font-weight: 300;
-    color: var(--front); 
+    color: var(--front);
+    text-align:center;
 }
     .default-input-num::-webkit-inner-spin-button,
     .default-input-num::-webkit-outer-spin-button {
@@ -148,5 +149,27 @@ input:focus {
     
 }
 .count-margin-left {
-    margin-left:calc(2vw + 10px + 1vh);
+    margin-left:calc(1vw + 10px + 2vh);
 }
+.input-line
+{
+    width:80%;
+}
+.default-submit {
+    position: absolute;
+    right: calc(10px + 2%);
+    bottom: calc(10px + 2%);
+    height: calc(2vh + 24px + 0.2vw);
+    width: calc(4vw + 78px + 2vh);
+    background-color: var(--bright-2);
+    border: 1px solid transparent;
+    border-radius: calc(2px + 0.05vw + 0.1vh);
+    font-family: 'Figtree';
+    font-size: calc(0.55vh + 0.55vw + 11px);
+    font-weight: 300;
+    color: var(--front);
+    cursor: pointer;
+}
+    .default-submit:hover {
+        background-color: var(--bright-3);
+    }
