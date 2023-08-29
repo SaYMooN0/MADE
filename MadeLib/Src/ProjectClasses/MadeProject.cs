@@ -55,7 +55,7 @@ namespace MadeLib.Src.ProjectClasses
         {
             this.LastUpdated=DateTime.Now;
             this.SaveToFile();
-            ActionsManager.HandleAction(type, jsonStringContent);
+            ActionsManager.HandleAction(type, jsonStringContent,this.PathToFolder);
 			//add to history
 			//add to js file
 		}

@@ -8,10 +8,11 @@ namespace MadeLib.Src
 	public class InteropHelper
 	{
 		[JSInvokable]
-		public static void HandleRecipeCreationFromJS(string type, string jsonStringContent)
+		public static void HandleRecipeCreationFromJS(string stringType, string jsonStringContent)
 		{
+			ActionType type= (ActionType)Enum.Parse(typeof(ActionType), stringType);
 			MadeProject project = ProjectManager.CurrentProject;
-			project.AddNewRecipe( ActionType.StonecutterAdd	, jsonStringContent);
+			project.AddNewRecipe(type, jsonStringContent);
 		}
 		[JSInvokable]
 		public static string[] GetSuggestions(string input)

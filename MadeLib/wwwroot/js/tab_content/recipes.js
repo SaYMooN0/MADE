@@ -63,7 +63,7 @@ function stonecutterSaveButtonClick(e, type) {
         alert("Nonioonononon");
         return;
     }
-    addNewRecipeFromJS('someType', 'someJsonStringContent');
+    addNewRecipeFromJS('StonecutterAdd', inputs.toString());
 
 
 
