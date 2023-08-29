@@ -69,9 +69,5 @@ function stonecutterSaveButtonClick(e, type) {
 
 }
 function addNewRecipeFromJS(type, jsonStringContent) {
-    alert("in addNewRecipeFromJS");
-    DotNet.invokeMethodAsync('MadeLib', 'AddNewRecipeFromJS', type, jsonStringContent)
-        .then(result => {
-            alert("success");
-        });
+    DotNet.invokeMethodAsync('MadeLib', 'HandleRecipeCreationFromJS', type, jsonStringContent);
 }

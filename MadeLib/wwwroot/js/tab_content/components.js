@@ -39,14 +39,14 @@ document.addEventListener('keydown', function (e) {
     }
 });
 document.addEventListener('blur', function (e) { if (e.target.tagName === 'INPUT') { hideAllSuggestions(); } }, true);
-document.addEventListener('input', function (e) {
+document.addEventListener('input',async  function (e) {
     const data = ['Apple', 'Banana', 'Cherry', 'Date', 'Fig', 'Grape', 'Ki', 'Kwi', 'awi', 'cxziwi', 'Kdasaswi', 'Kweiwi'];
     hideAllSuggestions();
 
     if (e.target.dataset.suggestions !== undefined) {
         hideAllSuggestions()
         const query = e.target.value.toLowerCase();
-        const suggestions = data.filter(item => item.toLowerCase().includes(query));
+        const suggestions = await getSuggestions(query);
         if (suggestions.length > 0) {
             displaySuggestions(e.target, suggestions);
         }
@@ -95,4 +95,8 @@ function displaySuggestions(inputElem, suggestions) {
     }
     activeSuggestionIndex = 0;
     container.children[activeSuggestionIndex].classList.add('active');
+}
+async function getSuggestions(input) {
+    let suggestions = await DotNet.invokeMethodAsync('MadeLib', 'GetSuggestions', input);
+    return suggestions;
 }

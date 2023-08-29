@@ -53,12 +53,11 @@ namespace MadeLib.Src.ProjectClasses
 	
 		public void AddNewRecipe(ActionType type, string jsonStringContent)
         {
-            //change lust updated
+            this.LastUpdated=DateTime.Now;
+            this.SaveToFile();
+            ActionsManager.HandleAction(type, jsonStringContent);
 			//add to history
 			//add to js file
 		}
-		
-
-
 	}
 }
