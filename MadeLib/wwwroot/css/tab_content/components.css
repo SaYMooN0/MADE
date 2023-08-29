@@ -174,5 +174,9 @@ input:focus {
         background-color: var(--bright-3);
     }
 .default-error-label {
+    position: absolute;
     color: var(--warning-main);
+    bottom: calc(10px + 2%);
+    font-family: 'Figtree';
+    font-size: calc(0.55vh + 0.55vw + 11px);
 }

@@ -21,9 +21,9 @@ function createActionOnClick(event) {
         <div id="stonecutter-recipe-content"> 
         <form onsubmit="stonecutterSaveButtonClick(event,'stonecutter')" class="stonecutter-form">
             <p class="input-line"><label class="default-input-label"> input: </label> <input class="default-input" type="text" data-suggestions></p>
-            <p class="input-line"><label class="default-input-label"> output: </label> <input class="default-input" type="text" data-suggestions><label class="default-input-label count-margin-left"> count: </label><input class="default-input-num" type="number"></p>
+            <p class="input-line"><label class="default-input-label"> output: </label> <input class="default-input" type="text" data-suggestions><label class="default-input-label count-margin-left"> count: </label><input class="default-input-num" type="number" value="1"></p>
             <p class="input-line"><input class="default-submit" type="submit" value="Save to file"></p>
-            <label class="default-error-label">error</label >
+            <label class="default-error-label"></label >
         </form>
         </div>
     </div>`, "new-recipe");
@@ -57,17 +57,39 @@ function handleRecipeTypeChange(selectElement) {
 }
 function stonecutterSaveButtonClick(e, type) {
     e.preventDefault();
-    let inputs = e.target.elements;
-    inputs = [inputs[0].value, inputs[1].value, inputs[2].value];
-    if (inputs.some(input => input === null || input === undefined || input === '')) {
-        alert("Nonioonononon");
+   
+    let form = e.target;
+    let inputs = form.elements;
+
+    let errorLabel = form.querySelector('.default-error-label');
+    errorLabel.textContent = "";
+    if (!inputs[0].value) {
+        errorLabel.textContent = "Fill input field!";
         return;
     }
-    addNewRecipeFromJS('StonecutterAdd', inputs.toString());
 
+    if (!inputs[1].value) {
+        errorLabel.textContent = "Fill output field!";
+        return;
+    }
 
-
+    if (!inputs[2].value) {
+        errorLabel.textContent = "Fill output count field!";
+        return;
+    }
+    let submitButton = form.querySelector('.default-submit');
+    let data = {
+        input: inputs[0].value,
+        output: inputs[1].value,
+        outputCount: inputs[2].value
+    };
+    addNewRecipeFromJS('StonecutterAdd', data);
+    submitButton.value = "Saved"
+    setTimeout(() => {
+        submitButton.value = "Save to file";
+    }, 450);
 }
+
 function addNewRecipeFromJS(type, jsonStringContent) {
     DotNet.invokeMethodAsync('MadeLib', 'HandleRecipeCreationFromJS', type, jsonStringContent);
 }
