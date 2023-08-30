@@ -51,11 +51,11 @@ namespace MadeLib.Src.ProjectClasses
             History = history;
         }
 	
-		public void AddNewRecipe(ActionType type, string jsonStringContent)
+		public void AddNewRecipe(ActionType type, Dictionary<string,string> arguments)
         {
             this.LastUpdated=DateTime.Now;
             this.SaveToFile();
-            ActionsManager.HandleAction(type, jsonStringContent,this.PathToFolder);
+            ActionsManager.HandleAction(type, arguments, this.PathToFolder);
 			//add to history
 			//add to js file
 		}

@@ -2,19 +2,22 @@
 
 namespace MadeLib.Src
 {
+	
 	static class ActionsManager
 	{
-		static public void HandleAction(ActionType action, string jsonStringContent, string projectFolderPath)
+		static public void HandleAction(ActionType actionType, Dictionary<string,string> arguments, string projectFolderPath)
 		{
-			switch (action)
+			switch (actionType)
 			{
 				case ActionType.StonecutterAdd:
 					{
-						string strToWrite = "dcasdaidiajidaj";
-						JsFilesController.WriteVanillaRecipe(strToWrite, projectFolderPath) ;
+						string output = arguments["outputCount"] == "1" ? arguments["output"] : $"{arguments["outputCount"]}x {arguments["output"]}";
+						string contentToWrite = $"event.stonecutting('{output}','{arguments["input"]}')";
+						JsFilesController.WriteVanillaRecipe(contentToWrite, projectFolderPath,actionType ) ;
 						break;
 					}
 			}
 		}
+		
 	}
 }
