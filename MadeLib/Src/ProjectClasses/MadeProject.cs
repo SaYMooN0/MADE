@@ -13,9 +13,9 @@ namespace MadeLib.Src.ProjectClasses
         public Loader Loader { get; private set; }
         public DateTime CreationDate { get; private set; }
         public DateTime LastUpdated { get; private set; }
-        public List<string> ItemsCollection { get; private set; }
-        public List<string> TagsCollection { get; private set; }
-        public ProjectSettings Settings { get; private set; }
+        public List<string> ItemsCollection { get; private set; } = new();
+		public List<string> TagsCollection { get; private set; } = new();
+		public ProjectSettings Settings { get; private set; }
         public List<HistoryItem> History { get; private set; } = new();
         public void SaveToFile()
         {
@@ -54,10 +54,9 @@ namespace MadeLib.Src.ProjectClasses
 		public void AddNewRecipe(ActionType type, Dictionary<string,string> arguments)
         {
             this.LastUpdated=DateTime.Now;
-            this.SaveToFile();
-            ActionsManager.HandleAction(type, arguments, this.PathToFolder);
-			//add to history
-			//add to js file
+            string madeCommnet=ActionsManager.HandleAction(type, arguments, this.PathToFolder);
+            History.Add(new HistoryItem(madeCommnet, arguments));
+			this.SaveToFile();
 		}
 	}
 }

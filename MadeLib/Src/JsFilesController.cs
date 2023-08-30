@@ -9,19 +9,16 @@ namespace MadeLib.Src
 		public const string clientScripts = "client_scripts";
 		public const string assets = "assets";
 		public const string vanillaRecipesFile = "vanilla";
-
-		//return int that contains string ind
-		public static void WriteVanillaRecipe(string contentToWrite, string projectFolderPath,ActionType actionType)
+		public static void WriteVanillaRecipe(string contentToWrite, string projectFolderPath,string commentString)
 		{
 			string fullDirPath = Path.Combine(projectFolderPath, kubejs, serverScripts);
 			Directory.CreateDirectory(fullDirPath);
 			string fullFilePath = Path.Combine(fullDirPath, $"{vanillaRecipesFile}.js");
-
-			contentToWrite = "\n"+GenerateMadeComment(actionType)+"\n" + WrapInOnEventRecipes(contentToWrite);
+			contentToWrite = "\n" + commentString +"\n"+WrapInOnEventRecipes(contentToWrite);
 			File.AppendAllText(fullFilePath, contentToWrite);
 		}
-		private static string GenerateRecipeId() => DateTime.Now.ToString("yyMMddHHmmss");
-		private static string GenerateMadeComment(ActionType type) => "//"+GenerateRecipeId()+"-"+type.ToString();
+		
+		
 		static private string WrapInOnEventRecipes(string input) => "onEvent('recipes', event => {"+input+ "}) ";
 	}
 	
