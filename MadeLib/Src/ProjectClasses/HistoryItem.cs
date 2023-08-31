@@ -8,13 +8,15 @@ namespace MadeLib.Src.ProjectClasses
 	{
 		public string Comment { get; private set; }
 		public Dictionary<string, string> Arguments { get; set; }
+        public string FilePath { get; set; }
 
-		private const string Pattern = @"//Made:(\d+)-(\w+)";
+        private const string Pattern = @"//Made:(\d+)-(\w+)";
 
-		public HistoryItem(string comment, Dictionary<string, string> arguments)
+		public HistoryItem(string comment, Dictionary<string, string> arguments, string filePath)
 		{
 			Comment = comment;
 			Arguments = arguments;
+			FilePath = filePath;
 		}
 
 		public DateTime? CreationTime()
@@ -32,7 +34,7 @@ namespace MadeLib.Src.ProjectClasses
 				return result;
 			return null;
 		}
-        public long? ActionCode()
+        public long? ActionId()
         {
             var match = Regex.Match(this.Comment, Pattern);
             if (match.Success && long.TryParse(match.Groups[1].Value, out long result))

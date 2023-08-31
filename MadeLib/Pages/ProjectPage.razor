@@ -131,24 +131,26 @@
     {
         if (firstRender)
         {
-            await JSRuntime.InvokeVoidAsync("eval", "let scr = document.createElement('script');scr.src = '/_content/MadeLib/js/pages/projectPage.js'; document.head.appendChild(scr);");
-            await JSRuntime.InvokeVoidAsync("eval", "let scr = document.createElement('script');scr.src = '/_content/MadeLib/js/tab_content/components.js'; document.head.appendChild(scr);");
+            await JSRuntime.InvokeVoidAsync("eval", "let projectPageScript = document.createElement('script');projectPageScript.src = '/_content/MadeLib/js/pages/projectPage.js'; document.head.appendChild(projectPageScript);");
+            await JSRuntime.InvokeVoidAsync("eval", "let componentsScript = document.createElement('script');componentsScript.src = '/_content/MadeLib/js/tab_content/components.js'; document.head.appendChild(componentsScript);");
+            await JSRuntime.InvokeVoidAsync("eval", "let historyScript = document.createElement('script');historyScript.src = '/_content/MadeLib/js/pages/projectHistory.js'; document.head.appendChild(historyScript);");
 
         }
     }
     private async Task OnModifyRecipesClick()
     {
-        await JSRuntime.InvokeVoidAsync("eval", "let scr = document.createElement('script');scr.src = '/_content/MadeLib/js/tab_content/recipes.js'; document.head.appendChild(scr);");
+        await JSRuntime.InvokeVoidAsync("eval", "let recipeModificationScript = document.createElement('script');recipeModificationScript.src = '/_content/MadeLib/js/tab_content/recipes.js'; document.head.appendChild(recipeModificationScript);");
         await JSRuntime.InvokeVoidAsync("addTab", ModifyRecipes.Main, "recipes");
     }
     private async Task OnCollectionsClick() { }
     private async Task OnHistoryClick()
     {
-        string content = "<div class='history-items-container'>";
+        string content = "<link href=\"_content/MadeLib/css/pages/projectHistory.css\" rel=\"stylesheet\" />" +
+                         "<label class='project-history-label'>Project history</label>" +
+                         "<div class='history-items-container'>";
         foreach (HistoryItem historyItem in ProjectManager.CurrentProject.History)
         {
-            content += $"<div class='history-item' onclick=\"let historyItemCode = '{historyItem.ActionCode()}'; alert(historyItemCode);\">{historyItem.CreationTime()}-{ActionTypeConverter.TypeToString(historyItem.ActionType())}</div>";
-
+            content += $"<div class='history-item' onclick=\"historyItemClicked({historyItem.ActionId()})\">{historyItem.CreationTime()}-{ActionTypeConverter.TypeToString(historyItem.ActionType())}</div>";
         }
         content += "</div>";
         await JSRuntime.InvokeVoidAsync("addTab", content, "history");

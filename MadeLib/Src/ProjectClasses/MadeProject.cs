@@ -54,8 +54,9 @@ namespace MadeLib.Src.ProjectClasses
 		public void AddNewRecipe(ActionType type, Dictionary<string,string> arguments)
         {
             this.LastUpdated=DateTime.Now;
-            string madeCommnet=ActionsManager.HandleAction(type, arguments, this.PathToFolder);
-            History.Add(new HistoryItem(madeCommnet, arguments));
+            HistoryItem historyItem=ActionsManager.HandleAction(type, arguments, this.PathToFolder);
+            if(historyItem !=null)
+                History.Add(historyItem);
 			this.SaveToFile();
 		}
 	}

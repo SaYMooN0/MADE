@@ -1,3 +1,13 @@
-body{
-    background-color:fuchsia;
+.project-history-label
+{
+    color:var(--front);
+    position:absolute;
+    top:4%;
+    left:6%;
+}
+.history-items-container
+{
+    width:99%;
+    height:80%;
+    background-color:firebrick;
 }
