@@ -1,5 +1,8 @@
-﻿public enum Loader
+﻿namespace MadeLib.Src
 {
-    Fabric,
-    Forge
+    public enum Loader
+    {
+        Fabric,
+        Forge
+    }
 }

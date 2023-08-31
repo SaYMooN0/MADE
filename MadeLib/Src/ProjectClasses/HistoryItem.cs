@@ -32,6 +32,13 @@ namespace MadeLib.Src.ProjectClasses
 				return result;
 			return null;
 		}
+        public long? ActionCode()
+        {
+            var match = Regex.Match(this.Comment, Pattern);
+            if (match.Success && long.TryParse(match.Groups[1].Value, out long result))
+                return result;
+            return null;
+        }
 
-	}
+    }
 }

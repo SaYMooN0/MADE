@@ -1,6 +1,10 @@
-﻿public enum ActionType
+﻿namespace MadeLib.Src
 {
-	StonecutterAdd,
-	StonecutterRemove,
+    
+    public enum ActionType
+    {
+        StonecutterAdd,
+        RecipeRemoved,
 
+    }
 }

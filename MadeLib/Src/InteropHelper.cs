@@ -10,7 +10,7 @@ namespace MadeLib.Src
 		[JSInvokable]
 		public static void HandleRecipeCreationFromJS(string stringType, Dictionary<string, string> arguments)
 		{
-			ActionType type= (ActionType)Enum.Parse(typeof(ActionType), stringType);
+			ActionType type= ActionTypeConverter.TypeFromString(stringType);
 			ProjectManager.CurrentProject.AddNewRecipe(type, arguments);
 		}
 		[JSInvokable]
