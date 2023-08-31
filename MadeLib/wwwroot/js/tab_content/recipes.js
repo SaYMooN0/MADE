@@ -1,4 +1,3 @@
-
 function createActionOnClick(event) {
     tabCreationResult = addTab(`
         <link href="_content/MadeLib/css/tab_content/recipes.css" rel="stylesheet" />
@@ -15,17 +14,8 @@ function createActionOnClick(event) {
 
 
         <input type="text" data-suggestions>
-        
-        
         </div>
-        <div id="stonecutter-recipe-content"> 
-        <form onsubmit="stonecutterSaveButtonClick(event,'stonecutter')" class="stonecutter-form">
-            <p class="input-line"><label class="default-input-label"> input: </label> <input class="default-input" type="text" data-suggestions></p>
-            <p class="input-line"><label class="default-input-label"> output: </label> <input class="default-input" type="text" data-suggestions><label class="default-input-label count-margin-left"> count: </label><input class="default-input-num" type="number" value="1"></p>
-            <p class="input-line"><input class="default-submit" type="submit" value="Save to file"></p>
-            <label class="default-error-label"></label >
-        </form>
-        </div>
+        ${getStonecutterRecipeForm()}
     </div>`, "new-recipe");
     if (tabCreationResult) {
         closeParentTab(event)
@@ -55,9 +45,9 @@ function handleRecipeTypeChange(selectElement) {
     const value = selectElement.value;
     document.getElementById(value + '-recipe-content').style.display = 'block';
 }
-function stonecutterSaveButtonClick(e, type) {
+function stonecutterSaveButtonClick(e, isNew, actionInfo) {
     e.preventDefault();
-   
+
     let form = e.target;
     let inputs = form.elements;
 
@@ -67,7 +57,6 @@ function stonecutterSaveButtonClick(e, type) {
         errorLabel.textContent = "Fill input field!";
         return;
     }
-
     if (!inputs[1].value) {
         errorLabel.textContent = "Fill output field!";
         return;
@@ -83,13 +72,22 @@ function stonecutterSaveButtonClick(e, type) {
         output: inputs[1].value,
         outputCount: inputs[2].value
     };
-    addNewRecipeFromJS('StonecutterAdd', data);
-    submitButton.value = "Saved"
-    setTimeout(() => {
-        submitButton.value = "Save to file";
-    }, 450);
+    if (isNew === false) {
+       
+    }
+    else if (isNew === true) {
+        addNewRecipeFromJS('StonecutterAdd', data);
+        submitButton.value = "Saved"
+        setTimeout(() => {
+            submitButton.value = "Save to file";
+        }, 450);
+    }
 }
 
 function addNewRecipeFromJS(type, jsonStringContent) {
     DotNet.invokeMethodAsync('MadeLib', 'HandleRecipeCreationFromJS', type, jsonStringContent);
+}
+function changeExistingAction()
+{
+    DotNet.invokeMethodAsync('MadeLib', 'HandleActionChanging', actionInfo);
 }

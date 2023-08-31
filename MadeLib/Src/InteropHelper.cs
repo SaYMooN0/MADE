@@ -14,6 +14,11 @@ namespace MadeLib.Src
 			ProjectManager.CurrentProject.AddNewRecipe(type, arguments);
 		}
 		[JSInvokable]
+		public static void HandleActionChanging(string actionInfo)
+		{
+			
+		}
+		[JSInvokable]
 		public static string[] GetSuggestions(string input)
 		{
 			string[] s = { "Apple", "Banana", "Cherry", "Date", "Fig", "Grape", "Ki", "Kwi", "awi", "cxziwi", "Kdasaswi", "Kweiwi" };

@@ -1,5 +1,5 @@
 ﻿@page "/projectPage"
-@using Microsoft.AspNetCore.Components.RenderTree;
+@using Newtonsoft.Json;
 @inject MadeLib.Src.ProjectManager projectManager
 @inject IJSRuntime JSRuntime;
 <link href="_content/MadeLib/css/pages/projectPage.css" rel="stylesheet" />
@@ -132,6 +132,7 @@
         if (firstRender)
         {
             await JSRuntime.InvokeVoidAsync("eval", "let projectPageScript = document.createElement('script');projectPageScript.src = '/_content/MadeLib/js/pages/projectPage.js'; document.head.appendChild(projectPageScript);");
+            await JSRuntime.InvokeVoidAsync("eval", "let contentMarkupScript = document.createElement('script');contentMarkupScript.src = '/_content/MadeLib/js/tab_content/content_markup.js'; document.head.appendChild(contentMarkupScript);");
             await JSRuntime.InvokeVoidAsync("eval", "let componentsScript = document.createElement('script');componentsScript.src = '/_content/MadeLib/js/tab_content/components.js'; document.head.appendChild(componentsScript);");
             await JSRuntime.InvokeVoidAsync("eval", "let historyScript = document.createElement('script');historyScript.src = '/_content/MadeLib/js/pages/projectHistory.js'; document.head.appendChild(historyScript);");
 
@@ -140,7 +141,7 @@
     private async Task OnModifyRecipesClick()
     {
         await JSRuntime.InvokeVoidAsync("eval", "let recipeModificationScript = document.createElement('script');recipeModificationScript.src = '/_content/MadeLib/js/tab_content/recipes.js'; document.head.appendChild(recipeModificationScript);");
-        await JSRuntime.InvokeVoidAsync("addTab", ModifyRecipes.Main, "recipes");
+        await JSRuntime.InvokeVoidAsync("addTab", ModificationPageContent.ModifyRecipesContent, "recipes");
     }
     private async Task OnCollectionsClick() { }
     private async Task OnHistoryClick()
@@ -148,9 +149,19 @@
         string content = "<link href=\"_content/MadeLib/css/pages/projectHistory.css\" rel=\"stylesheet\" />" +
                          "<label class='project-history-label'>Project history</label>" +
                          "<div class='history-items-container'>";
+        string onClickArguments = "";
         foreach (HistoryItem historyItem in ProjectManager.CurrentProject.History)
         {
-            content += $"<div class='history-item' onclick=\"historyItemClicked({historyItem.ActionId()})\">{historyItem.CreationTime()}-{ActionTypeConverter.TypeToString(historyItem.ActionType())}</div>";
+            onClickArguments = "`{";
+            foreach (KeyValuePair<string,string> keyValue in historyItem.Arguments)
+            {
+                onClickArguments += '\'' + keyValue.Key + '\'' + ':' + '\'' + keyValue.Value + '\'' + ',';
+            }
+            onClickArguments = onClickArguments.Substring(0, onClickArguments.Length - 1);
+            onClickArguments += "}`";
+            //onClickArgumentsJson = $"'{JsonConvert.SerializeObject(historyItem.Arguments)}','{historyItem.ActionType().ToString()}','{historyItem.FilePath}','{historyItem.ActionId().ToString()}'";
+            //onClickArguments += $"'{historyItem.ActionType().ToString()}','{historyItem.FilePath}','{historyItem.ActionId().ToString()}'";
+            content += $"<div class='history-item' onclick=\"historyItemClicked({onClickArguments})\">{historyItem.CreationTime()}-{ActionTypeConverter.TypeToString(historyItem.ActionType())}</div>";
         }
         content += "</div>";
         await JSRuntime.InvokeVoidAsync("addTab", content, "history");

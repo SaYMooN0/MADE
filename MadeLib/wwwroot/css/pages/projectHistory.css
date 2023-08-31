@@ -9,5 +9,11 @@
 {
     width:99%;
     height:80%;
-    background-color:firebrick;
+}
+.history-item{
+    height:6vh;
+    background-color:blanchedalmond;
+    font-size:18px;
+    margin-top:3px;
+    cursor:pointer;
 }
