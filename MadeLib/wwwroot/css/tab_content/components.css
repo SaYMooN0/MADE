@@ -143,10 +143,13 @@ input[data-suggestions] {
         -webkit-appearance: none;
         margin: 0;
     }
-input:focus {
+.default-input:focus {
     outline: none;
     background-color: var(--back-3);
-    
+}
+.default-input-num:focus {
+    outline: none;
+    background-color: var(--back-3);
 }
 .count-margin-left {
     margin-left:calc(1vw + 10px + 2vh);
@@ -160,7 +163,7 @@ input:focus {
     right: calc(10px + 2%);
     bottom: calc(10px + 2%);
     height: calc(2vh + 24px + 0.2vw);
-    width: calc(4vw + 78px + 2vh);
+    width: calc(4vw + 86px + 2vh);
     background-color: var(--bright-2);
     border: 1px solid transparent;
     border-radius: calc(2px + 0.05vw + 0.1vh);

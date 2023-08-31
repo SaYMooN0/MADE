@@ -14,7 +14,7 @@ namespace MadeLib.Src
 			ProjectManager.CurrentProject.AddNewRecipe(type, arguments);
 		}
 		[JSInvokable]
-		public static void HandleActionChanging(string actionInfo)
+		public static void HandleActionChanging(string actionId, string filePath)
 		{
 			
 		}

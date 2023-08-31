@@ -146,6 +146,7 @@
     private async Task OnCollectionsClick() { }
     private async Task OnHistoryClick()
     {
+        await JSRuntime.InvokeVoidAsync("eval", "let recipeModificationScript = document.createElement('script');recipeModificationScript.src = '/_content/MadeLib/js/tab_content/recipes.js'; document.head.appendChild(recipeModificationScript);");
         string content = "<link href=\"_content/MadeLib/css/pages/projectHistory.css\" rel=\"stylesheet\" />" +
                          "<label class='project-history-label'>Project history</label>" +
                          "<div class='history-items-container'>";
@@ -159,8 +160,7 @@
             }
             onClickArguments = onClickArguments.Substring(0, onClickArguments.Length - 1);
             onClickArguments += "}`";
-            //onClickArgumentsJson = $"'{JsonConvert.SerializeObject(historyItem.Arguments)}','{historyItem.ActionType().ToString()}','{historyItem.FilePath}','{historyItem.ActionId().ToString()}'";
-            //onClickArguments += $"'{historyItem.ActionType().ToString()}','{historyItem.FilePath}','{historyItem.ActionId().ToString()}'";
+            onClickArguments += $",'{historyItem.ActionType().ToString()}','{historyItem.FilePath}','{historyItem.ActionId().ToString()}'";
             content += $"<div class='history-item' onclick=\"historyItemClicked({onClickArguments})\">{historyItem.CreationTime()}-{ActionTypeConverter.TypeToString(historyItem.ActionType())}</div>";
         }
         content += "</div>";

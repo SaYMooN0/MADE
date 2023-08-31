@@ -56,7 +56,6 @@ function hideAllSuggestions() {
     const allContainers = document.querySelectorAll('[data-type="suggestions-container"]');
     allContainers.forEach(container => container.remove());
 }
-
 function hideSuggestions(inputElem) {
     let container = inputElem.nextElementSibling;
     if (container && container.dataset.type === "suggestions-container") {

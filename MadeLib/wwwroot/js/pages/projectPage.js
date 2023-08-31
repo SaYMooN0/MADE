@@ -8,7 +8,6 @@ $(function () {
     createWelcomeIfNecessary();
 });
 function addTab(content, name) {
-   
     if (!name) {
         name = ($("#sortable .tab-item").length + 1);
     }
@@ -67,5 +66,17 @@ function createWelcomeIfNecessary() {
     let tabCount = $("#sortable .tab-item").length;
     if (tabCount < 1) {
         createWelcome();
+    }
+}
+function closeParentTab(event) {
+    let tabPage = $(event.target).closest('.tabPage');
+    if (!tabPage.length) { return; }
+    let tabItem = $(".tab-item[data-tab='" + tabPage.attr('id') + "']");
+    if (!tabItem.length) { return; }
+    tabItem.remove();
+    tabPage.remove();
+    let firstRemainingTabName = $(".tab-item").first().attr("data-tab").replace("tab-", "");
+    if (firstRemainingTabName) {
+        switchToTab(firstRemainingTabName);
     }
 }

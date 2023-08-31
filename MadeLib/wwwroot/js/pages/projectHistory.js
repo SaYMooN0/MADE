@@ -1,13 +1,17 @@
-
-function historyItemClicked(formArgumentsString) {
+function historyItemClicked(formArgumentsString, type, path, actionId) {
     let formArguments = unvalidJsonStringToObject(formArgumentsString);
-    alert(formArguments.input);
+    switch (type) {
+        case "StonecutterAdd":
+            let tabContent = `
+                <link href="_content/MadeLib/css/tab_content/recipes.css" rel="stylesheet" />
+                <link href="_content/MadeLib/css/tab_content/components.css" rel="stylesheet" />
+            ` + getStonecutterRecipeForm(formArguments, actionId, path);
+            addTab(tabContent, `action-${actionId}`);
+            break;
+        default:
+            alert("error in historyItemClicked ");
+    }
 }
-//function historyItemClicked(formArguments, type, path, actionId) {
-//    alert(1);
-//    alert(formArguments, type, path, actionId);
-//    addTab(getStonecutterRecipeForm(formArguments, actionInfo), `action-${actionId}`);
-//}
 function unvalidJsonStringToObject(str) {
     const jsonString = str.replace(/'/g, '"');
     try {
