@@ -14,10 +14,11 @@ namespace MadeLib.Src
 			ProjectManager.CurrentProject.AddNewRecipe(type, arguments);
 		}
 		[JSInvokable]
-		public static void HandleActionChanging(string actionId, string filePath)
+		public static void HandleActionChanging(string actionId, string filePath, string stringType, Dictionary<string, string> arguments)
 		{
-			
-		}
+            ActionType type = ActionTypeConverter.TypeFromString(stringType);
+			ProjectManager.CurrentProject.ChangeAction(actionId, filePath, type, arguments);
+        }
 		[JSInvokable]
 		public static string[] GetSuggestions(string input)
 		{

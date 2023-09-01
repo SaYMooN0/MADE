@@ -4,7 +4,7 @@
     public enum ActionType
     {
         StonecutterAdd,
-        RecipeRemoved,
+        RecipeRemoved
 
     }
 }

@@ -151,17 +151,19 @@
                          "<label class='project-history-label'>Project history</label>" +
                          "<div class='history-items-container'>";
         string onClickArguments = "";
+        string historyItemPath;
         foreach (HistoryItem historyItem in ProjectManager.CurrentProject.History)
         {
             onClickArguments = "`{";
-            foreach (KeyValuePair<string,string> keyValue in historyItem.Arguments)
+            foreach (KeyValuePair<string, string> keyValue in historyItem.Arguments)
             {
                 onClickArguments += '\'' + keyValue.Key + '\'' + ':' + '\'' + keyValue.Value + '\'' + ',';
             }
             onClickArguments = onClickArguments.Substring(0, onClickArguments.Length - 1);
             onClickArguments += "}`";
-            onClickArguments += $",'{historyItem.ActionType().ToString()}','{historyItem.FilePath}','{historyItem.ActionId().ToString()}'";
-            content += $"<div class='history-item' onclick=\"historyItemClicked({onClickArguments})\">{historyItem.CreationTime()}-{ActionTypeConverter.TypeToString(historyItem.ActionType())}</div>";
+            historyItemPath = historyItem.FilePath.Replace('\\', '/');
+            onClickArguments += $",'{historyItem.ActionType.ToString()}','{historyItemPath}','{historyItem.ActionId}'";
+            content += $"<div class='history-item' onclick=\"historyItemClicked({onClickArguments})\">{historyItem.GetCreationTime()}-{ActionTypeConverter.TypeToString(historyItem.ActionType)}</div>";
         }
         content += "</div>";
         await JSRuntime.InvokeVoidAsync("addTab", content, "history");

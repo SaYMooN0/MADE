@@ -1,5 +1,6 @@
 ﻿using Microsoft.JSInterop;
 using Newtonsoft.Json;
+using System;
 
 namespace MadeLib.Src.ProjectClasses
 {
@@ -54,10 +55,35 @@ namespace MadeLib.Src.ProjectClasses
 		public void AddNewRecipe(ActionType type, Dictionary<string,string> arguments)
         {
             this.LastUpdated=DateTime.Now;
-            HistoryItem historyItem=ActionsManager.HandleAction(type, arguments, this.PathToFolder);
+            HistoryItem historyItem=ActionsManager.HandleAction(type, arguments, PathToFolder);
             if(historyItem !=null)
                 History.Add(historyItem);
-			this.SaveToFile();
+			SaveToFile();
 		}
+        public void ChangeAction(string actionId, string filePath, ActionType type, Dictionary<string, string> arguments)
+        {
+            ProjectManager.CurrentProject.DeleteActionById(actionId, filePath);
+            this.LastUpdated = DateTime.Now;
+            HistoryItem historyItem = ActionsManager.HandleAction(type, arguments, PathToFolder, actionId);
+            if (historyItem != null)
+                History.Add(historyItem);
+            SaveToFile();
+        }
+        public void DeleteActionById(string actionId, string filePath)
+        {
+            if (TryDeleteHistoryItemByActionId(actionId))
+                ActionsManager.RemoveAction(actionId, filePath);
+        }
+        public bool TryDeleteHistoryItemByActionId(string actionId)
+        {
+            HistoryItem historyItem = History.FirstOrDefault(item=>item.ActionId== actionId);
+            if (historyItem != null)
+            {
+                History.Remove(historyItem);
+                return true;
+            }
+            return false;
+
+        }
 	}
 }

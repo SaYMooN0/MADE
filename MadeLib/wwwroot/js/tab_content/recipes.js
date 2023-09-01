@@ -47,14 +47,14 @@ function stonecutterSaveButtonClick(e, isNew, actionId, path) {
             return;
         }
     }
-    let data = {
+    let arguments = {
         input: inputs[0].value,
         output: inputs[1].value,
         outputCount: inputs[2].value
     };
 
-    if (isNew=="true") {  addNewRecipeFromJS('StonecutterAdd', data); }
-    else if (isNew == "false"){ changeExistingAction(actionId, path); }
+    if (isNew=="true") {  addNewRecipeFromJS('StonecutterAdd', arguments); }
+    else if (isNew == "false") { changeExistingAction(actionId, path, 'StonecutterAdd', arguments); }
     let submitButton = form.querySelector('.default-submit');
     submitButton.value = "Saved";
     setTimeout(() => { submitButton.value = "Save to file"; }, 450);
@@ -63,6 +63,6 @@ function stonecutterSaveButtonClick(e, isNew, actionId, path) {
 function addNewRecipeFromJS(type, jsonStringContent) {
     DotNet.invokeMethodAsync('MadeLib', 'HandleRecipeCreationFromJS', type, jsonStringContent);
 }
-function changeExistingAction(actionId, filePath) {
-    DotNet.invokeMethodAsync('MadeLib', 'HandleActionChanging', actionId, filePath);
+function changeExistingAction(actionId, filePath, type, jsonStringContent) {
+    DotNet.invokeMethodAsync('MadeLib', 'HandleActionChanging', actionId, filePath, type, jsonStringContent);
 }
