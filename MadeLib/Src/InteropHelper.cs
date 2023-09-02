@@ -20,6 +20,11 @@ namespace MadeLib.Src
 			ProjectManager.CurrentProject.ChangeAction(actionId, filePath, type, arguments);
         }
 		[JSInvokable]
+        static public void HandleActionDeleting(string actionId, string filePath)
+        {
+			ProjectManager.CurrentProject.DeleteActionById(actionId, filePath);
+        }
+        [JSInvokable]
 		public static string[] GetSuggestions(string input)
 		{
 			string[] s = { "Apple", "Banana", "Cherry", "Date", "Fig", "Grape", "Ki", "Kwi", "awi", "cxziwi", "Kdasaswi", "Kweiwi" };

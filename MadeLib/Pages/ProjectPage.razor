@@ -163,7 +163,11 @@
             onClickArguments += "}`";
             historyItemPath = historyItem.FilePath.Replace('\\', '/');
             onClickArguments += $",'{historyItem.ActionType.ToString()}','{historyItemPath}','{historyItem.ActionId}'";
-            content += $"<div class='history-item' onclick=\"historyItemClicked({onClickArguments})\">{historyItem.GetCreationTime()}-{ActionTypeConverter.TypeToString(historyItem.ActionType)}</div>";
+            content += $"<div class='history-item' onclick=\"historyItemClicked({onClickArguments})\">" +
+            $"<label class='history-item-type'>{ActionTypeConverter.TypeToString(historyItem.ActionType)}</label>" +
+            $"<button class='history-item-delete-button' onclick=\"histotyItemDeleteButtonClicked( event ,this,'{historyItem.ActionId}','{historyItemPath}')\">Delete</button>" +
+            $"<label class='history-item-date'>{historyItem.GetCreationTime()}</label>" +
+            "</div>";
         }
         content += "</div>";
         await JSRuntime.InvokeVoidAsync("addTab", content, "history");
