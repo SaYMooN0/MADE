@@ -71,8 +71,10 @@ namespace MadeLib.Src.ProjectClasses
         }
         public void DeleteActionById(string actionId, string filePath)
         {
+            
+            string fullPathToFile=Path.Combine(PathToFolder, filePath.Replace('/','\\'));
             if (TryDeleteHistoryItemByActionId(actionId))
-                ActionsManager.RemoveAction(actionId, filePath);
+                ActionsManager.RemoveAction(actionId, fullPathToFile);
         }
         public bool TryDeleteHistoryItemByActionId(string actionId)
         {

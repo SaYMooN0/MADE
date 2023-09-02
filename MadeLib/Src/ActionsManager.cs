@@ -28,7 +28,7 @@ namespace MadeLib.Src
                 default: return null;
             }  
         }
-        static public void RemoveAction(string ActionId, string filePath) { JsFilesController.DeleteAction(ActionId, filePath); }
+        static public void RemoveAction(string ActionId, string fullPathToFile) { JsFilesController.DeleteAction(ActionId, fullPathToFile); }
         private static string GenerateRecipeId() => DateTime.Now.ToString("yyMMddHHmmss");
        
 
