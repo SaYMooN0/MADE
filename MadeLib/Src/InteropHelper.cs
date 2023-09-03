@@ -10,26 +10,28 @@ namespace MadeLib.Src
 		[JSInvokable]
 		public static void HandleRecipeCreationFromJS(string stringType, Dictionary<string, string> arguments)
 		{
-			ActionType type= ActionTypeConverter.TypeFromString(stringType);
+			ActionType type = ActionTypeConverter.TypeFromString(stringType);
 			ProjectManager.CurrentProject.AddNewRecipe(type, arguments);
 		}
 		[JSInvokable]
 		public static void HandleActionChanging(string actionId, string filePath, string stringType, Dictionary<string, string> arguments)
 		{
-            ActionType type = ActionTypeConverter.TypeFromString(stringType);
+			ActionType type = ActionTypeConverter.TypeFromString(stringType);
 			ProjectManager.CurrentProject.ChangeAction(actionId, filePath, type, arguments);
-        }
+		}
 		[JSInvokable]
-        static public void HandleActionDeleting(string actionId, string filePath)
-        {
+		static public void HandleActionDeleting(string actionId, string filePath)
+		{
 			ProjectManager.CurrentProject.DeleteActionById(actionId, filePath);
-        }
-        [JSInvokable]
+		}
+		[JSInvokable]
 		public static string[] GetSuggestions(string input)
 		{
 			string[] s = { "Apple", "Banana", "Cherry", "Date", "Fig", "Grape", "Ki", "Kwi", "awi", "cxziwi", "Kdasaswi", "Kweiwi" };
-			return s ;
+			return s;
 		}
-	}
+		
+
+    }
 
 }

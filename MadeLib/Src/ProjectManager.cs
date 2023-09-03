@@ -2,6 +2,7 @@
 using Newtonsoft.Json;
 using Microsoft.WindowsAPICodePack.Dialogs;
 using Microsoft.JSInterop;
+using Microsoft.Win32;
 
 namespace MadeLib.Src
 {
@@ -70,9 +71,9 @@ namespace MadeLib.Src
             }
         }
         [JsonIgnore]
-        static public MadeProject CurrentProject { get;set; }
-		[JSInvokable]
-		static public ProjectManager Initialize()
+        static public MadeProject CurrentProject { get; set; }
+        [JSInvokable]
+        static public ProjectManager Initialize()
         {
             if (!File.Exists(FileName))
                 return new ProjectManager();
@@ -124,6 +125,27 @@ namespace MadeLib.Src
                 return null;
             }
         }
+        public string ChooseProject()
+        {
+            var dialog = new CommonOpenFileDialog
+            {
+                Title = $"Choose *{MadeProject.FileExtension} file",
+                Filters = { new CommonFileDialogFilter("MADE Project File", MadeProject.FileExtension) { ShowExtensions = true } },
+                DefaultExtension = MadeProject.FileExtension,
+                EnsureFileExists = true
+            };
+            if (dialog.ShowDialog() != CommonFileDialogResult.Ok)
+                return null;
+            AddProjectToCollectionIfNeeded(dialog.FileName);
+            return dialog.FileName;
+        }
+        public void AddProjectToCollectionIfNeeded(string pathToFile)
+        {
+            MadeProject project = MadeProject.CreateFromFile(pathToFile);
+            Projects.Add(project);
+            _projectLinks.Add(project.FullPath);
+            this.SaveToFile();
+        }
         public ProjectCreationInformation GetInformationToFillCreationForm(string folderPath)
         {
             string fullPath = Path.Combine(folderPath, "minecraftinstance.json");
@@ -170,7 +192,7 @@ namespace MadeLib.Src
             if (end == -1) return null;
             return source.Substring(start, end - start).Trim().Trim(',', '\"');
         }
-        public static string CapitalizeFirstLetter(string input)
+        private static string CapitalizeFirstLetter(string input)
         {
             if (string.IsNullOrEmpty(input))
             {
@@ -178,5 +200,6 @@ namespace MadeLib.Src
             }
             return char.ToUpper(input[0]) + input.Substring(1);
         }
-	}
+
+    }
 }
