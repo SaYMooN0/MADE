@@ -1,8 +1,5 @@
-﻿// Ignore Spelling: Interop json
-
-using MadeLib.Src.ProjectClasses;
+﻿
 using Microsoft.JSInterop;
-
 namespace MadeLib.Src
 {
 	public class InteropHelper
@@ -27,8 +24,10 @@ namespace MadeLib.Src
 		[JSInvokable]
 		public static string[] GetSuggestions(string input)
 		{
-			string[] s = { "Apple", "Banana", "Cherry", "Date", "Fig", "Grape", "Ki", "Kwi", "awi", "cxziwi", "Kdasaswi", "Kweiwi" };
-			return s;
+			MadeSettings madeSettings  =MadeSettings.Initialize();
+			if (!madeSettings.EnableSuggestions)
+				return new string[0];
+			return ProjectManager.CurrentProject.Suggestions.GetSuggestion(input);
 		}
 		
 

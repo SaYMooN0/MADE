@@ -2,7 +2,6 @@
 using Newtonsoft.Json;
 using Microsoft.WindowsAPICodePack.Dialogs;
 using Microsoft.JSInterop;
-using Microsoft.Win32;
 
 namespace MadeLib.Src
 {
@@ -98,7 +97,7 @@ namespace MadeLib.Src
             if (AnyMadeProjectFilesInFolder(pathToFolder))
                 return false;
             string fullPath = pathToFolder + "\\" + name + MadeProject.FileExtension;
-            MadeProject project = new(name, fullPath, pathToFolder, version, loader, DateTime.Now, DateTime.Now, new(), new(), new(), new());
+            MadeProject project = new(name, fullPath, pathToFolder, version, loader, DateTime.Now, DateTime.Now, new(), new(), new());
             project.SaveToFile();
             Projects.Add(project);
             _projectLinks.Add(project.FullPath);
