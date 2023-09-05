@@ -14,6 +14,10 @@ namespace MadeLib.Src
         }
         static public HistoryItem HandleAction(ActionType actionType, Dictionary<string, string> arguments, string projectFolderPath,string actionId)
         {
+            foreach (string key in arguments.Keys)
+            {
+                arguments[key] = arguments[key].Replace("'",string.Empty);
+            }
             switch (actionType)
             {
                 case ActionType.StonecutterAdd:

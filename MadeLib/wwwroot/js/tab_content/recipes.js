@@ -41,24 +41,37 @@ function stonecutterSaveButtonClick(e, isNew, actionId, path) {
     let errorLabel = form.querySelector('.default-error-label');
     errorLabel.textContent = "";
     const fieldNames = ['input', 'output', 'output count'];
+
     for (let i = 0; i < fieldNames.length; i++) {
         if (!inputs[i].value) {
             errorLabel.textContent = `Fill ${fieldNames[i]} field!`;
             return;
         }
     }
+    let outputCount = parseInt(inputs[2].value, 10);
+    if (outputCount > 128 || outputCount<1 ) {
+        errorLabel.textContent = "Output count cannot be more than 128!";
+        return;
+    }
+
     let arguments = {
         input: inputs[0].value,
         output: inputs[1].value,
         outputCount: inputs[2].value
     };
 
-    if (isNew=="true") {  addNewRecipeFromJS('StonecutterAdd', arguments); }
-    else if (isNew == "false") { changeExistingAction(actionId, path, 'StonecutterAdd', arguments); }
+    if (isNew == "true") {
+        addNewRecipeFromJS('StonecutterAdd', arguments);
+    }
+    else if (isNew == "false") {
+        changeExistingAction(actionId, path, 'StonecutterAdd', arguments);
+    }
+
     let submitButton = form.querySelector('.default-submit');
     submitButton.value = "Saved";
     setTimeout(() => { submitButton.value = "Save to file"; }, 450);
 }
+
 
 function addNewRecipeFromJS(type, jsonStringContent) {
     DotNet.invokeMethodAsync('MadeLib', 'HandleRecipeCreationFromJS', type, jsonStringContent);

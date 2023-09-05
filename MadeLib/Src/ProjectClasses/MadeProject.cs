@@ -50,7 +50,6 @@ namespace MadeLib.Src.ProjectClasses
             History = history;
             this.Suggestions = suggestionsCollection;
         }
-
         public void AddNewRecipe(ActionType type, Dictionary<string, string> arguments)
         {
             this.LastUpdated = DateTime.Now;
@@ -87,5 +86,6 @@ namespace MadeLib.Src.ProjectClasses
             return false;
 
         }
+
     }
 }

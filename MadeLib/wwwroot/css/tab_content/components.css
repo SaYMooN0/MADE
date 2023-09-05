@@ -161,7 +161,7 @@ input[data-suggestions] {
 .default-submit {
     position: absolute;
     right: calc(10px + 2%);
-    bottom: calc(10px + 2%);
+    bottom: calc(2px + 1%);
     height: calc(2vh + 24px + 0.2vw);
     width: calc(4vw + 86px + 2vh);
     background-color: var(--bright-2);
@@ -179,7 +179,7 @@ input[data-suggestions] {
 .default-error-label {
     position: absolute;
     color: var(--warning-main);
-    bottom: calc(10px + 2%);
+    bottom: calc(30px + 6%);
     font-family: 'Figtree';
     font-size: calc(0.55vh + 0.55vw + 11px);
 }

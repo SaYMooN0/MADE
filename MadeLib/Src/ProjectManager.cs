@@ -39,7 +39,6 @@ namespace MadeLib.Src
                 {
                     _projectLinks.Add(project.FullPath);
                 }
-
             }
         }
 
