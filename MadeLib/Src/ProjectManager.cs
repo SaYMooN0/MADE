@@ -96,10 +96,10 @@ namespace MadeLib.Src
             if (AnyMadeProjectFilesInFolder(pathToFolder))
                 return false;
             string fullPath = pathToFolder + "\\" + name + MadeProject.FileExtension;
-            MadeProject project = new(name, fullPath, pathToFolder, version, loader, DateTime.Now, DateTime.Now, new(), new(), new());
+            MadeProject project = new(name, fullPath, pathToFolder, version, loader, DateTime.Now, DateTime.Now, new(), new(), new(loader));
             project.SaveToFile();
-            Projects.Add(project);
             _projectLinks.Add(project.FullPath);
+            Projects.Add(project);
             this.SaveToFile();
             return true;
         }

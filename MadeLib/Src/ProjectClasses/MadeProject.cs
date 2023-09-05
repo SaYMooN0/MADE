@@ -15,7 +15,7 @@ namespace MadeLib.Src.ProjectClasses
         public ProjectSettings Settings { get; private set; }
         public List<HistoryItem> History { get; private set; } = new();
         [JsonProperty]
-        public SuggestionsCollection Suggestions { get; private set; } = new();
+        public SuggestionsCollection Suggestions { get; private set; }
         public void SaveToFile()
         {
             string jsonInstance = JsonConvert.SerializeObject(this, Formatting.Indented);
