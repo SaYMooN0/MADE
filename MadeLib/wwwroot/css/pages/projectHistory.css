@@ -3,6 +3,7 @@
     position: absolute;
     top: 4%;
     left: 6%;
+    font-family: 'Figtree';
 }
 
 .history-items-container {
@@ -10,7 +11,7 @@
     width: 99%;
     height: 86%;
     overflow-y: auto;
-    bottom:2%;
+    bottom: 2%;
 }
 
     .history-items-container::-webkit-scrollbar {
@@ -34,40 +35,45 @@
 .history-item {
     min-height: 52px;
     height: calc(20px + 4.6vh + 2.4vw);
-    width: 99%;
+    width: 98%;
     margin-top: 0.6%;
     background-color: var(--back);
     border-radius: calc(0.14vw + 0.12vh + 3px);
     cursor: pointer;
     display: grid;
-    grid-template-rows: 1fr 1.2fr;
-    grid-template-columns: 5fr 8fr calc(3.8vw + 12px);
+    grid-template-rows: 1.2fr 1fr;
+    grid-template-columns: 9fr 4fr calc(3.8vw + 12px);
     grid-template-areas:
         "type date dlt"
         "text text text";
+    padding-top:1%;
+    padding-left:2%;
 }
-    .history-item:hover
-    {
-        background-color:var(--back-2);
-    }
-    .history-item-date {
-        color: var(--front);
-        grid-area: date;
+
+
+    .history-item:hover {
+        background-color: var(--back-2);
     }
 
+.history-item-date {
+    color: var(--front-2);
+    grid-area: date;
+    font-family: 'Bahnschrift';
+}
+
 .history-item-type {
-    color: chocolate;
+    color: var(--front-3);
     grid-area: type;
+    font-family: 'Figtree';
 }
 
 .history-item-delete-button {
     grid-area: dlt;
-    margin-top: 10%;
     height: 80%;
-    padding:2px;
+    padding: 2px;
     aspect-ratio: 1/1;
-    border:1px solid transparent;
-    border-radius:30%;
+    border: 1px solid transparent;
+    border-radius: 30%;
 }
 
     .history-item-delete-button path {
@@ -75,5 +81,10 @@
     }
 
     .history-item-delete-button:hover {
-        background-color:var(--back-3);
+        background-color: var(--back-3);
     }
+
+.history-item-input-output {
+    color: var(--front);
+    font-family: 'Bahnschrift';
+}

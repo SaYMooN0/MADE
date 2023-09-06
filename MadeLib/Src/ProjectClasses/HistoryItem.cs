@@ -21,6 +21,7 @@ namespace MadeLib.Src.ProjectClasses
                 return result;
             return null;
         }
+        public string InputToOutput() => $"'{this.Arguments["input"]}' to '{this.Arguments["output"]}'";
 
     }
 }
