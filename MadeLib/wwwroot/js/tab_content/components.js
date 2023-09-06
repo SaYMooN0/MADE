@@ -40,13 +40,11 @@ document.addEventListener('keydown', function (e) {
 });
 document.addEventListener('blur', function (e) { if (e.target.tagName === 'INPUT') { hideAllSuggestions(); } }, true);
 document.addEventListener('input',async  function (e) {
-    const data = ['Apple', 'Banana', 'Cherry', 'Date', 'Fig', 'Grape', 'Ki', 'Kwi', 'awi', 'cxziwi', 'Kdasaswi', 'Kweiwi'];
     hideAllSuggestions();
-
     if (e.target.dataset.suggestions !== undefined) {
         hideAllSuggestions()
-        const query = e.target.value.toLowerCase();
-        const suggestions = await getSuggestions(query);
+        const inputString = e.target.value.toLowerCase();
+        const suggestions = await getSuggestions(inputString);
         if (suggestions.length > 0) {
             displaySuggestions(e.target, suggestions);
         }

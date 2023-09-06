@@ -6,7 +6,7 @@ namespace MadeLib.Src.MinecraftRelatedClasses
     {
         public string Id { get; private set; }
         public List<string> Items { get; private set; } = new List<string>();
-        public List<Tag> Tags { get; private set; } = new List<Tag>();
+        public List<string> Tags { get; private set; } = new List<string>();
         public Mod(string id)
         {
             Id = id;
@@ -14,7 +14,7 @@ namespace MadeLib.Src.MinecraftRelatedClasses
             Tags = new();
         }
         [JsonConstructor]
-        public Mod(string id, List<string> items, List<Tag> tags)
+        public Mod(string id, List<string> items, List<string> tags)
         {
             Id = id;
             Items = items;
