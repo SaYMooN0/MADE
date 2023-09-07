@@ -10,7 +10,7 @@ function createActionOnClick(event) {
         </select>
         <div id="crafting-table-recipe-content" > <label>crafting-table </label> </div>
         <div id="furnace-recipe-content" style="display:none">
-        <input type="text" data-suggestions>
+        ${getFurnaceRecipeForm()}
         </div>
         <div id="stonecutter-recipe-content" style="display:none"> 
         ${getStonecutterRecipeForm()}
@@ -33,6 +33,12 @@ function handleRecipeTypeChange(selectElement) {
     document.getElementById('stonecutter-recipe-content').style.display = 'none';
     const value = selectElement.value;
     document.getElementById(value + '-recipe-content').style.display = 'block';
+}
+function furnaceSaveButtonClick(e, isNew, actionId, path) {
+    alert(e);
+    alert(isNew);
+    alert(actionId);
+    alert(path);
 }
 function stonecutterSaveButtonClick(e, isNew, actionId, path) {
     e.preventDefault();

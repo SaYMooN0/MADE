@@ -136,28 +136,33 @@ input[data-suggestions] {
     font-size: calc(0.88vh + 0.6vw + 7px);
     font-weight: 300;
     color: var(--front);
-    text-align:center;
+    text-align: center;
 }
+
     .default-input-num::-webkit-inner-spin-button,
     .default-input-num::-webkit-outer-spin-button {
         -webkit-appearance: none;
         margin: 0;
     }
+
 .default-input:focus {
     outline: none;
     background-color: var(--back-3);
 }
+
 .default-input-num:focus {
     outline: none;
     background-color: var(--back-3);
 }
+
 .count-margin-left {
-    margin-left:calc(1vw + 10px + 2vh);
+    margin-left: calc(1vw + 10px + 2vh);
 }
-.input-line
-{
-    width:80%;
+
+.input-line {
+    width: 80%;
 }
+
 .default-submit {
     position: absolute;
     right: calc(10px + 2%);
@@ -173,13 +178,61 @@ input[data-suggestions] {
     color: var(--front);
     cursor: pointer;
 }
+
     .default-submit:hover {
         background-color: var(--bright-3);
     }
+
 .default-error-label {
     position: absolute;
     color: var(--warning-main);
     bottom: calc(30px + 6%);
     font-family: 'Figtree';
     font-size: calc(0.55vh + 0.55vw + 11px);
+}
+
+.default-radio {
+    display: none;
+}
+
+.default-radio-label {
+    padding-left: calc(24px + 0.55vw + 0.55vh);
+    position: relative;
+    cursor: pointer;
+    color: var(--front);
+    font-family: 'Figtree';
+    font-weight: 600;
+    font-size: calc(0.9vh + 0.71vw + 8px);
+}
+
+    .default-radio-label::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 50%;
+        transform: translateY(-50%);
+        width: calc(10px + 0.5vw + 0.5vh);
+        height: calc(10px + 0.5vw + 0.5vh);
+        border: calc(2px + 0.05vw + 0.05vh) solid transparent;
+        border-radius: 50%;
+        background-color: var(--back-3);
+    }
+
+    .default-radio-label:hover::before {
+        border-color: var(--front-2);
+    }
+    .default-radio-label:hover {
+        color: var(--front-2);
+    }
+
+
+.default-radio:checked + .default-radio-label::before {
+    border-color: var(--front-3);
+   
+}
+
+.default-radio:checked + .default-radio-label {
+    /*content: "";*/
+    color: var(--front-3);
+    transform: scale(1.08);
 }

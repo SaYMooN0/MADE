@@ -2,6 +2,7 @@
 {
     public class ProjectSettings
     {
-        public bool LeaveComments { get; set; }
+        public bool ShowWarningWhenDeletingAction { get;private set; }
+        
     }
 }
