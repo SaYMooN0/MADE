@@ -11,6 +11,7 @@ function createActionOnClick(event) {
         <div id="crafting-table-recipe-content" > <label>crafting-table </label> </div>
         <div id="furnace-recipe-content" style="display:none">
         ${getFurnaceRecipeForm()}
+ 
         </div>
         <div id="stonecutter-recipe-content" style="display:none"> 
         ${getStonecutterRecipeForm()}
@@ -55,23 +56,17 @@ function stonecutterSaveButtonClick(e, isNew, actionId, path) {
         }
     }
     let outputCount = parseInt(inputs[2].value, 10);
-    if (outputCount > 128 || outputCount<1 ) {
+    if (outputCount > 128 || outputCount < 1) {
         errorLabel.textContent = "Output count cannot be more than 128!";
         return;
     }
-
     let arguments = {
         input: inputs[0].value,
         output: inputs[1].value,
         outputCount: inputs[2].value
     };
-
-    if (isNew == "true") {
-        addNewRecipeFromJS('StonecutterAdd', arguments);
-    }
-    else if (isNew == "false") {
-        changeExistingAction(actionId, path, 'StonecutterAdd', arguments);
-    }
+    if (isNew == "true") { addNewRecipeFromJS('StonecutterAdd', arguments); }
+    else if (isNew == "false") { changeExistingAction(actionId, path, 'StonecutterAdd', arguments); }
 
     let submitButton = form.querySelector('.default-submit');
     submitButton.value = "Saved";

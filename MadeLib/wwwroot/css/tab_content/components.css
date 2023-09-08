@@ -160,7 +160,7 @@ input[data-suggestions] {
 }
 
 .input-line {
-    width: 80%;
+    width: calc(75% + 120px);
 }
 
 .default-submit {
@@ -195,44 +195,47 @@ input[data-suggestions] {
     display: none;
 }
 
-.default-radio-label {
+.default-radio-container {
     padding-left: calc(24px + 0.55vw + 0.55vh);
     position: relative;
     cursor: pointer;
+    width:100%;
+    display: flex;
+    align-items: center;
+}
+
+.default-radio-label::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: calc(10px + 0.5vw + 0.5vh);
+    height: calc(10px + 0.5vw + 0.5vh);
+    border: calc(2px + 0.05vw + 0.05vh) solid transparent;
+    border-radius: 50%;
+    background-color: var(--back-3);
+}
+.default-radio-label {
     color: var(--front);
     font-family: 'Figtree';
     font-weight: 600;
-    font-size: calc(0.9vh + 0.71vw + 8px);
+    font-size: calc(1vw + 7px);
+    white-space: nowrap;
 }
 
-    .default-radio-label::before {
-        content: "";
-        position: absolute;
-        left: 0;
-        top: 50%;
-        transform: translateY(-50%);
-        width: calc(10px + 0.5vw + 0.5vh);
-        height: calc(10px + 0.5vw + 0.5vh);
-        border: calc(2px + 0.05vw + 0.05vh) solid transparent;
-        border-radius: 50%;
-        background-color: var(--back-3);
-    }
+.default-radio-container:hover .default-radio-label::before {
+    border-color: var(--front-2);
+}
 
-    .default-radio-label:hover::before {
-        border-color: var(--front-2);
-    }
-    .default-radio-label:hover {
-        color: var(--front-2);
-    }
-
-
-.default-radio:checked + .default-radio-label::before {
-    border-color: var(--front-3);
-   
+.default-radio-container:hover .default-radio-label {
+    color: var(--front-2);
 }
 
 .default-radio:checked + .default-radio-label {
-    /*content: "";*/
     color: var(--front-3);
-    transform: scale(1.08);
 }
+
+    .default-radio:checked + .default-radio-label::before {
+        border-color: var(--front-3);
+    }
