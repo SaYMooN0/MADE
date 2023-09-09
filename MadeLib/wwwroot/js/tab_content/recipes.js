@@ -36,10 +36,37 @@ function handleRecipeTypeChange(selectElement) {
     document.getElementById(value + '-recipe-content').style.display = 'block';
 }
 function furnaceSaveButtonClick(e, isNew, actionId, path) {
-    alert(e);
-    alert(isNew);
-    alert(actionId);
-    alert(path);
+    e.preventDefault();
+    let form = e.target;
+    let inputs = form.elements;
+    let errorLabel = form.querySelector('.default-error-label');
+    errorLabel.textContent = "";
+    const fieldNames = ['input', 'output', 'specialType'];
+
+    for (let i = 0; i < fieldNames.length; i++) {
+        if (!inputs[i].value) {
+            errorLabel.textContent = `Fill ${fieldNames[i]} field!`;
+            return;
+        }
+    }
+    let selectedFurnaceType;
+    try {
+        selectedFurnaceType =form.querySelector('input[name="furnace-type-choice"]:checked').value +"Add";
+    } catch (error) {
+        errorLabel.textContent = `Please select a furnace type!`;
+        return;
+    }
+
+    let arguments = {
+        input: inputs[0].value,
+        output: inputs[1].value
+    };
+    if (isNew == "true") { addNewRecipeFromJS(selectedFurnaceType, arguments); }
+    else if (isNew == "false") { changeExistingAction(actionId, path, selectedFurnaceType, arguments); }
+
+    let submitButton = form.querySelector('.default-submit');
+    submitButton.value = "Saved";
+    setTimeout(() => { submitButton.value = "Save to file"; }, 450);
 }
 function stonecutterSaveButtonClick(e, isNew, actionId, path) {
     e.preventDefault();

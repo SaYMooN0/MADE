@@ -1,4 +1,5 @@
-﻿
+﻿// Ignore Spelling: Interop
+
 using Microsoft.JSInterop;
 namespace MadeLib.Src
 {

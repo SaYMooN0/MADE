@@ -12,7 +12,6 @@ function getStonecutterRecipeForm(formArguments, actionId, path) {
                 <label class="default-error-label"></label>
             </form>
         `;
-    alert(1);
     return contentToReturn;
 }
 function getFurnaceRecipeForm(formArguments, actionId, path) {
@@ -27,23 +26,23 @@ function getFurnaceRecipeForm(formArguments, actionId, path) {
             <form onsubmit="furnaceSaveButtonClick(event, '${isNew}','${actionId}','${path}')" class="furnace-form">
                 <p class="input-line"><label class="default-input-label"> input: </label> <input class="default-input" type="text" data-suggestions value="${inputValue}"></p>
                 <p class="input-line"><label class="default-input-label"> output: </label> <input class="default-input" type="text" data-suggestions value="${outputValue}"></p>
-                <p class="input-line"><input class="default-submit" type="submit" value="${submitButtonText}"></p>
                 <div class="furnace-radios-container">
                 <label class="furnace-additional-type-label">Additional</label>
                    <label class="default-radio-container">
-                       <input class="default-radio" type="radio" name="choice" value="none"> 
+                       <input class="default-radio" type="radio" name="furnace-type-choice" value="FurnaceOnly"> 
                         <span class="default-radio-label">None</span>
                    </label>
                    <label class="default-radio-container">
-                       <input class="default-radio" type="radio" name="choice" value="smoker">
+                       <input class="default-radio" type="radio" name="furnace-type-choice" value="FurnaceAndSmoker">
                        <span class="default-radio-label">Smoker</span>
                    </label>
                    <label class="default-radio-container">
-                       <input class="default-radio" type="radio" name="choice" value="blastFurnace">
+                       <input class="default-radio" type="radio" name="furnace-type-choice" value="FurnaceAndBlust">
                        <span class="default-radio-label">Blast Furnace</span>
                    </label>
                 </div>
                 <label class="default-error-label"></label>
+                <p class="input-line"><input class="default-submit" type="submit" value="${submitButtonText}"></p>
             </form>
         `;
     return contentToReturn;

@@ -45,7 +45,7 @@ namespace MadeLib.Src
             File.Move(tempFilePath, filePath);
         }
         public static string GetFullVanillaPath() => Path.Combine(kubejs, serverScripts, $"{vanillaRecipesFile}.js");
-		static private string WrapInOnEventRecipes(string input) => "onEvent('recipes', event => {"+input+ "}) ";
+		static private string WrapInOnEventRecipes(string input) => "onEvent('recipes', event => {"+input+ "}); ";
         private static string GenerateMadeComment(string actionId) => "//Made:" + actionId+';';
     }
 	
