@@ -18,28 +18,27 @@ function getFurnaceRecipeForm(formArguments, actionId, path) {
 
     const inputValue = formArguments && formArguments.input ? formArguments.input : '';
     const outputValue = formArguments && formArguments.output ? formArguments.output : '';
-    const specialType = formArguments && formArguments.specialType ? formArguments.specialType : '';
+    const specialTypeValue = formArguments && formArguments.specialType ? formArguments.specialType : '';
     const submitButtonText = formArguments ? "Save changes" : "Save to file";
     const isNew = formArguments === null || formArguments === undefined;
-
+    const radioTypes = [
+        { value: "FurnaceOnly", label: "None" },
+        { value: "FurnaceAndSmoker", label: "Smoker" },
+        { value: "FurnaceAndBlast", label: "Blast Furnace" }
+    ];
+    let radiosHtml = radioTypes.map(type => `
+    <label class="default-radio-container">
+        <input class="default-radio" type="radio" name="furnace-type-choice" value="${type.value}" ${specialTypeValue === type.value + "Add" ? "checked" : ""}> 
+        <span class="default-radio-label">${type.label}</span>
+    </label>
+    `).join('');
     const contentToReturn = `
             <form onsubmit="furnaceSaveButtonClick(event, '${isNew}','${actionId}','${path}')" class="furnace-form">
                 <p class="input-line"><label class="default-input-label"> input: </label> <input class="default-input" type="text" data-suggestions value="${inputValue}"></p>
                 <p class="input-line"><label class="default-input-label"> output: </label> <input class="default-input" type="text" data-suggestions value="${outputValue}"></p>
                 <div class="furnace-radios-container">
-                <label class="furnace-additional-type-label">Additional</label>
-                   <label class="default-radio-container">
-                       <input class="default-radio" type="radio" name="furnace-type-choice" value="FurnaceOnly"> 
-                        <span class="default-radio-label">None</span>
-                   </label>
-                   <label class="default-radio-container">
-                       <input class="default-radio" type="radio" name="furnace-type-choice" value="FurnaceAndSmoker">
-                       <span class="default-radio-label">Smoker</span>
-                   </label>
-                   <label class="default-radio-container">
-                       <input class="default-radio" type="radio" name="furnace-type-choice" value="FurnaceAndBlust">
-                       <span class="default-radio-label">Blast Furnace</span>
-                   </label>
+                    <label class="furnace-additional-type-label">Additional</label>
+                    ${radiosHtml}
                 </div>
                 <label class="default-error-label"></label>
                 <p class="input-line"><input class="default-submit" type="submit" value="${submitButtonText}"></p>

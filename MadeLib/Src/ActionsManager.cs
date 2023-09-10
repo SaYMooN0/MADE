@@ -37,10 +37,10 @@ namespace MadeLib.Src
                         return historyItem;
 
                     }
-                case ActionType.FurnaceAndBlustAdd:
+                case ActionType.FurnaceAndBlastAdd:
                     {
-                        string contentToWrite = $"event.smelting('{arguments["output"]}', '{arguments["input"]}')";
-                        contentToWrite += $"event.blasting('{arguments["output"]}', '{arguments["input"]}')";
+                        string contentToWrite = $"event.smelting('{arguments["output"]}', '{arguments["input"]}');";
+                        contentToWrite += $"event.blasting('{arguments["output"]}', '{arguments["input"]}');";
                         JsFilesController.WriteVanillaRecipe(contentToWrite, projectFolderPath, actionId);
                         HistoryItem historyItem = new(arguments, JsFilesController.GetFullVanillaPath(), actionId, actionType);
                         return historyItem;
@@ -48,8 +48,8 @@ namespace MadeLib.Src
                     }
                 case ActionType.FurnaceAndSmokerAdd:
                     {
-                        string contentToWrite = $"event.smelting('{arguments["output"]}', '{arguments["input"]}')";
-                        contentToWrite += $"event.smoking('{arguments["output"]}', '{arguments["input"]}')";
+                        string contentToWrite = $"event.smelting('{arguments["output"]}', '{arguments["input"]}');";
+                        contentToWrite += $"event.smoking('{arguments["output"]}', '{arguments["input"]}');";
                         JsFilesController.WriteVanillaRecipe(contentToWrite, projectFolderPath, actionId);
                         HistoryItem historyItem = new(arguments, JsFilesController.GetFullVanillaPath(), actionId, actionType);
                         return historyItem;

@@ -6,7 +6,7 @@
         StonecutterAdd,
         FurnaceOnlyAdd,
         FurnaceAndSmokerAdd,
-        FurnaceAndBlustAdd,
+        FurnaceAndBlastAdd,
         RecipeRemoved
 
     }

@@ -59,7 +59,8 @@ function furnaceSaveButtonClick(e, isNew, actionId, path) {
 
     let arguments = {
         input: inputs[0].value,
-        output: inputs[1].value
+        output: inputs[1].value,
+        specialType: selectedFurnaceType
     };
     if (isNew == "true") { addNewRecipeFromJS(selectedFurnaceType, arguments); }
     else if (isNew == "false") { changeExistingAction(actionId, path, selectedFurnaceType, arguments); }
