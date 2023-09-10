@@ -1,22 +1,28 @@
 async function histotyItemDeleteButtonClicked(event, buttonElement, actionId, filePath) {
     event.stopPropagation();
-    const dialog = document.querySelector('.histotyItemDeletingDialog');
+    if (!await DotNet.invokeMethodAsync('MadeLib', 'GetShowWarningWhenDeletingAction')) {
+        await deleteActionFromHistory(buttonElement, actionId, filePath);
+        return;
+    }
+    const dialog = document.querySelector('.histoty-item-deleting-dialog');
+    const showDialogAgainCheckBox = dialog.querySelector('input[type="checkbox"]');
     dialog.showModal();
     document.getElementById('confirmDelete').onclick = async () => {
         dialog.close();
-        let historyItemElement = buttonElement.closest('.history-item');
-        if (historyItemElement) {
-            await DotNet.invokeMethodAsync('MadeLib', 'HandleActionDeleting', actionId, filePath);
-            historyItemElement.remove();
-        }
+        if (showDialogAgainCheckBox.checked) { await DotNet.invokeMethodAsync('MadeLib', 'SetShowWarningWhenDeletingAction', false); }
+        await deleteActionFromHistory(buttonElement, actionId, filePath);
     };
-    document.getElementById('cancelDelete').onclick = () => {
-        dialog.close();
-    };
+    document.getElementById('cancelDelete').onclick = () => { dialog.close(); };
+}
+async function deleteActionFromHistory(buttonElement, actionId, filePath) {
+    let historyItemElement = buttonElement.closest('.history-item');
+    if (historyItemElement) {
+        await DotNet.invokeMethodAsync('MadeLib', 'HandleActionDeleting', actionId, filePath);
+        historyItemElement.remove();
+    }
 }
 
 function historyItemClicked(formArgumentsString, type, path, actionId) {
-
     let formArguments = unvalidJsonStringToObject(formArgumentsString);
     const recipiesAndComponentsStyles = `
                 <link href="_content/MadeLib/css/tab_content/recipes.css" rel="stylesheet" />

@@ -2,7 +2,7 @@
 {
     public class ProjectSettings
     {
-        public bool ShowWarningWhenDeletingAction { get;private set; }
+        public bool ShowWarningWhenDeletingAction { get;set; }
         
     }
 }

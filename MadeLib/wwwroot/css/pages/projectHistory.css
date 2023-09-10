@@ -46,8 +46,8 @@
     grid-template-areas:
         "type date dlt"
         "text text text";
-    padding-top:1%;
-    padding-left:2%;
+    padding-top: 1%;
+    padding-left: 2%;
 }
 
 
@@ -87,4 +87,31 @@
 .history-item-input-output {
     color: var(--front);
     font-family: 'Bahnschrift';
+}
+
+.histoty-item-deleting-dialog {
+    position: absolute;
+    top: 0;
+    bottom: 14%;
+    width: calc(230px + 32%);
+    background-color: var(--back-2);
+    border-radius: calc(0.35vh + 0.35vw + 7px);
+    border-width: calc(0.05vh + 0.05vw + 4px);
+    border-color: var(--warning-bright);
+    padding-top: 0;
+    padding-left: 1%;
+    padding-right: 1%;
+}
+
+.history-item-deletig-dialog-main-label {
+    font-family: 'Figtree';
+	color: var(--front);
+	font-size: calc(0.6vh + 0.55vw + 10px);
+	font-weight: 200;
+	width: 100%;
+    text-align:center;
+}
+
+
+.dont-show-label {
 }
