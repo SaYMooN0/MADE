@@ -8,14 +8,9 @@ function createActionOnClick(event) {
         <option value="furnace">Furnace</option>
         <option value="stonecutter">Stonecutter</option>
         </select>
-        <div id="crafting-table-recipe-content" > <label>crafting-table </label> </div>
-        <div id="furnace-recipe-content" style="display:none">
-        ${getFurnaceRecipeForm()}
- 
-        </div>
-        <div id="stonecutter-recipe-content" style="display:none"> 
-        ${getStonecutterRecipeForm()}
-        </div>
+        <div id="crafting-table-recipe-content" class='recpe-content' > ${getCraftingTableRecipeForm()} </div>
+        <div id="furnace-recipe-content" class='recpe-content' style="display:none"> ${getFurnaceRecipeForm()} </div>
+        <div id="stonecutter-recipe-content" class='recpe-content' style="display:none"> ${getStonecutterRecipeForm()} </div>
         </div>`
         , "new-recipe");
     if (tabCreationResult) {
@@ -51,7 +46,7 @@ function furnaceSaveButtonClick(e, isNew, actionId, path) {
     }
     let selectedFurnaceType;
     try {
-        selectedFurnaceType =form.querySelector('input[name="furnace-type-choice"]:checked').value +"Add";
+        selectedFurnaceType = form.querySelector('input[name="furnace-type-choice"]:checked').value + "Add";
     } catch (error) {
         errorLabel.textContent = `Please select a furnace type!`;
         return;
@@ -100,7 +95,9 @@ function stonecutterSaveButtonClick(e, isNew, actionId, path) {
     submitButton.value = "Saved";
     setTimeout(() => { submitButton.value = "Save to file"; }, 450);
 }
-
+function craftingTableSaveButtonClick(e, isNew, actionId, path) {
+    alert("in craftingTableSaveButtonClick");
+}
 
 function addNewRecipeFromJS(type, jsonStringContent) {
     DotNet.invokeMethodAsync('MadeLib', 'HandleRecipeCreationFromJS', type, jsonStringContent);

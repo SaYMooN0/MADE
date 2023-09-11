@@ -12,18 +12,6 @@
     left: 3%;
     z-index: 100;
 }
-
-
-#stonecutter-recipe-content {
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-    bottom: 6%;
-    height: 90%;
-    width: 90%;
-    display: block;
-}
-
 .stonecutter-form {
     width: 100%;
     height: 100%;
@@ -31,16 +19,6 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-}
-
-#furnace-recipe-content {
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-    bottom: 6%;
-    height: 90%;
-    width: 90%;
-    display: block;
 }
 
 .furnace-form {
@@ -52,6 +30,32 @@
     align-items: center;
 }
 
+.crafting-table-form {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.crafting-table-main-content-container {
+    width: 100%;
+    height: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap:calc(4px + 1vw + 1vh);
+}
+
+.recpe-content {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 2%;
+    height: 96%;
+    width: 94%;
+    display: block;
+}
+
 .furnace-radios-container {
     width: calc(150px + 20vw + 12vh);
     max-width: 100%;
@@ -59,7 +63,7 @@
     grid-template-columns: auto auto auto;
     justify-content: right;
     grid-gap: calc(2px + 1.2vw + 0.4vh);
-    margin-top:2vh;
+    margin-top: 2vh;
 }
 
 .furnace-additional-type-label {
@@ -69,5 +73,23 @@
     color: var(--front);
     position: absolute;
     left: calc(12.5% - 60px);
-    
+}
+.crafting-table-letters-zone {
+    width: 100%;
+    height: 100%;
+    display:grid;
+    grid-template-rows:1fr calc(18px + 2vh + 0.5vw);
+}
+.crafting-table-grid-zone {
+    width: 100%;
+    height: 100%;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+.crafting-table-grid-div {
+    max-width: 96%;
+    height: calc(120px + 40%);
+    background-color: deeppink;
+    aspect-ratio: 1/1;
 }

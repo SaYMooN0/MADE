@@ -46,3 +46,22 @@ function getFurnaceRecipeForm(formArguments, actionId, path) {
         `;
     return contentToReturn;
 }
+function getCraftingTableRecipeForm(formArguments, actionId, path) {
+    const isNew = formArguments === null || formArguments === undefined;
+    const submitButtonText = formArguments ? "Save changes" : "Save to file";
+    const contentToReturn = `
+    <form onsubmit="craftingTableSaveButtonClick(event, '${isNew}','${actionId}','${path}')" class="crafting-table-form">
+    <div class='crafting-table-main-content-container'>
+        <div class='crafting-table-letters-zone'> 
+            <div class='crafting-table-letters-container'> </div>
+            <button type='button'>Add</button>
+         </div>
+        <div class='crafting-table-grid-zone'>
+            <div class='crafting-table-grid-div'></div>
+        </div>
+    </div>
+        <p class="input-line"><input class="default-submit" type="submit" value="${submitButtonText}"></p>
+    </form>
+        `;
+    return contentToReturn;
+}
