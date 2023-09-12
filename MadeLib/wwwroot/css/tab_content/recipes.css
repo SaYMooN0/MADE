@@ -12,6 +12,7 @@
     left: 3%;
     z-index: 100;
 }
+
 .stonecutter-form {
     width: 100%;
     height: 100%;
@@ -38,12 +39,13 @@
     justify-content: center;
     align-items: center;
 }
+
 .crafting-table-main-content-container {
     width: 100%;
     height: 100%;
     display: grid;
     grid-template-columns: 1fr 1fr;
-    grid-gap:calc(4px + 1vw + 1vh);
+    grid-gap: calc(4px + 1vw + 1vh);
 }
 
 .recpe-content {
@@ -74,22 +76,64 @@
     position: absolute;
     left: calc(12.5% - 60px);
 }
+
 .crafting-table-letters-zone {
     width: 100%;
     height: 100%;
-    display:grid;
-    grid-template-rows:1fr calc(18px + 2vh + 0.5vw);
+    display: grid;
+    grid-template-rows: 1fr calc(18px + 2vh + 0.5vw);
 }
+
 .crafting-table-grid-zone {
     width: 100%;
     height: 100%;
-    display:flex;
-    justify-content:center;
-    align-items:center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
-.crafting-table-grid-div {
-    max-width: 96%;
-    height: calc(120px + 40%);
-    background-color: deeppink;
+
+.crafting-table-grid-div-container {
+    max-width: 100%;
+    height: calc(60px + 44%);
     aspect-ratio: 1/1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
+
+.crafting-table-grid-div {
+    width: 100%;
+    background-color: var(--front-2);
+    aspect-ratio: 1/1;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    gap: calc(4px + 0.13vw + 0.13vh);
+    border-radius: calc(0.45vh + 0.45vw + 2px);
+    border: calc(3px + 0.13vw + 0.13vh) solid var(--front-2);
+}
+
+    .crafting-table-grid-div > div {
+        align-self: center;
+        justify-self: center;
+        background-color: var(--back);
+        width: 100%;
+        height: 100%;
+        border: 1px solid transparent;
+    }
+
+        .crafting-table-grid-div > div:nth-child(1) {
+            border-top-left-radius: calc(0.45vh + 0.45vw + 1px);
+        }
+
+        .crafting-table-grid-div > div:nth-child(3) {
+            border-top-right-radius: calc(0.45vh + 0.45vw + 1px);
+        }
+
+        .crafting-table-grid-div > div:nth-child(7) {
+            border-bottom-left-radius: calc(0.45vh + 0.45vw + 1px);
+        }
+
+        .crafting-table-grid-div > div:nth-child(9) {
+            border-bottom-right-radius: calc(0.45vh + 0.45vw + 1px);
+        }

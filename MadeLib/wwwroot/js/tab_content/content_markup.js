@@ -57,7 +57,19 @@ function getCraftingTableRecipeForm(formArguments, actionId, path) {
             <button type='button'>Add</button>
          </div>
         <div class='crafting-table-grid-zone'>
-            <div class='crafting-table-grid-div'></div>
+            <div class='crafting-table-grid-div-container'>
+                <div class='crafting-table-grid-div'>
+                <div class='crafting-table-grid-item'></div>
+                <div class='crafting-table-grid-item'></div>
+                <div class='crafting-table-grid-item'></div>
+                <div class='crafting-table-grid-item'></div>
+                <div class='crafting-table-grid-item'></div>
+                <div class='crafting-table-grid-item'></div>
+                <div class='crafting-table-grid-item'></div>
+                <div class='crafting-table-grid-item'></div>
+                <div class='crafting-table-grid-item'></div>
+                </div>
+            </div>
         </div>
     </div>
         <p class="input-line"><input class="default-submit" type="submit" value="${submitButtonText}"></p>
