@@ -51,11 +51,12 @@ function getCraftingTableRecipeForm(formArguments, actionId, path) {
     const submitButtonText = formArguments ? "Save changes" : "Save to file";
     const contentToReturn = `
     <form onsubmit="craftingTableSaveButtonClick(event, '${isNew}','${actionId}','${path}')" class="crafting-table-form">
-    <div class='crafting-table-main-content-container'>
-        <div class='crafting-table-letters-zone'> 
+    <p class="input-line"><input class="default-checkbox" type="checkbox" id="horns" name="isShapeless" /></p>
+    <div class='crafting-table-main-content-container'> 
+    <div class='crafting-table-letters-zone'> 
             <div class='crafting-table-letters-container'> </div>
-            <button type='button'>Add</button>
-         </div>
+            <button type='button' onclick="addNewLetterForCraftingRecipr(event)" >Add</button>
+    </div>
         <div class='crafting-table-grid-zone'>
             <div class='crafting-table-grid-div-container'>
                 <div class='crafting-table-grid-div'>
@@ -72,6 +73,7 @@ function getCraftingTableRecipeForm(formArguments, actionId, path) {
             </div>
         </div>
     </div>
+        <label class="default-error-label"></label>
         <p class="input-line"><input class="default-submit" type="submit" value="${submitButtonText}"></p>
     </form>
         `;
