@@ -78,12 +78,11 @@
 }
 
 .crafting-table-letters-zone {
-    margin-top:20px;
+    margin-top: 58px;
     width: 100%;
-    height: 100%;
+    height: 76vh;
     display: grid;
-    grid-template-rows: 1fr calc(18px + 2vh + 0.5vw);
-    background-color:darkgoldenrod;
+    grid-template-rows: 1fr calc(16px + 3vh + 0.7vw);
 }
 
 .crafting-table-grid-zone {
@@ -141,7 +140,7 @@
         }
 
 .crafting-table-letters-container {
-    overflow-y: auto;
+    overflow-y:auto;
     height: 100%;
 }
     .crafting-table-letters-container::-webkit-scrollbar {
@@ -163,10 +162,32 @@
         }
 
 .crafting-table-letter-item {
-    background-color: darkblue;
-    height:calc(2vw + 5vh + 20px);
+    height:calc(2vw + 3vh + 20px);
+    display:grid;
+    grid-template-columns:1fr 5fr 1fr;
 }
 .letter-delete-button {
-    height: 45%;
+    right:0;
+    align-self:center;
+    height: 65%;
     aspect-ratio:1/1;
+}
+.crafting-isshapless-checkbox-label {
+    position: absolute;
+    right: 2%;
+    top: calc(5px + 8%);
+}
+.item-for-letter-input {
+    height: 100%;
+    color: var(--front-3);
+    font-family: 'Bahnschrift';
+    background-color: transparent;
+    border: none;
+    outline: none;
+    cursor:default;
+}
+.letter-label {
+    font-family: 'Figtree';
+    color: var(--front);
+    align-self:center;
 }

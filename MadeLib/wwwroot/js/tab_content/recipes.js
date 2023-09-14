@@ -122,7 +122,7 @@ function addNewLetterForCraftingRecipr(event) {
 
     const newDiv = document.createElement('div');
     newDiv.className = 'crafting-table-letter-item';
-    newDiv.innerHTML = `<label>${nextChar}</label><input type='text'/>`;
+    newDiv.innerHTML = `<label class='letter-label'>${nextChar}</label><input type='text' class='item-for-letter-input' value='made:item'/>`;
 
     const removeButton = document.createElement('span');
     removeButton.classList.add('remove-letter-btn');
@@ -132,13 +132,45 @@ function addNewLetterForCraftingRecipr(event) {
         errorLabel.textContent = '';
     });
 
+    const inputItem = newDiv.querySelector('.item-for-letter-input');
+    inputItem.setAttribute('draggable', 'true');
+    inputItem.addEventListener('dragstart', handleDragStart);
+    inputItem.addEventListener('dragend', handleDragEnd);
+
+
     newDiv.appendChild(removeButton);
     container.appendChild(newDiv);
 }
 
 
 
+function handleDragStart(event) {
+    event.dataTransfer.setData('text/plain', event.target.previousElementSibling.innerText);
+}
 
+function handleDragEnd(event) {
+    // Можете добавить действия по окончанию перетаскивания, если нужно
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    alert("in");
+    const gridItems = document.querySelectorAll('.crafting-table-grid-item');
+    alert(gridItems);
+    gridItems.forEach(item => {
+        item.addEventListener('dragover', handleDragOver);
+        item.addEventListener('dragenter', handleDragEnter);
+        item.addEventListener('dragleave', handleDragLeave);
+        item.addEventListener('drop', handleDrop);
+    });
+});
+
+function handleDragOver(event) { event.preventDefault();}
+
+function handleDrop(event) {
+    event.preventDefault();
+    const letter = event.dataTransfer.getData('text/plain');
+    if (letter) {  event.target.innerHTML = letter; }
+}
 function addNewRecipeFromJS(type, jsonStringContent) {
     DotNet.invokeMethodAsync('MadeLib', 'HandleRecipeCreationFromJS', type, jsonStringContent);
 }

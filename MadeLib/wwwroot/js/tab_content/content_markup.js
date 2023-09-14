@@ -51,7 +51,10 @@ function getCraftingTableRecipeForm(formArguments, actionId, path) {
     const submitButtonText = formArguments ? "Save changes" : "Save to file";
     const contentToReturn = `
     <form onsubmit="craftingTableSaveButtonClick(event, '${isNew}','${actionId}','${path}')" class="crafting-table-form">
-    <p class="input-line"><input class="default-checkbox" type="checkbox" id="horns" name="isShapeless" /></p>
+    <label class="default-input-label crafting-isshapless-checkbox-label">
+        shapeless
+        <input class="default-checkbox" type="checkbox" id="horns" name="isShapeless" />
+    </label>
     <div class='crafting-table-main-content-container'> 
     <div class='crafting-table-letters-zone'> 
             <div class='crafting-table-letters-container'> </div>
@@ -60,15 +63,15 @@ function getCraftingTableRecipeForm(formArguments, actionId, path) {
         <div class='crafting-table-grid-zone'>
             <div class='crafting-table-grid-div-container'>
                 <div class='crafting-table-grid-div'>
-                <div class='crafting-table-grid-item'></div>
-                <div class='crafting-table-grid-item'></div>
-                <div class='crafting-table-grid-item'></div>
-                <div class='crafting-table-grid-item'></div>
-                <div class='crafting-table-grid-item'></div>
-                <div class='crafting-table-grid-item'></div>
-                <div class='crafting-table-grid-item'></div>
-                <div class='crafting-table-grid-item'></div>
-                <div class='crafting-table-grid-item'></div>
+                <div class='crafting-table-grid-item' ondragover="handleDragOver(event)" ondrop="handleDrop(event)"></div>
+                <div class='crafting-table-grid-item' ondragover="handleDragOver(event)" ondrop="handleDrop(event)"></div>
+                <div class='crafting-table-grid-item' ondragover="handleDragOver(event)" ondrop="handleDrop(event)"></div>
+                <div class='crafting-table-grid-item' ondragover="handleDragOver(event)" ondrop="handleDrop(event)"></div>
+                <div class='crafting-table-grid-item' ondragover="handleDragOver(event)" ondrop="handleDrop(event)"></div>
+                <div class='crafting-table-grid-item' ondragover="handleDragOver(event)" ondrop="handleDrop(event)"></div>
+                <div class='crafting-table-grid-item' ondragover="handleDragOver(event)" ondrop="handleDrop(event)"></div>
+                <div class='crafting-table-grid-item' ondragover="handleDragOver(event)" ondrop="handleDrop(event)"></div>
+                <div class='crafting-table-grid-item' ondragover="handleDragOver(event)" ondrop="handleDrop(event)"></div>
                 </div>
             </div>
         </div>
