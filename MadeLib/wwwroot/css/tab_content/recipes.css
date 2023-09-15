@@ -121,6 +121,12 @@
         width: 100%;
         height: 100%;
         border: 1px solid transparent;
+        align-items: center;
+        justify-content: center;
+        display: flex;
+        color: var(--front);
+        font-family: 'Figtree';
+        font-size: 180%;
     }
 
         .crafting-table-grid-div > div:nth-child(1) {
@@ -140,9 +146,10 @@
         }
 
 .crafting-table-letters-container {
-    overflow-y:auto;
+    overflow-y: auto;
     height: 100%;
 }
+
     .crafting-table-letters-container::-webkit-scrollbar {
         width: calc(0.25vw + 0.2vh + 4px);
     }
@@ -162,21 +169,35 @@
         }
 
 .crafting-table-letter-item {
-    height:calc(2vw + 3vh + 20px);
-    display:grid;
-    grid-template-columns:1fr 5fr 1fr;
+    height: calc(2vw + 3vh + 20px);
+    display: grid;
+    grid-template-columns: 1fr 5fr 1fr;
 }
+
 .letter-delete-button {
-    right:0;
-    align-self:center;
-    height: 65%;
-    aspect-ratio:1/1;
+    margin-top: calc(16% - 2px);
+    height: calc(10px + 30%);
+    padding: 2px;
+    aspect-ratio: 1/1;
+    border: 1px solid transparent;
+    border-radius: 30%;
+    cursor: pointer;
 }
+
+    .letter-delete-button path {
+        stroke: var(--front);
+    }
+
+    .letter-delete-button:hover {
+        background-color: var(--back-3);
+    }
+
 .crafting-isshapless-checkbox-label {
     position: absolute;
     right: 2%;
     top: calc(5px + 8%);
 }
+
 .item-for-letter-input {
     height: 100%;
     color: var(--front-3);
@@ -184,10 +205,11 @@
     background-color: transparent;
     border: none;
     outline: none;
-    cursor:default;
+    cursor: default;
 }
+
 .letter-label {
     font-family: 'Figtree';
     color: var(--front);
-    align-self:center;
+    align-self: center;
 }

@@ -185,10 +185,10 @@ input[data-suggestions] {
 
 .default-error-label {
     position: absolute;
-    color: var(--warning-main);
-    bottom: calc(30px + 6%);
+    color: var(--warning-bright);
+    bottom: calc(30px + 1vh);
     font-family: 'Figtree';
-    font-size: calc(0.55vh + 0.55vw + 11px);
+    font-size: calc(0.5vh + 0.65vw + 12px);
 }
 
 .default-radio {
