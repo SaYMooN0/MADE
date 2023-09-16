@@ -50,35 +50,46 @@ function getCraftingTableRecipeForm(formArguments, actionId, path) {
     const isNew = formArguments === null || formArguments === undefined;
     const submitButtonText = formArguments ? "Save changes" : "Save to file";
     const contentToReturn = `
-    <form onsubmit="craftingTableSaveButtonClick(event, '${isNew}','${actionId}','${path}')" class="crafting-table-form">
-    <label class="default-input-label crafting-isshapless-checkbox-label">
-        shapeless
-        <input class="default-checkbox" type="checkbox" id="horns" name="isShapeless" />
-    </label>
-    <div class='crafting-table-main-content-container'> 
-    <div class='crafting-table-letters-zone'> 
-            <div class='crafting-table-letters-container'> </div>
-            <button type='button' onclick="addNewLetterForCraftingRecipr(event)" >Add</button>
-    </div>
-        <div class='crafting-table-grid-zone'>
-            <div class='crafting-table-grid-div-container'>
-                <div class='crafting-table-grid-div'>
-                <div class='crafting-table-grid-item' ondragover="handleDragOver(event)" ondrop="handleDrop(event)"></div>
-                <div class='crafting-table-grid-item' ondragover="handleDragOver(event)" ondrop="handleDrop(event)"></div>
-                <div class='crafting-table-grid-item' ondragover="handleDragOver(event)" ondrop="handleDrop(event)"></div>
-                <div class='crafting-table-grid-item' ondragover="handleDragOver(event)" ondrop="handleDrop(event)"></div>
-                <div class='crafting-table-grid-item' ondragover="handleDragOver(event)" ondrop="handleDrop(event)"></div>
-                <div class='crafting-table-grid-item' ondragover="handleDragOver(event)" ondrop="handleDrop(event)"></div>
-                <div class='crafting-table-grid-item' ondragover="handleDragOver(event)" ondrop="handleDrop(event)"></div>
-                <div class='crafting-table-grid-item' ondragover="handleDragOver(event)" ondrop="handleDrop(event)"></div>
-                <div class='crafting-table-grid-item' ondragover="handleDragOver(event)" ondrop="handleDrop(event)"></div>
+            <form onsubmit="craftingTableSaveButtonClick(event, '${isNew}','${actionId}','${path}')" class="crafting-table-form">
+            
+            <div class='crafting-table-main-content-container'>
+                <div class='crafting-table-letters-zone'>
+                    <div class='crafting-table-letters-container'> </div>
+                    <button type='button' onclick="addNewLetterForCraftingRecipr(event)">Add</button>
+                </div>
+                <div class='crafting-table-grid-zone'>
+                    <label class="default-input-label crafting-isshapless-checkbox-label">
+                    shapeless
+                    <input class="default-checkbox" type="checkbox" id="horns" name="isShapeless" />
+                    </label>
+                    <div class='crafting-table-grid-div-container'>
+                        <div class='crafting-table-grid-div'>
+                            <div class='crafting-table-grid-item' ondragover="handleDragOver(event)" ondrop="handleDrop(event)">
+                            </div>
+                            <div class='crafting-table-grid-item' ondragover="handleDragOver(event)" ondrop="handleDrop(event)">
+                            </div>
+                            <div class='crafting-table-grid-item' ondragover="handleDragOver(event)" ondrop="handleDrop(event)">
+                            </div>
+                            <div class='crafting-table-grid-item' ondragover="handleDragOver(event)" ondrop="handleDrop(event)">
+                            </div>
+                            <div class='crafting-table-grid-item' ondragover="handleDragOver(event)" ondrop="handleDrop(event)">
+                            </div>
+                            <div class='crafting-table-grid-item' ondragover="handleDragOver(event)" ondrop="handleDrop(event)">
+                            </div>
+                            <div class='crafting-table-grid-item' ondragover="handleDragOver(event)" ondrop="handleDrop(event)">
+                            </div>
+                            <div class='crafting-table-grid-item' ondragover="handleDragOver(event)" ondrop="handleDrop(event)">
+                            </div>
+                            <div class='crafting-table-grid-item' ondragover="handleDragOver(event)" ondrop="handleDrop(event)">
+                            </div>
+                        </div>
+                    </div>
+                    <div class='clear-letters-button' onclick='clearLetters()'>Clear letters</div>
                 </div>
             </div>
-        </div>
-    </div>
-        <label class="default-error-label"></label>
-        <p class="input-line"><input class="default-submit" type="submit" value="${submitButtonText}"></p>
-    </form>
+            <label class="default-error-label"></label>
+            <p class="input-line"><input class="default-submit" type="submit" value="${submitButtonText}"></p>
+        </form>
         `;
     return contentToReturn;
 }

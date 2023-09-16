@@ -78,9 +78,9 @@
 }
 
 .crafting-table-letters-zone {
-    margin-top: 58px;
+    margin-top: calc(52px + 3vh);
     width: 100%;
-    height: 76vh;
+    height: 74vh;
     display: grid;
     grid-template-rows: 1fr calc(16px + 3vh + 0.7vw);
 }
@@ -89,11 +89,16 @@
     width: 100%;
     height: 100%;
     display: flex;
+    flex-direction:column;
     justify-content: center;
     align-items: center;
 }
-
+.clear-letters-button {
+    margin-top: calc(10px + 2%);
+    background-color: cadetblue;
+}
 .crafting-table-grid-div-container {
+    margin-top:calc(10px + 2%);
     max-width: 100%;
     height: calc(60px + 44%);
     aspect-ratio: 1/1;
@@ -169,47 +174,50 @@
         }
 
 .crafting-table-letter-item {
-    height: calc(2vw + 3vh + 20px);
+    height: calc(1.9vw + 2.7vh + 16px);
     display: grid;
-    grid-template-columns: 1fr 5fr 1fr;
+    grid-template-columns: 2fr 8fr 1fr;
+    align-items:center; 
 }
 
-.letter-delete-button {
-    margin-top: calc(16% - 2px);
-    height: calc(10px + 30%);
+.letter-delete-button-container {
+    height: calc(12px + 36%);
     padding: 2px;
+    max-height: calc(100%);
     aspect-ratio: 1/1;
-    border: 1px solid transparent;
+    border: 0px solid transparent;
     border-radius: 30%;
     cursor: pointer;
 }
 
-    .letter-delete-button path {
-        stroke: var(--front);
-    }
-
-    .letter-delete-button:hover {
+    .letter-delete-button-container:hover {
         background-color: var(--back-3);
     }
 
-.crafting-isshapless-checkbox-label {
-    position: absolute;
-    right: 2%;
-    top: calc(5px + 8%);
+.letter-delete-button path {
+    stroke: var(--front);
 }
-
 .item-for-letter-input {
-    height: 100%;
+    width: 94%;
+    height: calc(8px + 38%);
+    border: 1px solid transparent;
+    border-radius: calc(1px + 0.04vw + 0.1vh);
     color: var(--front-3);
     font-family: 'Bahnschrift';
     background-color: transparent;
     border: none;
     outline: none;
-    cursor: default;
 }
+    .item-for-letter-input:focus {
+        outline: none;
+        background-color: var(--back-3);
+    }
 
 .letter-label {
     font-family: 'Figtree';
     color: var(--front);
     align-self: center;
+    justify-self:center;
+}
+.crafting-isshapless-checkbox-label {
 }
