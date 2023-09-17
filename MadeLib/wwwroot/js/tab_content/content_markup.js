@@ -55,13 +55,21 @@ function getCraftingTableRecipeForm(formArguments, actionId, path) {
             <div class='crafting-table-main-content-container'>
                 <div class='crafting-table-letters-zone'>
                     <div class='crafting-table-letters-container'> </div>
-                    <button type='button' onclick="addNewLetterForCraftingRecipr(event)">Add</button>
+                    <button type='button' onclick="addNewLetterForCraftingRecipr(event)" class='add-new-letter-button' >
+                        Add letter
+                        <svg viewBox="0 0 24 24" class='add-new-letter-button-icon'>
+                            <line  x1="12" x2="12" y1="19" y2="5"/>
+                            <line  x1="5" x2="19" y1="12" y2="12"/>
+                        </svg>
+                    </button>
                 </div>
                 <div class='crafting-table-grid-zone'>
-                    <label class="default-input-label crafting-isshapless-checkbox-label">
-                    shapeless
-                    <input class="default-checkbox" type="checkbox" id="horns" name="isShapeless" />
+                    <label class="custom-checkbox-label">
+                        Shapeless
+                        <input type="checkbox" id="horns" name="isShapeless" />
+                        <span class="checkmark"></span>
                     </label>
+
                     <div class='crafting-table-grid-div-container'>
                         <div class='crafting-table-grid-div'>
                             <div class='crafting-table-grid-item' ondragover="handleDragOver(event)" ondrop="handleDrop(event)">

@@ -80,25 +80,46 @@
 .crafting-table-letters-zone {
     margin-top: calc(52px + 3vh);
     width: 100%;
-    height: 74vh;
+    height: calc(78vh - 40px);
     display: grid;
-    grid-template-rows: 1fr calc(16px + 3vh + 0.7vw);
+    grid-template-rows: 1fr calc(18px + 4vh + 0.8vw);
 }
 
 .crafting-table-grid-zone {
     width: 100%;
-    height: 100%;
+    height: calc(98% - 10px);
     display: flex;
-    flex-direction:column;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
 }
+
 .clear-letters-button {
-    margin-top: calc(10px + 2%);
-    background-color: cadetblue;
+    margin-top: calc(14px + 3%);
+    width: calc(4vw + 56px + 2vh);
+    background-color: var(--back);
+    border: 1px solid transparent;
+    padding: calc(6px + 0.14vw + 0.14vh);
+    border-radius: calc(5px + 0.11vw + 0.11vh);
+    font-family: 'Figtree';
+    font-size: calc(0.50vh + 0.50vw + 9px);
+    font-weight: 300;
+    color: var(--front);
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--back-3);
+    transition: 0.08s;
 }
+
+    .clear-letters-button:hover {
+        transform: scale(1.015);
+        background-color: var(--bright);
+    }
+
 .crafting-table-grid-div-container {
-    margin-top:calc(10px + 2%);
+    margin-top: calc(10px + 2%);
     max-width: 100%;
     height: calc(60px + 44%);
     aspect-ratio: 1/1;
@@ -156,7 +177,7 @@
 }
 
     .crafting-table-letters-container::-webkit-scrollbar {
-        width: calc(0.25vw + 0.2vh + 4px);
+        width: calc(0.32vw + 0.3vh + 2px);
     }
 
     .crafting-table-letters-container::-webkit-scrollbar-track {
@@ -170,14 +191,16 @@
     }
 
         .crafting-table-letters-container::-webkit-scrollbar-thumb:hover {
-            background: var(--front-3);
+            background: var(--bright);
         }
 
 .crafting-table-letter-item {
-    height: calc(1.9vw + 2.7vh + 16px);
+    height: calc(0.6vw + 4vh + 20px);
     display: grid;
     grid-template-columns: 2fr 8fr 1fr;
-    align-items:center; 
+    align-items: center;
+    border: 1px solid transparent;
+    border-radius: calc(2px + 0.08vw + 0.11vh);
 }
 
 .letter-delete-button-container {
@@ -197,9 +220,10 @@
 .letter-delete-button path {
     stroke: var(--front);
 }
+
 .item-for-letter-input {
     width: 94%;
-    height: calc(8px + 38%);
+    height: calc(6px + 44%);
     border: 1px solid transparent;
     border-radius: calc(1px + 0.04vw + 0.1vh);
     color: var(--front-3);
@@ -207,7 +231,9 @@
     background-color: transparent;
     border: none;
     outline: none;
+    font-size: calc(1vh + 0.12vw + 8px);
 }
+
     .item-for-letter-input:focus {
         outline: none;
         background-color: var(--back-3);
@@ -217,7 +243,41 @@
     font-family: 'Figtree';
     color: var(--front);
     align-self: center;
-    justify-self:center;
+    justify-self: center;
+    font-size: calc(0.57vh + 0.57vw + 11px);
 }
-.crafting-isshapless-checkbox-label {
+
+.add-new-letter-button {
+    justify-self: center;
+    width: calc(98% - 10px);
+    margin-top: 2%;
+    background-color: var(--bright-2);
+    border: 1px solid transparent;
+    border-radius: calc(3px + 0.09vw + 0.1vh);
+    font-family: 'Figtree';
+    font-size: calc(0.57vh + 0.57vw + 13px);
+    font-weight: 300;
+    color: var(--front);
+    cursor: pointer;
+    transition: 0.06s;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
 }
+
+    .add-new-letter-button:hover {
+        transform: scale(1.024);
+        background-color: var(--bright-3);
+    }
+
+    .add-new-letter-button .add-new-letter-button-icon {
+        padding-top: calc(1px + 0.4%);
+        height: calc(6px + 47%);
+        aspect-ratio: 1/1;
+        stroke: var(--front);
+    }
+
+        .add-new-letter-button .add-new-letter-button-icon line {
+            stroke-width: 3;
+        }

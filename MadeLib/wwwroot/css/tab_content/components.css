@@ -53,6 +53,7 @@
     outline: none;
     border: 1px solid transparent;
     border-radius: calc(2px + 0.12vw + 0.12vh);
+    padding-left: calc(2px + 0.08vw + 0.12vh);
 }
 
 
@@ -171,15 +172,17 @@ input[data-suggestions] {
     width: calc(4vw + 86px + 2vh);
     background-color: var(--bright-2);
     border: 1px solid transparent;
-    border-radius: calc(2px + 0.05vw + 0.1vh);
+    border-radius: calc(3px + 0.09vw + 0.1vh);
     font-family: 'Figtree';
     font-size: calc(0.55vh + 0.55vw + 11px);
     font-weight: 300;
     color: var(--front);
     cursor: pointer;
+    transition: 0.08s;
 }
 
     .default-submit:hover {
+        transform: scale(1.02);
         background-color: var(--bright-3);
     }
 
@@ -238,4 +241,56 @@ input[data-suggestions] {
 
     .default-radio:checked + .default-radio-label::before {
         border-color: var(--front-3);
+    }
+
+
+.custom-checkbox-label input {
+    display: none;
+}
+
+.custom-checkbox-label{
+    color: var(--front);
+    font-family: 'Figtree';
+    font-weight: 600;
+    font-size: calc(0.7vw + 0.7vh + 9px);
+    white-space: nowrap;
+}
+
+    .custom-checkbox-label .checkmark {
+        position: relative;
+        top: 0;
+        left: calc(0.1vw + 2px);
+        aspect-ratio: 1/1;
+        height: calc(14px + 0.22vw + 0.22vh);
+        background-color: var(--back-2);
+        margin-right: 10px;
+        display: inline-block;
+        vertical-align: middle;
+        border: calc(2px + 0.05vw + 0.05vh) solid transparent;
+        border-radius: 10%;
+    }
+.custom-checkbox-label:hover input ~ .checkmark {
+    background-color: var(--back-3);
+}
+.custom-checkbox-label input:checked ~ .checkmark {
+    background-color: var(--front-3);
+}
+.custom-checkbox-label .checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+
+}
+.custom-checkbox-label input:checked ~ .checkmark:after {
+    display: block;
+}
+    .custom-checkbox-label .checkmark:after {
+        width: 25%;
+        height: 60%;
+        border: solid white;
+        border-width: 0 3px 3px 0;
+        transform: rotate(45deg);
+        left: 52%;
+        top: 46%;
+        transform: translate(-50%, -50%) rotate(45deg);
     }

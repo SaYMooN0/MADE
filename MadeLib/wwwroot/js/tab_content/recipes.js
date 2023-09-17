@@ -101,7 +101,7 @@ function craftingTableSaveButtonClick(e, isNew, actionId, path) {
 function addNewLetterForCraftingRecipr(event) {
     event.preventDefault();
     const container = document.querySelector('.crafting-table-letters-container');
-    const existingDivs = container.querySelectorAll('div');
+    const existingDivs = container.querySelectorAll('.crafting-table-letter-item');
 
     const errorLabel = document.querySelector('.default-error-label');
     errorLabel.textContent = "";
@@ -129,6 +129,13 @@ function addNewLetterForCraftingRecipr(event) {
     newletterContainer.setAttribute('draggable', 'true');
     newletterContainer.addEventListener('dragstart', handleDragStart);
     newletterContainer.appendChild(removeButton);
+    newletterContainer.addEventListener('click', function () {
+        const input = newletterContainer.querySelector('.item-for-letter-input');
+        if (input) {
+            input.focus();
+        }
+    });
+
     container.appendChild(newletterContainer);
 }
 
