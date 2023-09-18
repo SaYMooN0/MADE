@@ -7,6 +7,7 @@
         FurnaceOnlyAdd,
         FurnaceAndSmokerAdd,
         FurnaceAndBlastAdd,
+        CraftingTableAdd,
         RecipeRemoved
 
     }

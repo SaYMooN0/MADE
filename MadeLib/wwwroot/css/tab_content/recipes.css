@@ -40,13 +40,6 @@
     align-items: center;
 }
 
-.crafting-table-main-content-container {
-    width: 100%;
-    height: 100%;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-gap: calc(4px + 1vw + 1vh);
-}
 
 .recpe-content {
     position: absolute;
@@ -76,13 +69,21 @@
     position: absolute;
     left: calc(12.5% - 60px);
 }
+.crafting-table-main-content-container {
+    width: 100%;
+    height: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1.1fr;
+    grid-gap: calc(4px + 1vw + 1vh);
+}
 
 .crafting-table-letters-zone {
     margin-top: calc(52px + 3vh);
     width: 100%;
     height: calc(78vh - 40px);
     display: grid;
-    grid-template-rows: 1fr calc(18px + 4vh + 0.8vw);
+    grid-template-rows: auto 1fr calc(14px + 4vh + 0.8vw);
+    grid-gap:calc(0.8vh + 2px);
 }
 
 .crafting-table-grid-zone {
@@ -250,7 +251,6 @@
 .add-new-letter-button {
     justify-self: center;
     width: calc(98% - 10px);
-    margin-top: 2%;
     background-color: var(--bright-2);
     border: 1px solid transparent;
     border-radius: calc(3px + 0.09vw + 0.1vh);
@@ -281,3 +281,11 @@
         .add-new-letter-button .add-new-letter-button-icon line {
             stroke-width: 3;
         }
+.crafting-table-output-div {
+    margin-top: calc(2% + 10px);
+    display: grid;
+    width: 100%;
+    grid-template-rows: 1fr 1fr;
+    gap: calc(2% + 10px);
+    height:calc(30px + 10%);
+}
