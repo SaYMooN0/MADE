@@ -74,13 +74,13 @@ function stonecutterSaveButtonClick(e, isNew, actionId, path) {
 
     for (let i = 0; i < fieldNames.length; i++) {
         if (!inputs[i].value) {
-            errorLabel.textContent = `Fill ${fieldNames[i]} field!`;
+            errorLabel.textContent = `Fill ${fieldNames[i]} field`;
             return;
         }
     }
     let outputCount = parseInt(inputs[2].value, 10);
     if (outputCount > 128 || outputCount < 1) {
-        errorLabel.textContent = "Output count cannot be more than 128!";
+        errorLabel.textContent = "Output count cannot be more than 128";
         return;
     }
     let arguments = {
@@ -111,9 +111,20 @@ function craftingTableSaveButtonClick(e, isNew, actionId, path) {
             acc[letter] = inputElem.value;
             return acc;
         }, {});
+    const errorLabel = document.querySelector('.default-error-label');
     let isShapelessChecked = document.querySelector('[name="isShapeless"]').checked;
     let outputValue = document.querySelector(".crafting-table-output-div .default-input").value;
     let outputCountValue = document.querySelector(".crafting-table-output-div .default-input-num").value;
+    if (!outputValue) { errorLabel.textContent = 'Please provide an output value'; return; }
+    if (!outputCountValue || outputCountValue <= 0 || outputCountValue > 128) { errorLabel.textContent = 'Output count cannot be more than 128'; return; }
+    const usedLettersInGrid = gridValues.join('').split('').filter((v, i, a) => a.indexOf(v) === i && v !== ' ');
+    if (usedLettersInGrid.length === 0) { errorLabel.textContent = 'Please add letters to the crafting grid.'; return; }
+    const definedLetters = Object.keys(letterItemDictionary);
+    const unusedLetters = definedLetters.filter(letter => !usedLettersInGrid.includes(letter));
+
+    if (unusedLetters.length > 0) { errorLabel.textContent = `The following letters are defined but not used in the grid: ${unusedLetters.join(', ')}`; return; }
+    
+    errorLabel.textContent = '';
     let arguments = {
         letterItemDictionary: JSON.stringify(letterItemDictionary),
         lettersInputGrid: gridValues.toString(),
@@ -121,7 +132,7 @@ function craftingTableSaveButtonClick(e, isNew, actionId, path) {
         output: outputValue,
         outputCount: outputCountValue
     };
-    
+
     if (isNew == "true") { addNewRecipeFromJS('CraftingTableAdd', arguments); }
     else if (isNew == "false") { changeExistingAction(actionId, path, 'CraftingTableAdd', arguments); }
     let submitButton = e.target.querySelector('.default-submit');
