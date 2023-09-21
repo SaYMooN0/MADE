@@ -59,6 +59,7 @@ namespace MadeLib.Src
                     {
                         Dictionary<char, string> letterItemDictionary =
                                 JsonConvert.DeserializeObject<Dictionary<char, string>>(arguments["letterItemDictionary"]);
+                        //arguments["letterItemDictionary"] = arguments["letterItemDictionary"].Replace("\"","`") ;
                         if (letterItemDictionary.Count < 1) return null;        //in case suddenly the letterItemDictionary is empty
 
                         Boolean.TryParse(arguments["isShapeless"], out bool isShapeless);

@@ -43,12 +43,20 @@ function historyItemClicked(formArgumentsString, type, path, actionId) {
                 addTab(tabContent, `action-${actionId}`);
                 break;
             }
+        case "CraftingTableAdd":
+            {
+                let tabContent = recipiesAndComponentsStyles + getCraftingTableRecipeForm(formArguments, actionId, path);
+                addTab(tabContent, `action-${actionId}`);
+                break;
+            }
         default:
-            alert("error in historyItemClicked ");
+            alert("error in historyItemClicked type: "+type);
     }
 }
 function unvalidJsonStringToObject(str) {
-    const jsonString = str.replace(/'/g, '"');
+    let jsonString = str.replace(/'/g, '"');
+    jsonString = jsonString.replace("\"{","{");
+    jsonString = jsonString.replace("}\"", "}");
     try {
         return JSON.parse(jsonString);
     } catch (error) {

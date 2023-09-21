@@ -21,7 +21,15 @@ namespace MadeLib.Src.ProjectClasses
                 return result;
             return null;
         }
-        public string InputToOutput() => $"'{this.Arguments["input"]}' to '{this.Arguments["output"]}'";
+        public string HistotyItemLabel()
+        {
+            if(this.Arguments.ContainsKey("input") && this.Arguments.ContainsKey("output"))
+                return $"'{this.Arguments["input"]}' to '{this.Arguments["output"]}'";
+            if (this.ActionType == ActionType.CraftingTableAdd)
+                return $"'{this.Arguments["output"]}' "+ (this.Arguments["isShapeless"] == "true" ? "shapeless" : "shaped") + " crafting recipe";
+                
+            return "";
+        }
 
     }
 }

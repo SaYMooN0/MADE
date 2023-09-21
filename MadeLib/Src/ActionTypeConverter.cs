@@ -10,6 +10,7 @@
                 case ActionType.FurnaceOnlyAdd: return "New furnace recipe";
                 case ActionType.FurnaceAndSmokerAdd: return "New furnace and smoker recipe";
                 case ActionType.FurnaceAndBlastAdd: return "New regular and blast furnace recipe";
+                case ActionType.CraftingTableAdd: return "New crafting table recipe";
                 case ActionType.RecipeRemoved: return "Recipe removed";
                 default:
                     return "Default action";
