@@ -139,15 +139,64 @@ function craftingTableSaveButtonClick(e, isNew, actionId, path) {
     submitButton.value = "Saved";
     setTimeout(() => { submitButton.value = "Save to file"; }, 450);
 }
+//function addNewLetterForCraftingRecipe(event) {
+//    event.preventDefault();
+//    const container = document.querySelector('.crafting-table-letters-container');
+//    const existingDivs = container.querySelectorAll('.crafting-table-letter-item');
+
+//    const errorLabel = document.querySelector('.default-error-label');
+//    errorLabel.textContent = "";
+
+//    if (existingDivs.length >= 9) { errorLabel.textContent = 'Cannot add more than 9 letters'; return; }
+//    const currentChars = Array.from(existingDivs).map(div => div.innerText[0]);
+//    let nextChar = null;
+//    for (let i = 0; i < 9; i++) {
+//        const potentialChar = String.fromCharCode('a'.charCodeAt(0) + i).toUpperCase();
+//        if (!currentChars.includes(potentialChar)) {
+//            nextChar = potentialChar;
+//            break;
+//        }
+//    }
+
+//    if (!nextChar) return;
+//    const newletterContainer = document.createElement('div');
+//    newletterContainer.className = 'crafting-table-letter-item';
+//    newletterContainer.innerHTML = `<label class='letter-label'>${nextChar}</label><input type='text' class='item-for-letter-input' data-suggestions value='made:item'/>`;
+//    const removeButton = document.createElement('div');
+//    removeButton.classList.add('letter-delete-button-container');
+//    removeButton.innerHTML = `<svg class='letter-delete-button' viewBox='0 0 24 24' fill='none' > <path d='M20.5001 6H3.5' stroke='#1C274C' stroke-width='1.5' stroke-linecap='round'/> <path d='M18.8332 8.5L18.3732 15.3991C18.1962 18.054 18.1077 19.3815 17.2427 20.1907C16.3777 21 15.0473 21 12.3865 21H11.6132C8.95235 21 7.62195 21 6.75694 20.1907C5.89194 19.3815 5.80344 18.054 5.62644 15.3991L5.1665 8.5' stroke='#1C274C' stroke-width='1.5' stroke-linecap='round'/> <path d='M9.5 11L10 16' stroke='#1C274C' stroke-width='1.5' stroke-linecap='round'/> <path d='M14.5 11L14 16' stroke='#1C274C' stroke-width='1.5' stroke-linecap='round'/> <path d='M6.5 6C6.55588 6 6.58382 6 6.60915 5.99936C7.43259 5.97849 8.15902 5.45491 8.43922 4.68032C8.44784 4.65649 8.45667 4.62999 8.47434 4.57697L8.57143 4.28571C8.65431 4.03708 8.69575 3.91276 8.75071 3.8072C8.97001 3.38607 9.37574 3.09364 9.84461 3.01877C9.96213 3 10.0932 3 10.3553 3H13.6447C13.9068 3 14.0379 3 14.1554 3.01877C14.6243 3.09364 15.03 3.38607 15.2493 3.8072C15.3043 3.91276 15.3457 4.03708 15.4286 4.28571L15.5257 4.57697C15.5433 4.62992 15.5522 4.65651 15.5608 4.68032C15.841 5.45491 16.5674 5.97849 17.3909 5.99936C17.4162 6 17.4441 6 17.5 6' stroke='#1C274C' stroke-width='1.5'/></svg>`;
+//    removeButton.addEventListener('click', function () {
+//        const letterToRemove = newletterContainer.querySelector('.letter-label').innerText;
+//        const gridItems = document.querySelectorAll('.crafting-table-grid-item');
+//        gridItems.forEach(item => {
+//            if (item.innerText === letterToRemove) { item.innerText = ''; }
+//        });
+//        container.removeChild(newletterContainer);
+//        errorLabel.textContent = '';
+//    });
+
+//    newletterContainer.setAttribute('draggable', 'true');
+//    newletterContainer.addEventListener('dragstart', handleDragStart);
+//    newletterContainer.appendChild(removeButton);
+
+//    newletterContainer.addEventListener('click', function () {
+//        const input = newletterContainer.querySelector('.item-for-letter-input');
+//        if (input) { input.focus(); }
+//    });
+//    container.appendChild(newletterContainer);
+//    const input = newletterContainer.querySelector('.item-for-letter-input');
+//    input.focus();
+//}
 function addNewLetterForCraftingRecipe(event) {
     event.preventDefault();
-    const container = document.querySelector('.crafting-table-letters-container');
+    const formElement = event.target.closest('form');
+    const container = formElement.querySelector('.crafting-table-letters-container');
     const existingDivs = container.querySelectorAll('.crafting-table-letter-item');
 
-    const errorLabel = document.querySelector('.default-error-label');
+    const errorLabel = formElement.querySelector('.default-error-label');
     errorLabel.textContent = "";
 
-    if (existingDivs.length >= 9) { errorLabel.textContent = 'Cannot add more than 9 divs'; return; }
+    if (existingDivs.length >= 9) { errorLabel.textContent = 'Cannot add more than 9 letters'; return; }
     const currentChars = Array.from(existingDivs).map(div => div.innerText[0]);
     let nextChar = null;
     for (let i = 0; i < 9; i++) {
@@ -165,16 +214,7 @@ function addNewLetterForCraftingRecipe(event) {
     const removeButton = document.createElement('div');
     removeButton.classList.add('letter-delete-button-container');
     removeButton.innerHTML = `<svg class='letter-delete-button' viewBox='0 0 24 24' fill='none' > <path d='M20.5001 6H3.5' stroke='#1C274C' stroke-width='1.5' stroke-linecap='round'/> <path d='M18.8332 8.5L18.3732 15.3991C18.1962 18.054 18.1077 19.3815 17.2427 20.1907C16.3777 21 15.0473 21 12.3865 21H11.6132C8.95235 21 7.62195 21 6.75694 20.1907C5.89194 19.3815 5.80344 18.054 5.62644 15.3991L5.1665 8.5' stroke='#1C274C' stroke-width='1.5' stroke-linecap='round'/> <path d='M9.5 11L10 16' stroke='#1C274C' stroke-width='1.5' stroke-linecap='round'/> <path d='M14.5 11L14 16' stroke='#1C274C' stroke-width='1.5' stroke-linecap='round'/> <path d='M6.5 6C6.55588 6 6.58382 6 6.60915 5.99936C7.43259 5.97849 8.15902 5.45491 8.43922 4.68032C8.44784 4.65649 8.45667 4.62999 8.47434 4.57697L8.57143 4.28571C8.65431 4.03708 8.69575 3.91276 8.75071 3.8072C8.97001 3.38607 9.37574 3.09364 9.84461 3.01877C9.96213 3 10.0932 3 10.3553 3H13.6447C13.9068 3 14.0379 3 14.1554 3.01877C14.6243 3.09364 15.03 3.38607 15.2493 3.8072C15.3043 3.91276 15.3457 4.03708 15.4286 4.28571L15.5257 4.57697C15.5433 4.62992 15.5522 4.65651 15.5608 4.68032C15.841 5.45491 16.5674 5.97849 17.3909 5.99936C17.4162 6 17.4441 6 17.5 6' stroke='#1C274C' stroke-width='1.5'/></svg>`;
-    removeButton.addEventListener('click', function () {
-        const letterToRemove = newletterContainer.querySelector('.letter-label').innerText;
-        const gridItems = document.querySelectorAll('.crafting-table-grid-item');
-        gridItems.forEach(item => {
-            if (item.innerText === letterToRemove) { item.innerText = ''; }
-        });
-        container.removeChild(newletterContainer);
-        errorLabel.textContent = '';
-    });
-
+    removeButton.addEventListener('click', deleteLetterButtonClick);
     newletterContainer.setAttribute('draggable', 'true');
     newletterContainer.addEventListener('dragstart', handleDragStart);
     newletterContainer.appendChild(removeButton);
@@ -186,6 +226,24 @@ function addNewLetterForCraftingRecipe(event) {
     container.appendChild(newletterContainer);
     const input = newletterContainer.querySelector('.item-for-letter-input');
     input.focus();
+}
+function deleteLetterButtonClick(event) {
+    const buttonClicked = event.target;
+    const letterItem = buttonClicked.closest('.crafting-table-letter-item');
+    const letterToRemove = letterItem.querySelector('.letter-label').innerText;
+
+    const formElement = event.target.closest('form');
+    const errorLabel = formElement.querySelector('.default-error-label');
+    const letterSlots = formElement.querySelectorAll('.crafting-table-grid-item');
+
+    letterSlots.forEach(item => {
+        if (item.innerText === letterToRemove) { item.innerText = ''; }
+    });
+
+    const container = formElement.querySelector('.crafting-table-letters-container');
+    container.removeChild(letterItem);
+
+    errorLabel.textContent = '';
 }
 
 function handleDragStart(event) {

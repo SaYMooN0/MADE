@@ -165,11 +165,11 @@ input[data-suggestions] {
 }
 
 .default-submit {
-    position: absolute;
+    position:absolute;
     right: calc(10px + 2%);
-    bottom: calc(2px + 1%);
+    bottom: calc(6px + 2%);
     height: calc(2vh + 24px + 0.2vw);
-    width: calc(4vw + 86px + 2vh);
+    width: calc(4.2vw + 88px + 2.3vh);
     background-color: var(--bright-2);
     border: 1px solid transparent;
     border-radius: calc(3px + 0.09vw + 0.1vh);

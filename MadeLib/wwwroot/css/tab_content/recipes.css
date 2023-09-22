@@ -45,9 +45,9 @@
     position: absolute;
     left: 50%;
     transform: translateX(-50%);
-    bottom: 2%;
-    height: 96%;
-    width: 94%;
+    bottom: 0%;
+    height: 100%;
+    width: 100%;
     display: block;
 }
 
@@ -96,11 +96,11 @@
 }
 
 .clear-letters-button {
-    margin-top: calc(14px + 3%);
+    margin-top: calc(14px + 1vh + 0.5vw);
     width: calc(4vw + 56px + 2vh);
     background-color: var(--back);
     border: 1px solid transparent;
-    padding: calc(6px + 0.14vw + 0.14vh);
+    padding: calc(6px + 0.08vw + 0.17vh);
     border-radius: calc(5px + 0.11vw + 0.11vh);
     font-family: 'Figtree';
     font-size: calc(0.50vh + 0.50vw + 9px);
@@ -121,8 +121,8 @@
 
 .crafting-table-grid-div-container {
     margin-top: calc(10px + 2%);
-    max-width: 100%;
-    height: calc(60px + 44%);
+    max-width: 98%;
+    height: calc(50px + 44% + 6vw);
     aspect-ratio: 1/1;
     display: flex;
     justify-content: center;
