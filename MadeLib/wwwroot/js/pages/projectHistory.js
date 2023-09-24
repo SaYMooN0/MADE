@@ -63,3 +63,19 @@ function unvalidJsonStringToObject(str) {
         return null;
     }
 }
+function filterHistoryItems() {
+    let searchQuery = document.querySelector('.history-search-input').value.toLowerCase();
+    let historyItems = document.querySelectorAll('.history-item');
+
+    historyItems.forEach(item => {
+        let itemType = item.querySelector('.history-item-type').textContent.toLowerCase();
+        let itemDate = item.querySelector('.history-item-date').textContent.toLowerCase();
+        let itemLabel = item.querySelector('.history-item-input-output').textContent.toLowerCase();
+
+        if (itemType.includes(searchQuery) || itemDate.includes(searchQuery) || itemLabel.includes(searchQuery)) {
+            item.style.display = "";
+        } else {
+            item.style.display = "none";
+        }
+    });
+}

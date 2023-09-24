@@ -76,7 +76,7 @@
 
 .history-item {
     min-height: 52px;
-    height: calc(20px + 4.6vh + 2.4vw);
+    height: calc(25px + 5.5vh + 0.9vw);
     width: 98%;
     background-color: var(--back);
     border-radius: calc(0.14vw + 0.12vh + 3px);

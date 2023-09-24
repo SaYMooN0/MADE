@@ -7,19 +7,18 @@
 
 .collections-page-top-container {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr calc(50px + 20vw + 1vh);
-    padding-left: calc(8vw + 0.5vh - 16px);
-    padding-right: calc(8vw + 0.5vh - 16px);
-    gap: calc(2px + 1vw + 0.5vh);
-    align-items: center;
+    grid-template-columns: 1fr 1fr 1fr calc(22px + 25vw);
+    padding-left: calc(8vw - 20px);
+    padding-right: calc(8vw - 20px);
+    gap: calc(2px + 1vw);
+    align-items: center; 
 }
 
 .collection-tab {
-    font-size: calc(0.22vh + 0.3vw + 10px);
+    font-size: calc(0.16vh + 0.37vw + 9px);
     font-weight: 400;
     background-color: var(--back-2);
-    border: calc(0.04vw + 1px) solid var(--back-3);
-    height: calc(16px + 1.6vh + 1.2vw);
+    height: calc(10px + 1.25vh + 1.55vw);
     display: flex;
     color: var(--front);
     justify-content: center;
@@ -27,8 +26,10 @@
     font-size: calc(0.5vh + 0.6vw + 8px);
     color: var(--front);
     outline: none;
+    cursor: default;
     font-family: 'Bahnschrift';
-
+    border: 1px solid transparent;
+    border-radius: calc(0.17vw + 0.17vh + 2px);
 }
 
 .collection-tab:hover {
@@ -42,7 +43,7 @@
 .collections-search-container {
     justify-self: right;
     width: 90%;
-    height: calc(16px + 1.6vh + 1.2vw);
+    height: calc(14px + 1.25vh + 1.55vw);
     background-color: var(--back-2);
     border-radius: calc(100vw + 100vh);
     display: grid;
