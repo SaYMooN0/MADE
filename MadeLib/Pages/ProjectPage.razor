@@ -145,12 +145,13 @@
     }
     private async Task OnCollectionsClick()
     {
+        await JSRuntime.InvokeVoidAsync("eval", "let recipeCollectionsPageScript = document.createElement('script');recipeCollectionsPageScript.src = '/_content/MadeLib/js/pages/projectCollections.js'; document.head.appendChild(recipeCollectionsPageScript);");
         string content = "<link href=\"_content/MadeLib/css/pages/projectCollections.css\" rel=\"stylesheet\" />" +
                              @"<div class='collections-page-container'>
                                 <div class='collections-page-top-container'>
-                                    <div class='collection-tab'>Items</div>
-                                    <div class='collection-tab'>Tags</div>
-                                    <div class='collection-tab'>Mods</div>
+                                    <div class='collection-tab' data-tab='items'>Items</div>
+                                    <div class='collection-tab' data-tab='tags'>Tags</div>
+                                    <div class='collection-tab' data-tab='mods'>Mods</div>
                                     <div class='collections-search-container' onclick=""document.querySelector('.collections-search-input', this).focus()"">
                                         <svg class='collections-search-icon' viewBox='0 0 16 16'>
                                             <rect width='16' height='16' id='icon-bound' fill='none' />
@@ -160,7 +161,17 @@
                                     </div>
                                 </div>
                                 <div class='collection-content-container'>
-
+                                    <div class='tab-content' data-content='items'><label>Items</label></div>
+                                    <div class='tab-content' data-content='tags'><label>Tags</label></div>
+                                    <div class='tab-content' data-content='mods'><label>Mods</label></div>
+                                </div>
+                                <div class='collections-page-bottom-container'>
+                                    <div class='add-new-container'>
+                                        <label class='add-new-label'>Add new:</label>
+                                        <input type='text' class='add-new-input'>
+                                        <button onclick='collectionAddNewPressesd()' class='add-new-button'>+</button>
+                                    </div>
+                                    <label class='add-new-message'></label>
                                 </div>
                             </div>
                             ";

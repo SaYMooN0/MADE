@@ -2,7 +2,7 @@
     width: 100%;
     height: 100%;
     display: grid;
-    grid-template-rows: calc(4vh + 0.8vw + 40px) 1fr;
+    grid-template-rows: calc(4vh + 0.8vw + 40px) 1fr calc(3.8vh + 0.6vw + 36px);
 }
 
 .collections-page-top-container {
@@ -69,4 +69,16 @@
     aspect-ratio: 1/1;
     fill: var(--front);
     pointer-events: none;
+}
+.collections-page-bottom-container
+{
+    background-color:darkblue;
+    display:grid;
+    grid-template-rows:1.2fr 1fr;
+}
+.add-new-container{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    width:100%;
 }
