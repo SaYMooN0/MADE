@@ -22,7 +22,7 @@ async function deleteActionFromHistory(buttonElement, actionId, filePath) {
     }
 }
 
-function historyItemClicked(formArgumentsString, type, path, actionId) {
+function addTabFromType(formArgumentsString, type, path, actionId) {
     let formArguments = unvalidJsonStringToObject(formArgumentsString);
     const recipiesAndComponentsStyles = `
                 <link href="_content/MadeLib/css/tab_content/recipes.css" rel="stylesheet" />
@@ -50,7 +50,7 @@ function historyItemClicked(formArgumentsString, type, path, actionId) {
                 break;
             }
         default:
-            alert("error in historyItemClicked type: "+type);
+            alert("error in addTabFromType type: "+type);
     }
 }
 function unvalidJsonStringToObject(str) {

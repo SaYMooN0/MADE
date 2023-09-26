@@ -1,15 +1,17 @@
 ﻿// Ignore Spelling: Interop
 // Ignore Spelling: Interops
+using MadeLib.Src.ProjectClasses;
 using Microsoft.JSInterop;
 namespace MadeLib.Src.JsInterops
 {
     public class InteropHelper
     {
         [JSInvokable]
-        public static void HandleRecipeCreationFromJS(string stringType, Dictionary<string, string> arguments)
+        public static HistoryItem HandleRecipeCreationFromJS(string stringType, Dictionary<string, string> arguments)
         {
             ActionType type = ActionTypeConverter.TypeFromString(stringType);
-            ProjectManager.CurrentProject.AddNewRecipe(type, arguments);
+            return ProjectManager.CurrentProject.AddNewRecipe(type, arguments);
+            
         }
         [JSInvokable]
         public static void HandleActionChanging(string actionId, string filePath, string stringType, Dictionary<string, string> arguments)

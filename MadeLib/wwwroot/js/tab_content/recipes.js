@@ -14,11 +14,12 @@ function createActionOnClick(event) {
         </div>`
         , "new-recipe");
     if (tabCreationResult) {
-        closeParentTab(event)
+        closeTabFromRedirect(event)
     }
     switchToTab("new-recipe");
 }
-function deleteActionOnClick() { alert("deleteActionOnClick"); }
+function deleteActionOnClick() {
+}
 function changeActionOnClick() { alert("changeActionOnClick"); }
 function moddedActionOnClick() { alert("moddedActionOnClick"); }
 function groupActionOnClick() { alert("groupActionOnClick"); }
@@ -30,7 +31,7 @@ function handleRecipeTypeChange(selectElement) {
     const value = selectElement.value;
     document.getElementById(value + '-recipe-content').style.display = 'block';
 }
-function furnaceSaveButtonClick(e, isNew, actionId, path) {
+async function furnaceSaveButtonClick(e, isNew, actionId, path) {
     e.preventDefault();
     let form = e.target;
     let inputs = form.elements;
@@ -57,14 +58,17 @@ function furnaceSaveButtonClick(e, isNew, actionId, path) {
         output: inputs[1].value,
         specialType: selectedFurnaceType
     };
-    if (isNew == "true") { addNewRecipeFromJS(selectedFurnaceType, arguments); }
+    if (isNew == "true") {
+        let historyItem = await addNewRecipeFromJS(selectedFurnaceType, arguments);
+        changeTabToExistingAction(this.event, JSON.stringify(historyItem.arguments), selectedFurnaceType, historyItem.filePathpath, historyItem.actionId);
+    }
     else if (isNew == "false") { changeExistingAction(actionId, path, selectedFurnaceType, arguments); }
 
     let submitButton = form.querySelector('.default-submit');
     submitButton.value = "Saved";
     setTimeout(() => { submitButton.value = "Save to file"; }, 450);
 }
-function stonecutterSaveButtonClick(e, isNew, actionId, path) {
+async function stonecutterSaveButtonClick(e, isNew, actionId, path) {
     e.preventDefault();
     let form = e.target;
     let inputs = form.elements;
@@ -88,13 +92,17 @@ function stonecutterSaveButtonClick(e, isNew, actionId, path) {
         output: inputs[1].value,
         outputCount: inputs[2].value
     };
-    if (isNew == "true") { addNewRecipeFromJS('StonecutterAdd', arguments); }
-    else if (isNew == "false") { changeExistingAction(actionId, path, 'StonecutterAdd', arguments); }
+    const type = 'StonecutterAdd'
+    if (isNew == "true") {
+        let historyItem = await addNewRecipeFromJS(type, arguments);
+        changeTabToExistingAction(this.event, JSON.stringify(historyItem.arguments), type, historyItem.filePathpath, historyItem.actionId);
+    }
+    else if (isNew == "false") { changeExistingAction(actionId, path, type, arguments); }
     let submitButton = form.querySelector('.default-submit');
     submitButton.value = "Saved";
     setTimeout(() => { submitButton.value = "Save to file"; }, 450);
 }
-function craftingTableSaveButtonClick(e, isNew, actionId, path) {
+async function craftingTableSaveButtonClick(e, isNew, actionId, path) {
     e.preventDefault();
     let gridItems = Array.from(document.querySelectorAll('.crafting-table-grid-item'));
     let gridValues = [];
@@ -123,7 +131,7 @@ function craftingTableSaveButtonClick(e, isNew, actionId, path) {
     const unusedLetters = definedLetters.filter(letter => !usedLettersInGrid.includes(letter));
 
     if (unusedLetters.length > 0) { errorLabel.textContent = `The following letters are defined but not used in the grid: ${unusedLetters.join(', ')}`; return; }
-    
+
     errorLabel.textContent = '';
     let arguments = {
         letterItemDictionary: JSON.stringify(letterItemDictionary),
@@ -132,61 +140,64 @@ function craftingTableSaveButtonClick(e, isNew, actionId, path) {
         output: outputValue,
         outputCount: outputCountValue
     };
-
-    if (isNew == "true") { addNewRecipeFromJS('CraftingTableAdd', arguments); }
-    else if (isNew == "false") { changeExistingAction(actionId, path, 'CraftingTableAdd', arguments); }
+    const type = 'CraftingTableAdd'
+    if (isNew == "true") {
+        let historyItem = await addNewRecipeFromJS(type, arguments);
+        changeTabToExistingAction(this.event, JSON.stringify(historyItem.arguments), type, historyItem.filePathpath, historyItem.actionId);
+    }
+    else if (isNew == "false") { changeExistingAction(actionId, path, rtpe, arguments); }
     let submitButton = e.target.querySelector('.default-submit');
     submitButton.value = "Saved";
     setTimeout(() => { submitButton.value = "Save to file"; }, 450);
 }
-//function addNewLetterForCraftingRecipe(event) {
-//    event.preventDefault();
-//    const container = document.querySelector('.crafting-table-letters-container');
-//    const existingDivs = container.querySelectorAll('.crafting-table-letter-item');
+function addNewLetterForCraftingRecipe(event) {
+    event.preventDefault();
+    const container = document.querySelector('.crafting-table-letters-container');
+    const existingDivs = container.querySelectorAll('.crafting-table-letter-item');
 
-//    const errorLabel = document.querySelector('.default-error-label');
-//    errorLabel.textContent = "";
+    const errorLabel = document.querySelector('.default-error-label');
+    errorLabel.textContent = "";
 
-//    if (existingDivs.length >= 9) { errorLabel.textContent = 'Cannot add more than 9 letters'; return; }
-//    const currentChars = Array.from(existingDivs).map(div => div.innerText[0]);
-//    let nextChar = null;
-//    for (let i = 0; i < 9; i++) {
-//        const potentialChar = String.fromCharCode('a'.charCodeAt(0) + i).toUpperCase();
-//        if (!currentChars.includes(potentialChar)) {
-//            nextChar = potentialChar;
-//            break;
-//        }
-//    }
+    if (existingDivs.length >= 9) { errorLabel.textContent = 'Cannot add more than 9 letters'; return; }
+    const currentChars = Array.from(existingDivs).map(div => div.innerText[0]);
+    let nextChar = null;
+    for (let i = 0; i < 9; i++) {
+        const potentialChar = String.fromCharCode('a'.charCodeAt(0) + i).toUpperCase();
+        if (!currentChars.includes(potentialChar)) {
+            nextChar = potentialChar;
+            break;
+        }
+    }
 
-//    if (!nextChar) return;
-//    const newletterContainer = document.createElement('div');
-//    newletterContainer.className = 'crafting-table-letter-item';
-//    newletterContainer.innerHTML = `<label class='letter-label'>${nextChar}</label><input type='text' class='item-for-letter-input' data-suggestions value='made:item'/>`;
-//    const removeButton = document.createElement('div');
-//    removeButton.classList.add('letter-delete-button-container');
-//    removeButton.innerHTML = `<svg class='letter-delete-button' viewBox='0 0 24 24' fill='none' > <path d='M20.5001 6H3.5' stroke='#1C274C' stroke-width='1.5' stroke-linecap='round'/> <path d='M18.8332 8.5L18.3732 15.3991C18.1962 18.054 18.1077 19.3815 17.2427 20.1907C16.3777 21 15.0473 21 12.3865 21H11.6132C8.95235 21 7.62195 21 6.75694 20.1907C5.89194 19.3815 5.80344 18.054 5.62644 15.3991L5.1665 8.5' stroke='#1C274C' stroke-width='1.5' stroke-linecap='round'/> <path d='M9.5 11L10 16' stroke='#1C274C' stroke-width='1.5' stroke-linecap='round'/> <path d='M14.5 11L14 16' stroke='#1C274C' stroke-width='1.5' stroke-linecap='round'/> <path d='M6.5 6C6.55588 6 6.58382 6 6.60915 5.99936C7.43259 5.97849 8.15902 5.45491 8.43922 4.68032C8.44784 4.65649 8.45667 4.62999 8.47434 4.57697L8.57143 4.28571C8.65431 4.03708 8.69575 3.91276 8.75071 3.8072C8.97001 3.38607 9.37574 3.09364 9.84461 3.01877C9.96213 3 10.0932 3 10.3553 3H13.6447C13.9068 3 14.0379 3 14.1554 3.01877C14.6243 3.09364 15.03 3.38607 15.2493 3.8072C15.3043 3.91276 15.3457 4.03708 15.4286 4.28571L15.5257 4.57697C15.5433 4.62992 15.5522 4.65651 15.5608 4.68032C15.841 5.45491 16.5674 5.97849 17.3909 5.99936C17.4162 6 17.4441 6 17.5 6' stroke='#1C274C' stroke-width='1.5'/></svg>`;
-//    removeButton.addEventListener('click', function () {
-//        const letterToRemove = newletterContainer.querySelector('.letter-label').innerText;
-//        const gridItems = document.querySelectorAll('.crafting-table-grid-item');
-//        gridItems.forEach(item => {
-//            if (item.innerText === letterToRemove) { item.innerText = ''; }
-//        });
-//        container.removeChild(newletterContainer);
-//        errorLabel.textContent = '';
-//    });
+    if (!nextChar) return;
+    const newletterContainer = document.createElement('div');
+    newletterContainer.className = 'crafting-table-letter-item';
+    newletterContainer.innerHTML = `<label class='letter-label'>${nextChar}</label><input type='text' class='item-for-letter-input' data-suggestions value='made:item'/>`;
+    const removeButton = document.createElement('div');
+    removeButton.classList.add('letter-delete-button-container');
+    removeButton.innerHTML = `<svg class='letter-delete-button' viewBox='0 0 24 24' fill='none' > <path d='M20.5001 6H3.5' stroke='#1C274C' stroke-width='1.5' stroke-linecap='round'/> <path d='M18.8332 8.5L18.3732 15.3991C18.1962 18.054 18.1077 19.3815 17.2427 20.1907C16.3777 21 15.0473 21 12.3865 21H11.6132C8.95235 21 7.62195 21 6.75694 20.1907C5.89194 19.3815 5.80344 18.054 5.62644 15.3991L5.1665 8.5' stroke='#1C274C' stroke-width='1.5' stroke-linecap='round'/> <path d='M9.5 11L10 16' stroke='#1C274C' stroke-width='1.5' stroke-linecap='round'/> <path d='M14.5 11L14 16' stroke='#1C274C' stroke-width='1.5' stroke-linecap='round'/> <path d='M6.5 6C6.55588 6 6.58382 6 6.60915 5.99936C7.43259 5.97849 8.15902 5.45491 8.43922 4.68032C8.44784 4.65649 8.45667 4.62999 8.47434 4.57697L8.57143 4.28571C8.65431 4.03708 8.69575 3.91276 8.75071 3.8072C8.97001 3.38607 9.37574 3.09364 9.84461 3.01877C9.96213 3 10.0932 3 10.3553 3H13.6447C13.9068 3 14.0379 3 14.1554 3.01877C14.6243 3.09364 15.03 3.38607 15.2493 3.8072C15.3043 3.91276 15.3457 4.03708 15.4286 4.28571L15.5257 4.57697C15.5433 4.62992 15.5522 4.65651 15.5608 4.68032C15.841 5.45491 16.5674 5.97849 17.3909 5.99936C17.4162 6 17.4441 6 17.5 6' stroke='#1C274C' stroke-width='1.5'/></svg>`;
+    removeButton.addEventListener('click', function () {
+        const letterToRemove = newletterContainer.querySelector('.letter-label').innerText;
+        const gridItems = document.querySelectorAll('.crafting-table-grid-item');
+        gridItems.forEach(item => {
+            if (item.innerText === letterToRemove) { item.innerText = ''; }
+        });
+        container.removeChild(newletterContainer);
+        errorLabel.textContent = '';
+    });
 
-//    newletterContainer.setAttribute('draggable', 'true');
-//    newletterContainer.addEventListener('dragstart', handleDragStart);
-//    newletterContainer.appendChild(removeButton);
+    newletterContainer.setAttribute('draggable', 'true');
+    newletterContainer.addEventListener('dragstart', handleDragStart);
+    newletterContainer.appendChild(removeButton);
 
-//    newletterContainer.addEventListener('click', function () {
-//        const input = newletterContainer.querySelector('.item-for-letter-input');
-//        if (input) { input.focus(); }
-//    });
-//    container.appendChild(newletterContainer);
-//    const input = newletterContainer.querySelector('.item-for-letter-input');
-//    input.focus();
-//}
+    newletterContainer.addEventListener('click', function () {
+        const input = newletterContainer.querySelector('.item-for-letter-input');
+        if (input) { input.focus(); }
+    });
+    container.appendChild(newletterContainer);
+    const input = newletterContainer.querySelector('.item-for-letter-input');
+    input.focus();
+}
 function addNewLetterForCraftingRecipe(event) {
     event.preventDefault();
     const formElement = event.target.closest('form');
@@ -263,8 +274,8 @@ function clearLetters() {
         item.innerHTML = '';
     });
 }
-function addNewRecipeFromJS(type, jsonStringContent) {
-    DotNet.invokeMethodAsync('MadeLib', 'HandleRecipeCreationFromJS', type, jsonStringContent);
+async function addNewRecipeFromJS(type, jsonStringContent) {
+    return await DotNet.invokeMethodAsync('MadeLib', 'HandleRecipeCreationFromJS', type, jsonStringContent);
 }
 function changeExistingAction(actionId, filePath, type, jsonStringContent) {
     DotNet.invokeMethodAsync('MadeLib', 'HandleActionChanging', actionId, filePath, type, jsonStringContent);

@@ -50,13 +50,14 @@ namespace MadeLib.Src.ProjectClasses
             History = history;
             this.Suggestions = suggestionsCollection;
         }
-        public void AddNewRecipe(ActionType type, Dictionary<string, string> arguments)
+        public HistoryItem AddNewRecipe(ActionType type, Dictionary<string, string> arguments)
         {
             this.LastUpdated = DateTime.Now;
             HistoryItem historyItem = ActionsManager.HandleAction(type, arguments, PathToFolder);
             if (historyItem != null)
                 History.Add(historyItem);
             SaveToFile();
+            return historyItem;
         }
         public void ChangeAction(string actionId, string filePath, ActionType type, Dictionary<string, string> arguments)
         {

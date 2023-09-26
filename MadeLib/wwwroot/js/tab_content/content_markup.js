@@ -51,8 +51,6 @@ function getCraftingTableRecipeForm(formArguments, actionId, path) {
     const outputCountValue = formArguments && formArguments.outputCount ? formArguments.outputCount : '1';
     const outputValue = formArguments && formArguments.output ? formArguments.output : '';
     const submitButtonText = formArguments ? "Save changes" : "Save to file";
-
-    // Generate letter containers based on the letterItemDictionary
     let letterContainers = "";
     if (formArguments && formArguments.letterItemDictionary) {
         for (let letter in formArguments.letterItemDictionary) {
@@ -187,4 +185,8 @@ function getCraftingTableRecipeForm(formArguments, actionId, path) {
             </form>
     `;
     return contentToReturn;
+}
+function changeTabToExistingAction(event, formArgumentsString, type, path, actionId) {
+    closeTabFromRedirect(event);
+    addTabFromType(formArgumentsString, type, path, actionId);
 }

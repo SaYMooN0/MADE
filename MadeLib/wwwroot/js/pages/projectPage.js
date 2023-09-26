@@ -68,13 +68,23 @@ function createWelcomeIfNecessary() {
         createWelcome();
     }
 }
-function closeParentTab(event) {
+function closeTabFromRedirect(event) {
+
     let tabPage = $(event.target).closest('.tabPage');
+
     if (!tabPage.length) { return; }
     let tabItem = $(".tab-item[data-tab='" + tabPage.attr('id') + "']");
+
     if (!tabItem.length) { return; }
     tabItem.remove();
     tabPage.remove();
+    let firstRemainingTabName = $(".tab-item").first().attr("data-tab").replace("tab-", "");
+    if (firstRemainingTabName) {
+        switchToTab(firstRemainingTabName);
+    }
+}
+function closeParentTab(event) {
+    alert(JSON.stringify(event));
     let firstRemainingTabName = $(".tab-item").first().attr("data-tab").replace("tab-", "");
     if (firstRemainingTabName) {
         switchToTab(firstRemainingTabName);
