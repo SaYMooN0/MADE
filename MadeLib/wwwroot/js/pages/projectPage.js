@@ -84,9 +84,11 @@ function closeTabFromRedirect(event) {
     }
 }
 function closeParentTab(event) {
-    alert(JSON.stringify(event));
-    let firstRemainingTabName = $(".tab-item").first().attr("data-tab").replace("tab-", "");
-    if (firstRemainingTabName) {
-        switchToTab(firstRemainingTabName);
-    }
+    let tabPage = event.target.closest('.tabPage');
+    if (!tabPage) { return; }
+    let idValue = tabPage.getAttribute('id');
+    tabPage.remove();
+    let tabItem = $(".tab-item[data-tab='" + idValue + "']");
+    if (!tabItem.length) { return; }
+    tabItem.remove();
 }

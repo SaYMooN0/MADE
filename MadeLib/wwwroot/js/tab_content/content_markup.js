@@ -186,7 +186,7 @@ function getCraftingTableRecipeForm(formArguments, actionId, path) {
     `;
     return contentToReturn;
 }
-function changeTabToExistingAction(event, formArgumentsString, type, path, actionId) {
-    closeTabFromRedirect(event);
+function changeTabToExistingAction(e, formArgumentsString, type, path, actionId) {
+    closeParentTab(e);
     addTabFromType(formArgumentsString, type, path, actionId);
 }

@@ -12,11 +12,11 @@
             "</div>" +
            "<div id=\"deleteRecipeDiv\" class=\"action-button\" onclick=\"deleteActionOnClick()\"> " +
                 "<label class=\"action-button-main-label\">Delete recipe</label> " +
-                "<label class=\"action-button-hint-label\">Delete creation recipes for items and tags</label>" +
+                "<label class=\"action-button-hint-label\">Delete creation recipes for and from items and tags</label>" +
             "</div>" +
            "<div id=\"changeRecipeDiv\" class=\"action-button\" onclick=\"changeActionOnClick()\">" +
                 "<label class=\"action-button-main-label\">Change recipe</label> " +
-                "<label class=\"action-button-hint-label\">Change recipes by replacing the items used in them/label>" +
+                "<label class=\"action-button-hint-label\">Change recipes by replacing the items used in them</label>" +
             "</div>" +
             "<div id=\"moddedRecipeDiv\" class=\"action-button\" onclick=\"moddedActionOnClick()\">" +
                 "<label class=\"action-button-main-label\">Add modded recipe</label> " +

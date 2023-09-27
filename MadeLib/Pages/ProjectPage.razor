@@ -26,7 +26,7 @@
 			s-3.5,5.3-3.5,8.5s1.3,6.3,3.5,8.5C7.012,22.725,10.012,24.025,13.212,24.025z"/></svg>'
              Label="Modify recipes" />
     </div>
-    <div>
+    <div @onclick="OnModifyItemsClick">
         <LeftPanelButton SvgIcon='<svg fill="#000000" version="1.1" class="left-panel-btn-icon left-panel-btn-icon-fill"viewBox="0 0 593.321 593.321"
 	 xml:space="preserve"> <g> <g>
 		<path d="M250.582,575.765c10.984,10.999,25.594,17.057,41.139,17.057h43.574c32.054,0,58.135-26.077,58.14-58.131l0.054-268.62
@@ -142,6 +142,10 @@
     {
         await JSRuntime.InvokeVoidAsync("eval", "let recipeModificationScript = document.createElement('script');recipeModificationScript.src = '/_content/MadeLib/js/tab_content/recipes.js'; document.head.appendChild(recipeModificationScript);");
         await JSRuntime.InvokeVoidAsync("addTab", ModificationPageContent.ModifyRecipesContent, "recipes");
+    }
+    private async Task OnModifyItemsClick()
+    {
+        await JSRuntime.InvokeVoidAsync("alert", "OnModifyItemsClick");
     }
     private async Task OnCollectionsClick()
     {

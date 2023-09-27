@@ -95,7 +95,7 @@ async function stonecutterSaveButtonClick(e, isNew, actionId, path) {
     const type = 'StonecutterAdd'
     if (isNew == "true") {
         let historyItem = await addNewRecipeFromJS(type, arguments);
-        changeTabToExistingAction(this.event, JSON.stringify(historyItem.arguments), type, historyItem.filePathpath, historyItem.actionId);
+        changeTabToExistingAction(e, JSON.stringify(historyItem.arguments), type, historyItem.filePathpath, historyItem.actionId);
     }
     else if (isNew == "false") { changeExistingAction(actionId, path, type, arguments); }
     let submitButton = form.querySelector('.default-submit');
@@ -279,4 +279,24 @@ async function addNewRecipeFromJS(type, jsonStringContent) {
 }
 function changeExistingAction(actionId, filePath, type, jsonStringContent) {
     DotNet.invokeMethodAsync('MadeLib', 'HandleActionChanging', actionId, filePath, type, jsonStringContent);
+}
+function deleteActionOnClick() {
+    tabCreationResult = addTab(`
+        <link href="_content/MadeLib/css/tab_content/recipes.css" rel="stylesheet" />
+        <link href="_content/MadeLib/css/tab_content/components.css" rel="stylesheet" />
+        <div class="vanila-recipe-container">
+            <label class="custom-checkbox-label">
+                For
+                <input type="checkbox" name="for"/>
+                <span class="checkmark"></span>                  
+            </label>
+            <label class="custom-checkbox-label">
+                From
+                <input type="checkbox" name="from"/>
+                <span class="checkmark"></span>                  
+            </label>
+            <p class="input-line"><input class="default-input" type="text" data-suggestions"></p>
+        </div>`
+        , "recipe-deleting");
+    switchToTab("recipe-deleting");
 }
