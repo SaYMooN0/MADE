@@ -1,6 +1,5 @@
 let tabs = document.querySelectorAll('.collection-tab');
 let contents = document.querySelectorAll('.tab-content');
-
 tabs.forEach(tab => {
     tab.addEventListener('click', function () {
         tabs.forEach(innerTab => innerTab.classList.remove('active'));

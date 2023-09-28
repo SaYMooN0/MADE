@@ -13,7 +13,17 @@ namespace MadeLib.Src
         public SuggestionsCollection(Loader loader)
         {
             Mods = new();
-            Mod minecraft = new Mod("minecraft", new() { "stone", "granite", "dirt", "andesite", "sand" }, new());
+            Mod minecraft = new Mod(
+                "minecraft",
+                "Minecraft",
+                new() { "stone", "granite", "dirt", "andesite", "sand" },
+                new(),
+                new List<ProcessingType>()
+                {
+                    new ProcessingType("shapeless", "Shapeless crafting", true),
+                    new ProcessingType("minecraft:campfire_cooking", "Campfire cooking", true),
+
+                });
             Mods.Add(minecraft);
             Mods.Add(new Mod("minecr"));
             Mods.Add(new Mod("minecra"));
@@ -21,19 +31,19 @@ namespace MadeLib.Src
             Mods.Add(new Mod("min"));
             if (loader == null)
             {
-                Mod forge = new Mod("forge");
-                Mod fabric = new Mod("fabric");
+                Mod forge = new Mod("forge", "Forge");
+                Mod fabric = new Mod("fabric", "Fabric");
                 Mods.Add(forge);
                 Mods.Add(fabric);
             }
             else if (loader == Loader.Forge)
             {
-                Mod forge = new Mod("forge", new(), new() { "ores", "ores/copper" });
+                Mod forge = new("forge", "Forge", new() { "ores", "ores/copper" },new(),new());
                 Mods.Add(forge);
             }
             else if (loader == Loader.Fabric)
             {
-                Mod fabric = new Mod("fabric");
+                Mod fabric = new Mod("fabric", "Fabric");
                 Mods.Add(fabric);
             }
         }

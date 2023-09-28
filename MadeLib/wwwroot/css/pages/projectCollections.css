@@ -7,11 +7,11 @@
 
 .collections-page-top-container {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr calc(22px + 25vw);
+    grid-template-columns: 1fr 1fr 1fr 1fr calc(22px + 25vw);
     padding-left: calc(8vw - 20px);
     padding-right: calc(8vw - 20px);
     gap: calc(2px + 1vw);
-    align-items: center; 
+    align-items: center;
 }
 
 .collection-tab {
@@ -70,15 +70,43 @@
     fill: var(--front);
     pointer-events: none;
 }
-.collections-page-bottom-container
-{
-    background-color:darkblue;
-    display:grid;
-    grid-template-rows:1.2fr 1fr;
+
+.collections-page-bottom-container {
+    background-color: darkblue;
+    display: grid;
+    grid-template-rows: 1.2fr 1fr;
 }
-.add-new-container{
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    width:100%;
+
+.add-new-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
 }
+
+
+/* Скрыть инпут по умолчанию при меньших экранах */
+/*@media (max-width: 799px) {
+    .collections-search-input {
+        width: 0;
+        padding: 0;
+        border: none;
+        visibility: hidden;
+    }
+
+    .collections-search-icon {
+        cursor: pointer;
+        width: 100%;
+    }
+    .collections-search-container:focus-within .collections-search-input {
+        width: 90%;
+        padding-left: 5%;
+        visibility: visible;
+    }*/
+
+    /* Растянуть контейнер поиска на всю ширину при фокусе инпута */
+    /*.collections-search-container:focus-within {
+        grid-column: 1 / -1;
+        justify-self: stretch;
+    }
+}*/
