@@ -60,7 +60,7 @@ async function furnaceSaveButtonClick(e, isNew, actionId, path) {
     };
     if (isNew == "true") {
         let historyItem = await addNewRecipeFromJS(selectedFurnaceType, arguments);
-        changeTabToExistingAction(this.event, JSON.stringify(historyItem.arguments), selectedFurnaceType, historyItem.filePathpath, historyItem.actionId);
+        changeTabToExistingAction(e, JSON.stringify(historyItem.arguments), selectedFurnaceType, historyItem.filePathpath, historyItem.actionId);
     }
     else if (isNew == "false") { changeExistingAction(actionId, path, selectedFurnaceType, arguments); }
 
@@ -140,12 +140,26 @@ async function craftingTableSaveButtonClick(e, isNew, actionId, path) {
         output: outputValue,
         outputCount: outputCountValue
     };
-    const type = 'CraftingTableAdd'
+    const type = 'CraftingTableAdd';
+
     if (isNew == "true") {
+
         let historyItem = await addNewRecipeFromJS(type, arguments);
-        changeTabToExistingAction(this.event, JSON.stringify(historyItem.arguments), type, historyItem.filePathpath, historyItem.actionId);
+        let historyItemString = '{';
+
+        for (let key in historyItem.arguments) {
+            if (historyItem.arguments.hasOwnProperty(key)) {
+                let value = historyItem.arguments[key].replace(/"/g, "'");
+                historyItemString += `'${key}':'${value}',`;
+            }
+        }
+        if (historyItemString.endsWith(',')) {historyItemString = historyItemString.slice(0, -1); }
+        historyItemString += '}';
+        changeTabToExistingAction(e, historyItemString, type, historyItem.filePathpath, historyItem.actionId);
     }
-    else if (isNew == "false") { changeExistingAction(actionId, path, rtpe, arguments); }
+    else if (isNew == "false") {
+        changeExistingAction(actionId, path, rtpe, arguments);
+    }
     let submitButton = e.target.querySelector('.default-submit');
     submitButton.value = "Saved";
     setTimeout(() => { submitButton.value = "Save to file"; }, 450);

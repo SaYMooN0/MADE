@@ -8,8 +8,8 @@
 .collections-page-top-container {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr calc(22px + 25vw);
-    padding-left: calc(8vw - 20px);
-    padding-right: calc(8vw - 20px);
+    padding-left: calc(8vw - 40px - 1vh);
+    padding-right: calc(8vw - 40px - 1vh);
     gap: calc(2px + 1vw);
     align-items: center;
 }
@@ -42,7 +42,7 @@
 
 .collections-search-container {
     justify-self: right;
-    width: 90%;
+    width: 94%;
     height: calc(14px + 1.25vh + 1.55vw);
     background-color: var(--back-2);
     border-radius: calc(100vw + 100vh);
@@ -83,30 +83,3 @@
     justify-content: center;
     width: 100%;
 }
-
-
-/* Скрыть инпут по умолчанию при меньших экранах */
-/*@media (max-width: 799px) {
-    .collections-search-input {
-        width: 0;
-        padding: 0;
-        border: none;
-        visibility: hidden;
-    }
-
-    .collections-search-icon {
-        cursor: pointer;
-        width: 100%;
-    }
-    .collections-search-container:focus-within .collections-search-input {
-        width: 90%;
-        padding-left: 5%;
-        visibility: visible;
-    }*/
-
-    /* Растянуть контейнер поиска на всю ширину при фокусе инпута */
-    /*.collections-search-container:focus-within {
-        grid-column: 1 / -1;
-        justify-self: stretch;
-    }
-}*/

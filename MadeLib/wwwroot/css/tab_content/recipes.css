@@ -9,7 +9,7 @@
     font-size: calc(0.78vh + 0.58vw + 7px);
     position: absolute;
     top: 4%;
-    left: 3%;
+    left: calc(10px + 2%);
     z-index: 100;
 }
 
@@ -288,4 +288,8 @@
     grid-template-rows: 1fr 1fr;
     gap: calc(2% + 10px);
     height:calc(30px + 10%);
+}
+.is-shapeless-checkbox {
+    margin-left: calc(13px + 4%);
+    margin-top:calc(0.2vw + 0.5vh);
 }
