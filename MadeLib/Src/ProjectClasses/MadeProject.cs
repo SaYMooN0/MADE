@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using MadeLib.Src.MinecraftRelatedClasses;
+using Newtonsoft.Json;
 
 namespace MadeLib.Src.ProjectClasses
 {
@@ -14,8 +15,9 @@ namespace MadeLib.Src.ProjectClasses
         public DateTime LastUpdated { get; private set; }
         public ProjectSettings Settings { get; private set; }
         public List<HistoryItem> History { get; private set; } = new();
-        [JsonProperty]
-        public SuggestionsCollection Suggestions { get; private set; }
+        public List<Mod> Mods { get; private set; } = new();
+        [JsonIgnore]
+        public SuggestionsCollection SuggestionsCollection { get; private set; }
         public void SaveToFile()
         {
             string jsonInstance = JsonConvert.SerializeObject(this, Formatting.Indented);
@@ -36,8 +38,41 @@ namespace MadeLib.Src.ProjectClasses
                 return null;
             }
         }
+        public MadeProject(string name, string fullPath, string pathToFolder, string version, Loader loader)
+        {
+            Name = name;
+            FullPath = fullPath;
+            PathToFolder = pathToFolder;
+            Version = version;
+            Loader = loader;
+            CreationDate = DateTime.Now;
+            LastUpdated = DateTime.Now;
+            Settings = new ProjectSettings();
+            History = new List<HistoryItem>();
+
+            Mods = new List<Mod> {
+                new Mod(
+                    "minecraft",
+                    "Minecraft",
+                    new List<string> { "stone", "granite", "dirt", "andesite", "sand" },
+                    new List<string>(),
+                    new List<ProcessingType>
+                    {
+                        new ProcessingType("shapeless", "Shapeless crafting", true),
+                        new ProcessingType("minecraft:campfire_cooking", "Campfire cooking", true)
+                    })
+            };
+
+            if (loader == Loader.Forge)
+                Mods.Add(new Mod("forge", "Forge", new List<string> { "ores", "ores/copper" }, new List<string>(), new List<ProcessingType>()));
+
+            if (loader == Loader.Fabric)
+                Mods.Add(new Mod("fabric", "Fabric"));
+            SuggestionsCollection = new(loader, Mods);
+        }
+        [JsonConstructor]
         public MadeProject(string name, string fullPath, string pathToFolder, string version, Loader loader, DateTime creationDate, DateTime lastUpdated,
-            ProjectSettings settings, List<HistoryItem> history, SuggestionsCollection suggestionsCollection)
+            ProjectSettings settings, List<HistoryItem> history, List<Mod> mods)
         {
             Name = name;
             FullPath = fullPath;
@@ -48,7 +83,8 @@ namespace MadeLib.Src.ProjectClasses
             LastUpdated = lastUpdated;
             Settings = settings;
             History = history;
-            this.Suggestions = suggestionsCollection;
+            Mods = mods;
+            SuggestionsCollection = new(loader, mods);
         }
         public HistoryItem AddNewRecipe(ActionType type, Dictionary<string, string> arguments)
         {

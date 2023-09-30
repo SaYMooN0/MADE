@@ -30,7 +30,7 @@ namespace MadeLib.Src.JsInterops
             MadeSettings madeSettings = MadeSettings.Initialize();
             if (!madeSettings.EnableSuggestions)
                 return new string[0];
-            return ProjectManager.CurrentProject.Suggestions.GetSuggestion(input);
+            return ProjectManager.CurrentProject.SuggestionsCollection.GetSuggestion(input);
         }
     }
 

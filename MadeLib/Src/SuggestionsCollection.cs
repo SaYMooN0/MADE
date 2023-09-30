@@ -1,53 +1,17 @@
 ﻿using MadeLib.Src.MinecraftRelatedClasses;
-using Microsoft.AspNetCore.Components.Web;
-using Newtonsoft.Json;
 
 namespace MadeLib.Src
 {
     public class SuggestionsCollection
     {
         public const char TagChar = '#';
-        public List<Mod> Mods { get; set; } = new();
-        [JsonConstructor]
-        public SuggestionsCollection(List<Mod> mods) { Mods = mods; }
-        public SuggestionsCollection(Loader loader)
+        public Loader Loader { get; private set; }
+        public List<Mod> Mods  { get; private set; }
+        public SuggestionsCollection(Loader loader, List<Mod> mods)
         {
-            Mods = new();
-            Mod minecraft = new Mod(
-                "minecraft",
-                "Minecraft",
-                new() { "stone", "granite", "dirt", "andesite", "sand" },
-                new(),
-                new List<ProcessingType>()
-                {
-                    new ProcessingType("shapeless", "Shapeless crafting", true),
-                    new ProcessingType("minecraft:campfire_cooking", "Campfire cooking", true),
-
-                });
-            Mods.Add(minecraft);
-            Mods.Add(new Mod("minecr"));
-            Mods.Add(new Mod("minecra"));
-            Mods.Add(new Mod("minecraf"));
-            Mods.Add(new Mod("min"));
-            if (loader == null)
-            {
-                Mod forge = new Mod("forge", "Forge");
-                Mod fabric = new Mod("fabric", "Fabric");
-                Mods.Add(forge);
-                Mods.Add(fabric);
-            }
-            else if (loader == Loader.Forge)
-            {
-                Mod forge = new("forge", "Forge", new() { "ores", "ores/copper" },new(),new());
-                Mods.Add(forge);
-            }
-            else if (loader == Loader.Fabric)
-            {
-                Mod fabric = new Mod("fabric", "Fabric");
-                Mods.Add(fabric);
-            }
+            Loader = loader;
+            Mods = mods;
         }
-
         public string[] GetSuggestion(string input)
         {
             if (string.IsNullOrEmpty(input))
@@ -77,7 +41,6 @@ namespace MadeLib.Src
                         .Where(i => i.Contains(afterModIdString))
                         .Select(i => mod.Id + ":" + i)
                         .ToArray();
-
             }
         }
         private Mod GetModFromInput(string input)
