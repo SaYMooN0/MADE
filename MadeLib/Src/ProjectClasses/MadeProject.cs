@@ -122,6 +122,10 @@ namespace MadeLib.Src.ProjectClasses
             return false;
 
         }
+        public IEnumerable<string> GetAllItems() => Mods.SelectMany(mod => mod.Items);
+        public IEnumerable<string> GetAllTags() => Mods.SelectMany(mod => mod.Tags);
+        public IEnumerable<string> GetAllTypes() =>Mods.SelectMany(mod => mod.SupportedTypes).Select(type => type.Id).Distinct();
+
 
     }
 }

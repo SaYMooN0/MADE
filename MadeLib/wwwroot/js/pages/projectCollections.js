@@ -15,3 +15,16 @@ function collectionAddNewPressesd() {
     let inputValue = document.querySelector('.add-new-input').value;
     document.querySelector('.add-new-message').textContent = inputValue;
 }
+function collectionItemClicked(e) {
+    alert(JSON.stringify(e));
+}
+function collectionItemEdit(e) {
+  
+    alert('edit');
+    e.stopPropagation();
+}
+function collectionItemDelete(e) {
+ 
+    alert('delete');
+    e.stopPropagation();
+}

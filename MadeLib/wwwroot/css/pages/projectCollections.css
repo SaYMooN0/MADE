@@ -83,3 +83,7 @@
     justify-content: center;
     width: 100%;
 }
+.collection-item {
+    display: grid;
+    grid-template-columns: 1fr calc(16px + 0.4vh + 3vw) calc(16px + 0.4vh + 3vw);
+}

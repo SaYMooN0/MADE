@@ -149,9 +149,10 @@
     }
     private async Task OnCollectionsClick()
     {
+        string itemsContent = FormCollectionContent(ProjectManager.CurrentProject.GetAllItems(), CollectionItemType.Item);
         await JSRuntime.InvokeVoidAsync("eval", "let recipeCollectionsPageScript = document.createElement('script');recipeCollectionsPageScript.src = '/_content/MadeLib/js/pages/projectCollections.js'; document.head.appendChild(recipeCollectionsPageScript);");
         string content = "<link href=\"_content/MadeLib/css/pages/projectCollections.css\" rel=\"stylesheet\" />" +
-                             @"<div class='collections-page-container'>
+                                 @"<div class='collections-page-container'>
                                 <div class='collections-page-top-container'>
                                     <div class='collection-tab' data-tab='items'>Items</div>
                                     <div class='collection-tab' data-tab='tags'>Tags</div>
@@ -165,12 +166,12 @@
                                         <input type='text' class='collections-search-input' />
                                     </div>
                                 </div>
-                                <div class='collection-content-container'>
-                                    <div class='tab-content' data-content='items'><label>Items</label></div>
-                                    <div class='tab-content' data-content='tags'><label>Tags</label></div>
-                                    <div class='tab-content' data-content='process-types'><label>Process types</label></div>
-                                    <div class='tab-content' data-content='mods'><label>Mods</label></div>
-                                </div>
+                                <div class='collection-content-container'>" +
+                                    $"<div class='tab-content' data-content='items'>{itemsContent}</div>" +
+                                     $"<div class='tab-content' data-content='tags'><label>Tags</label></div>" +
+                                     $"<div class='tab-content' data-content='process-types'><label>Process types</label></div>" +
+                                     $"<div class='tab-content' data-content='mods'><label>Mods</label></div>" +
+                                    @"</div>
                                 <div class='collections-page-bottom-container'>
                                     <div class='add-new-container'>
                                         <label class='add-new-label'>Add new:</label>
@@ -187,7 +188,7 @@
     {
         await JSRuntime.InvokeVoidAsync("eval", "let recipeModificationScript = document.createElement('script');recipeModificationScript.src = '/_content/MadeLib/js/tab_content/recipes.js'; document.head.appendChild(recipeModificationScript);");
         string content = "<link href=\"_content/MadeLib/css/pages/projectHistory.css\" rel=\"stylesheet\" />" +
-                         @"<div class='history-page-top-container'>
+                             @"<div class='history-page-top-container'>
                              <label class='project-history-label'>Project history</label>
                              <div class='history-search-container' onclick=""document.querySelector('.history-search-input', this).focus()"">
                                  <svg class='history-search-icon' viewBox='0 0 16 16'>
@@ -223,11 +224,31 @@
         string onClickArguments = "`{";
         foreach (KeyValuePair<string, string> keyValue in arguments)
         {
-            onClickArguments += '\'' + keyValue.Key + '\'' + ':' + '\'' + keyValue.Value.Replace("\"","\'") + '\'' + ',';
+            onClickArguments += '\'' + keyValue.Key + '\'' + ':' + '\'' + keyValue.Value.Replace("\"", "\'") + '\'' + ',';
         }
         onClickArguments = onClickArguments.Substring(0, onClickArguments.Length - 1);
         onClickArguments += "}`";
         return onClickArguments;
     }
+    private string FormCollectionContent(IEnumerable<string> collection, CollectionItemType type)
+    {
+        string contentToReturn = "";
+        foreach (string item in collection)
+        {
+            contentToReturn += @"<div class='collection-item' onclick='collectionItemClicked(event)'>
+                                    <label class='collection-item-name'>" +
+                                        item +
+                                        @"</label>
+                                    <div class='collection-item-button' onclick='collectionItemEdit(event)'>
+                                        edit
+                                    </div>
+                                    <div class='collection-item-button' onclick='collectionItemDelete(event)'>
+                                        delete
+                                    </div>
+                                </div>";
+        }
+        return contentToReturn;
+    }
     private async Task OnSettingsClick() { }
+    private enum CollectionItemType { Item, Tag, Mod, Type }
 }
