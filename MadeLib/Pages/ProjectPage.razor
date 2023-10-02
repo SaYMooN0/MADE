@@ -236,15 +236,12 @@
         foreach (string item in collection)
         {
             contentToReturn += @"<div class='collection-item' onclick='collectionItemClicked(event)'>
-                                    <label class='collection-item-name'>" +
-                                        item +
-                                        @"</label>
-                                    <div class='collection-item-button' onclick='collectionItemEdit(event)'>
-                                        edit
-                                    </div>
-                                    <div class='collection-item-button' onclick='collectionItemDelete(event)'>
-                                        delete
-                                    </div>
+                                    <label class='collection-item-label'>" + item + @"</label>
+                                    <input class='collection-item-input' style='display:none;' value='' />
+                                    <div class='collection-item-button collection-item-edit-button' onclick='collectionItemEdit(event)'>edit</div>
+                                    <div class='collection-item-button collection-item-delete-button' onclick='collectionItemDelete(event)'>delete</div>
+                                    <div class='collection-item-button collection-item-save-button' onclick='collectionItemSave(event)' style='display:none;'>save</div>
+                                    <div class='collection-item-button collection-item-cancel-button' onclick='collectionItemCancel(event)' style='display:none;'>cancel</div>
                                 </div>";
         }
         return contentToReturn;
