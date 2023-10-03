@@ -32,13 +32,33 @@
     border-radius: calc(0.17vw + 0.17vh + 2px);
 }
 
-.collection-tab:hover {
-    background-color: var(--back-3);
-}
+    .collection-tab:hover {
+        background-color: var(--back-3);
+    }
 
 .collection-content-container {
-    background-color: violet;
+    overflow-y: auto;
+    width: 98%;
+    padding-right: 0.6%;
 }
+
+    .collection-content-container::-webkit-scrollbar {
+        width: calc(0.2vw + 0.2vh + 5px);
+    }
+
+    .collection-content-container::-webkit-scrollbar-track {
+        background: var(--back-3);
+        border-radius: calc(0.08vw + 0.02vh + 2px);
+    }
+
+    .collection-content-container::-webkit-scrollbar-thumb {
+        background: var(--front-2);
+        border-radius: calc(0.08vw + 0.02vh + 2px);
+    }
+
+        .collection-content-container::-webkit-scrollbar-thumb:hover {
+            background: var(--front-3);
+        }
 
 .collections-search-container {
     justify-self: right;
@@ -83,7 +103,36 @@
     justify-content: center;
     width: 100%;
 }
+
 .collection-item {
+    width: 99%;
     display: grid;
-    grid-template-columns: 1fr calc(16px + 0.4vh + 3vw) calc(16px + 0.4vh + 3vw);
+    grid-template-columns: 1fr calc(11px + 0.4vh + 1.5vw) calc(11px + 0.4vh + 1.5vw);
+    height: calc(40px + 1vh + 1vw);
 }
+
+.collection-item-button {
+    align-self: center;
+    width: 90%;
+    padding: 2px;
+    aspect-ratio: 1/1;
+    border: 1px solid transparent;
+    border-radius: 30%;
+}
+
+.collection-item-edit-button path {
+    fill: var(--front);
+}
+
+.collection-item-button path {
+    stroke: var(--front);
+}
+
+.collection-item-button:hover {
+    background-color: var(--back-3);
+    fill: var(--front-2);
+}
+
+    .collection-item-button:hover path {
+        stroke: var(--front-2);
+    }

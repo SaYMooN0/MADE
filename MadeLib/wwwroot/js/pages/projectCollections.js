@@ -20,11 +20,22 @@ function collectionItemClicked(e) {
 }
 
 
+function getCollectionItemFromEvent(event) {
+    let target = event.target;
+
+    // Если цель события SVG, используем родительский элемент
+    if (target.tagName.toLowerCase() === 'svg' || target.tagName.toLowerCase() === 'path') {
+        target = target.closest('.collection-item-button');
+    }
+
+    return target.parentElement;
+}
+
 function collectionItemEdit(event) {
     event.stopPropagation();
     changeAllToLabels();
 
-    let item = event.target.parentElement;
+    let item = getCollectionItemFromEvent(event);
     let label = item.querySelector('.collection-item-label');
     let input = item.querySelector('.collection-item-input');
 
@@ -42,7 +53,7 @@ function collectionItemEdit(event) {
 function collectionItemSave(event) {
     event.stopPropagation();
 
-    let item = event.target.parentElement;
+    let item = getCollectionItemFromEvent(event);
     let label = item.querySelector('.collection-item-label');
     let input = item.querySelector('.collection-item-input');
 
@@ -60,7 +71,7 @@ function collectionItemSave(event) {
 function collectionItemCancel(event) {
     event.stopPropagation();
 
-    let item = event.target.parentElement;
+    let item = getCollectionItemFromEvent(event);
     item.querySelector('.collection-item-input').style.display = 'none';
     item.querySelector('.collection-item-save-button').style.display = 'none';
     item.querySelector('.collection-item-cancel-button').style.display = 'none';
@@ -69,6 +80,7 @@ function collectionItemCancel(event) {
     item.querySelector('.collection-item-edit-button').style.display = 'block';
     item.querySelector('.collection-item-delete-button').style.display = 'block';
 }
+
 function changeAllToLabels() {
     let items = document.querySelectorAll('.collection-item');
 
@@ -79,6 +91,8 @@ function changeAllToLabels() {
         }
     });
 }
+
+
 function collectionItemDelete(e) {
  
     alert('delete');
