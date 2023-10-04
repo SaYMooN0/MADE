@@ -16,15 +16,13 @@ function collectionAddNewPressesd() {
     document.querySelector('.add-new-message').textContent = inputValue;
 }
 function collectionItemClicked(e) {
-    alert(JSON.stringify(e));
+    //alert(JSON.stringify(e));
 }
 
 
 function getCollectionItemFromEvent(event) {
     let target = event.target;
-
-    // Если цель события SVG, используем родительский элемент
-    if (target.tagName.toLowerCase() === 'svg' || target.tagName.toLowerCase() === 'path') {
+    if (target.tagName.toLowerCase() === 'svg' || target.tagName.toLowerCase() === 'path' || target.tagName.toLowerCase() === 'polygon') {
         target = target.closest('.collection-item-button');
     }
 

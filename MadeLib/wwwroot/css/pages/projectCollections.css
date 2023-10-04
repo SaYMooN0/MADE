@@ -107,32 +107,63 @@
 .collection-item {
     width: 99%;
     display: grid;
-    grid-template-columns: 1fr calc(11px + 0.4vh + 1.5vw) calc(11px + 0.4vh + 1.5vw);
-    height: calc(40px + 1vh + 1vw);
+    grid-template-columns: 1fr calc(16px + 0.7vh + 2.3vw) calc(16px + 0.7vh + 2.3vw);
+    height: calc(37px + 2vh + 1vw);
+    align-items: center;
+    align-content: center;
 }
 
 .collection-item-button {
-    align-self: center;
-    width: 90%;
-    padding: 2px;
+    height: calc(10px + 41%);
+    padding: 5%;
     aspect-ratio: 1/1;
     border: 1px solid transparent;
-    border-radius: 30%;
+    border-radius: 32%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
-
-.collection-item-edit-button path {
-    fill: var(--front);
+.collection-item-edit-button {
+    height: calc(10px + 31%);
+    padding: 12%;
 }
-
-.collection-item-button path {
+.collection-item-edit-button polygon {
     stroke: var(--front);
 }
 
-.collection-item-button:hover {
-    background-color: var(--back-3);
-    fill: var(--front-2);
+.collection-item-button {
+    stroke: var(--front);
 }
 
-    .collection-item-button:hover path {
-        stroke: var(--front-2);
+    .collection-item-button path {
+        stroke: var(--front);
     }
+
+    .collection-item-button:hover {
+        background-color: var(--back-3);
+        fill: var(--front-2);
+    }
+
+        .collection-item-button:hover path {
+            stroke: var(--front-2);
+        }
+
+        .collection-item-button:hover polygon {
+            stroke: var(--front-2);
+        }
+.collection-item-input {
+    height: calc(7px + 40%);
+    width: 95%;
+    margin-left:2%;
+    background-color: var(--back-2);
+    border: 1px solid transparent;
+    border-radius: calc(3px + 0.05vw + 0.1vh);
+    font-family: 'Figtree';
+    font-size: calc(0.88vh + 0.6vw + 7px);
+    font-weight: 300;
+    color: var(--front);
+    outline:none;
+}
+.collection-item-input:focus {
+    background-color: var(--back-3);
+}
