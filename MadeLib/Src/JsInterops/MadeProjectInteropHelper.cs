@@ -10,6 +10,15 @@ namespace MadeLib.Src.JsInterops
         static public void SetShowWarningWhenDeletingAction(bool value) { ProjectManager.CurrentProject.Settings.ShowWarningWhenDeletingAction = value; }
         [JSInvokable]
         static public bool GetShowWarningWhenDeletingAction() { return ProjectManager.CurrentProject.Settings.ShowWarningWhenDeletingAction; }
+        [JSInvokable]
+        static public string TryChangeCollectionItem (string collectionType, string oldValue, string newValue) {
+            switch(collectionType)
+            {
+                case "items":
+                    return ProjectManager.CurrentProject.EditItem(oldValue, newValue);
+                default: return "An error has occurred";
+            }
+        }
 
     }
 }

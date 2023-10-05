@@ -83,7 +83,7 @@
     cursor: pointer;
     display: grid;
     grid-template-rows: 1.2fr 1fr;
-    grid-template-columns: 9fr 4fr calc(3vw + 8px + 2vh);
+    grid-template-columns: 8fr 4fr calc(10px + 3vh + 2vw);
     grid-template-areas:
         "type date dlt"
         "text text text";
@@ -101,7 +101,8 @@
     color: var(--front-2);
     grid-area: date;
     font-family: 'Bahnschrift';
-    cursor:inherit;
+    cursor: inherit;
+    justify-content:center;
 }
 
 .history-item-type {
@@ -113,7 +114,7 @@
 
 .history-item-delete-button {
     grid-area: dlt;
-    height: 80%;
+    height: calc(15px + 50% + 0.4vw);
     padding: 2px;
     aspect-ratio: 1/1;
     border: 1px solid transparent;

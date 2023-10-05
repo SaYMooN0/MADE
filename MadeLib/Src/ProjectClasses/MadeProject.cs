@@ -1,5 +1,7 @@
 ﻿using MadeLib.Src.MinecraftRelatedClasses;
+using Microsoft.AspNetCore.Components.Web;
 using Newtonsoft.Json;
+using System;
 
 namespace MadeLib.Src.ProjectClasses
 {
@@ -64,7 +66,7 @@ namespace MadeLib.Src.ProjectClasses
             };
 
             if (loader == Loader.Forge)
-                Mods.Add(new Mod("forge", "Forge", new List<string> { "ores", "ores/copper" }, new List<string>(), new List<ProcessingType>()));
+                Mods.Add(new Mod("forge", "Forge",  new List<string>(), new List<string> { "ores", "ores/copper" }, new List<ProcessingType>()));
 
             if (loader == Loader.Fabric)
                 Mods.Add(new Mod("fabric", "Fabric"));
@@ -122,9 +124,45 @@ namespace MadeLib.Src.ProjectClasses
             return false;
 
         }
-        public IEnumerable<string> GetAllItems() => Mods.SelectMany(mod => mod.Items);
+        public IEnumerable<string> GetAllItems()
+        {
+            return Mods.SelectMany(mod => mod.Items.Select(item => $"{mod.Id}:{item}"));
+        }
+
         public IEnumerable<string> GetAllTags() => Mods.SelectMany(mod => mod.Tags);
-        public IEnumerable<string> GetAllTypes() =>Mods.SelectMany(mod => mod.SupportedTypes).Select(type => type.Id).Distinct();
+        public IEnumerable<string> GetAllProcessingTypes() => Mods.SelectMany(mod => mod.SupportedTypes).Select(type => type.Id).Distinct();
+        public string AddNewItem(string itemString)
+        {
+            string modString = itemString.Split(":")[0];
+            itemString = itemString.Split(":")[1];
+            Mod m = Mods.FirstOrDefault(mod => mod.Id == modString);
+            if (m == null)
+            {
+                m = new(modString);
+                m.Items.Add(itemString);
+                Mods.Add(m);
+            }
+            else
+            {
+                if (m.Items.Contains(itemString))
+                    return $"Mod with id {m.Id} already contains this item";
+                m.Items.Add(itemString);
+            }
+            return "";
+        }
+        public string EditItem(string oldItem, string newItem) {
+            string addingResult = AddNewItem(newItem);
+            if (!string.IsNullOrEmpty(addingResult))
+                return addingResult;
+            string modString = oldItem.Split(":")[0];
+            oldItem = oldItem.Split(":")[1];
+            Mod modOld = Mods.FirstOrDefault(mod => mod.Id == modString);
+            if (modOld != null && modOld.Items.Contains(oldItem))
+                modOld.Items.Remove(oldItem);
+            SaveToFile();
+            return "";
+            
+        }
 
 
     }

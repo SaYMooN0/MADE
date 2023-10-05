@@ -1,16 +1,36 @@
 let tabs = document.querySelectorAll('.collection-tab');
 let contents = document.querySelectorAll('.tab-content');
-tabs.forEach(tab => {
-    tab.addEventListener('click', function () {
-        tabs.forEach(innerTab => innerTab.classList.remove('active'));
-        contents.forEach(content => content.style.display = 'none');
-        tab.classList.add('active');
-        let tabContent = document.querySelector(`.tab-content[data-content='${tab.getAttribute("data-tab")}']`);
-        if (tabContent) {
-            tabContent.style.display = 'block';
-        }
-    });
-});
+tabs.forEach(innerTab => innerTab.classList.remove('active'));
+contents.forEach(content => content.style.display = 'none');
+let itemsTab = document.querySelector('.collection-tab[data-tab="items"]');
+if (itemsTab) {
+    itemsTab.classList.add('active');
+    let itemsContent = document.querySelector('.tab-content[data-content="items"]');
+    if (itemsContent) {
+        itemsContent.style.display = 'block';
+    }
+}
+
+function handleTabClick(event) {
+    let tabs = document.querySelectorAll('.collection-tab');
+    let contents = document.querySelectorAll('.tab-content');
+    tabs.forEach(innerTab => innerTab.classList.remove('active'));
+    contents.forEach(content => content.style.display = 'none');
+    let clickedTab = event.currentTarget;
+    clickedTab.classList.add('active');
+    let tabContent = document.querySelector(`.tab-content[data-content='${clickedTab.getAttribute("data-tab")}']`);
+    if (tabContent) {
+        tabContent.style.display = 'block';
+    }
+}
+
+function getActiveTab() {
+    let activeTab = document.querySelector('.collection-tab.active');
+    if (activeTab) {
+        return activeTab.getAttribute('data-tab');
+    }
+    return null;
+}
 function collectionAddNewPressesd() {
     let inputValue = document.querySelector('.add-new-input').value;
     document.querySelector('.add-new-message').textContent = inputValue;
@@ -48,15 +68,21 @@ function collectionItemEdit(event) {
     item.querySelector('.collection-item-cancel-button').style.display = 'block';
 }
 
-function collectionItemSave(event) {
+async function collectionItemSave(event) {
     event.stopPropagation();
 
     let item = getCollectionItemFromEvent(event);
     let label = item.querySelector('.collection-item-label');
     let input = item.querySelector('.collection-item-input');
+    let oldValue = label.textContent;
+    let newValue = input.value;
 
-    label.textContent = input.value;
-
+    let changingResult = await DotNet.invokeMethodAsync('MadeLib', 'TryChangeCollectionItem', getActiveTab(), oldValue, newValue);
+    if (changingResult || changingResult.trim() != "") {
+        alert(changingResult);
+        return;
+    }
+    label.textContent = newValue;
     input.style.display = 'none';
     item.querySelector('.collection-item-save-button').style.display = 'none';
     item.querySelector('.collection-item-cancel-button').style.display = 'none';
@@ -65,6 +91,7 @@ function collectionItemSave(event) {
     item.querySelector('.collection-item-edit-button').style.display = 'block';
     item.querySelector('.collection-item-delete-button').style.display = 'block';
 }
+
 
 function collectionItemCancel(event) {
     event.stopPropagation();
@@ -92,7 +119,7 @@ function changeAllToLabels() {
 
 
 function collectionItemDelete(e) {
- 
+
     alert('delete');
     e.stopPropagation();
 }
