@@ -107,7 +107,7 @@
 .collection-item {
     width: 99%;
     display: grid;
-    grid-template-columns: 1fr calc(16px + 0.7vh + 2.3vw) calc(16px + 0.7vh + 2.3vw);
+    grid-template-columns: 1fr 1fr calc(16px + 0.7vh + 2.3vw) calc(16px + 0.7vh + 2.3vw);
     height: calc(37px + 2vh + 1vw);
     align-items: center;
     align-content: center;

@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Components.Web;
 using Newtonsoft.Json;
 using System;
+using System.Linq;
 
 namespace MadeLib.Src.ProjectClasses
 {
@@ -56,8 +57,8 @@ namespace MadeLib.Src.ProjectClasses
                 new Mod(
                     "minecraft",
                     "Minecraft",
-                    new List<string> { "stone", "granite", "dirt", "andesite", "sand" },
-                    new List<string>(),
+                    new List<Item> { new("stone","Stone"), new("granite","Granite"), new("dirt","Dirt"), new("andesite","Andesite"), new("sand","Sand") },
+                    new List<Tag>(),
                     new List<ProcessingType>
                     {
                         new ProcessingType("shapeless", "Shapeless crafting", true),
@@ -66,7 +67,7 @@ namespace MadeLib.Src.ProjectClasses
             };
 
             if (loader == Loader.Forge)
-                Mods.Add(new Mod("forge", "Forge",  new List<string>(), new List<string> { "ores", "ores/copper" }, new List<ProcessingType>()));
+                Mods.Add(new Mod("forge", "Forge", new List<Item>(), new List<Tag> { new("ores", "Forge ores"), new("ores/copper", "Forge copper ores") }, new List<ProcessingType>()));
 
             if (loader == Loader.Fabric)
                 Mods.Add(new Mod("fabric", "Fabric"));
@@ -124,45 +125,71 @@ namespace MadeLib.Src.ProjectClasses
             return false;
 
         }
-        public IEnumerable<string> GetAllItems()
+        public IEnumerable<(string Id, string InGameName)> GetAllItems(){return Mods.SelectMany(mod => mod.Items.Select(item => ($"{mod.Id}:{item.Id}", item.InGameName))); }
+
+        public IEnumerable<(string Id, string InGameName)> GetAllTags() {return Mods.SelectMany(mod => mod.Tags.Select(tag => ($"#{mod.Id}:{tag.Id}", tag.InGameName)));}
+
+        public IEnumerable<(string Id, string InGameName)> GetAllProcessingTypes()
         {
-            return Mods.SelectMany(mod => mod.Items.Select(item => $"{mod.Id}:{item}"));
+            return Mods.SelectMany(mod => mod.SupportedTypes)
+                       .Select(type => (type.Id, type.InGameName))
+                       .Distinct();
         }
 
-        public IEnumerable<string> GetAllTags() => Mods.SelectMany(mod => mod.Tags);
-        public IEnumerable<string> GetAllProcessingTypes() => Mods.SelectMany(mod => mod.SupportedTypes).Select(type => type.Id).Distinct();
-        public string AddNewItem(string itemString)
+
+        public string AddNewItem(string itemIdString) => AddNewItem(itemIdString, "");
+        public string AddNewItem(string itemIdString, string inGameName)
         {
-            string modString = itemString.Split(":")[0];
-            itemString = itemString.Split(":")[1];
-            Mod m = Mods.FirstOrDefault(mod => mod.Id == modString);
-            if (m == null)
+            string modString = itemIdString.Split(":")[0];
+            itemIdString = itemIdString.Split(":")[1];
+            Mod mod = Mods.FirstOrDefault(m => m.Id == modString);
+            if (mod == null)
             {
-                m = new(modString);
-                m.Items.Add(itemString);
-                Mods.Add(m);
+                mod = new(modString);
+                mod.Items.Add(new(itemIdString, inGameName));
+                Mods.Add(mod);
             }
             else
             {
-                if (m.Items.Contains(itemString))
-                    return $"Mod with id {m.Id} already contains this item";
-                m.Items.Add(itemString);
+                if (mod.Items.Any(item=>item.Id==inGameName))
+                    return $"Mod with id {mod.Id} already contains this item";
+                mod.Items.Add(new(itemIdString, inGameName));
             }
-            return "";
-        }
-        public string EditItem(string oldItem, string newItem) {
-            string addingResult = AddNewItem(newItem);
-            if (!string.IsNullOrEmpty(addingResult))
-                return addingResult;
-            string modString = oldItem.Split(":")[0];
-            oldItem = oldItem.Split(":")[1];
-            Mod modOld = Mods.FirstOrDefault(mod => mod.Id == modString);
-            if (modOld != null && modOld.Items.Contains(oldItem))
-                modOld.Items.Remove(oldItem);
             SaveToFile();
             return "";
-            
         }
+        public string EditCollectionItem(string oldItem, string newItem)
+        {
+            string processResult = AddNewItem(newItem);
+            if (!string.IsNullOrEmpty(processResult))
+                return processResult;
+            processResult = DeleteItemFromCollection(oldItem);
+            if (!string.IsNullOrEmpty(processResult))
+                return processResult;
+            return "";
+
+        }
+        public string DeleteItemFromCollection(string itemToDelete)
+        {
+            string modString = itemToDelete.Split(":")[0];
+            itemToDelete = itemToDelete.Split(":")[1];
+            Mod mod = Mods.FirstOrDefault(mod => mod.Id == modString);
+            if (mod != null)
+            {
+                Item item = mod.Items.FirstOrDefault(i => i.Id == itemToDelete);
+                if (item != null)
+                {
+                    mod.Items.Remove(item);
+                    SaveToFile();
+                    return "";
+                }
+                else
+                    return $"No item with id {itemToDelete} found in the mod {modString}";
+            }
+            else
+                return $"No mod with id {modString} found";
+        }
+
 
 
     }

@@ -32,14 +32,14 @@ namespace MadeLib.Src
                 if (input[0] == TagChar)
                 {
                     return mod.Tags
-                        .Where(i => i.Contains(afterModIdString))
-                        .Select(i => TagChar + mod.Id + ':' + i)
+                        .Where(i => i.Id.Contains(afterModIdString))
+                        .Select(i => TagChar + mod.Id + ':' + i.Id)
                         .ToArray();
                 }
                 else
                     return mod.Items
-                        .Where(i => i.Contains(afterModIdString))
-                        .Select(i => mod.Id + ":" + i)
+                        .Where(i => i.Id.Contains(afterModIdString))
+                        .Select(i => mod.Id + ":" + i.Id)
                         .ToArray();
             }
         }

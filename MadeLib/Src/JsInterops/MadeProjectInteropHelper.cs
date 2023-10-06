@@ -15,7 +15,7 @@ namespace MadeLib.Src.JsInterops
             switch(collectionType)
             {
                 case "items":
-                    return ProjectManager.CurrentProject.EditItem(oldValue, newValue);
+                    return ProjectManager.CurrentProject.EditCollectionItem(oldValue, newValue);
                 default: return "An error has occurred";
             }
         }
