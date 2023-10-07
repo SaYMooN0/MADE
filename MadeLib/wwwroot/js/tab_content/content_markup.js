@@ -47,7 +47,7 @@ function getFurnaceRecipeForm(formArguments, actionId, path) {
     return contentToReturn;
 }
 function getCraftingTableRecipeForm(formArguments, actionId, path) {
-    
+
     const isNew = formArguments === null || formArguments === undefined;
     const outputCountValue = formArguments && formArguments.outputCount ? formArguments.outputCount : '1';
     const outputValue = formArguments && formArguments.output ? formArguments.output : '';
@@ -122,6 +122,23 @@ function getCraftingTableRecipeForm(formArguments, actionId, path) {
                 <p class="input-line"><input class="default-submit" type="submit" value="${submitButtonText}"></p>
             </form>
     `;
+    return contentToReturn;
+}
+function getItemPage(itemId) {
+    let contentToReturn = `
+            <div class="item-page-container">
+                <div class="item-main-info">
+                    <img class="item-image"/>
+        
+                </div>
+                <div class="item-secondary-info">
+
+                </div>
+                <div class="item-delete-button" onclick='deleteItemClick(${itemId})'>
+                    Delete
+                </div>
+            </div>
+`;
     return contentToReturn;
 }
 function changeTabToExistingAction(e, formArgumentsString, type, path, actionId) {

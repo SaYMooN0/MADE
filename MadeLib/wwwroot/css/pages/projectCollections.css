@@ -105,14 +105,51 @@
 }
 
 .collection-item {
-    width: 99%;
-    display: grid;
-    grid-template-columns: 1fr 1fr calc(16px + 0.7vh + 2.3vw) calc(16px + 0.7vh + 2.3vw);
-    height: calc(37px + 2vh + 1vw);
+    width: 94%;
+    min-height: 52px;
+    height: calc(25px + 5.5vh + 0.9vw);
+    background-color: var(--back);
+    margin-left: 2%;
+    padding-left: 2%;
+    padding-right: 2%;
+    border-radius: calc(0.14vw + 0.12vh + 3px);
     align-items: center;
-    align-content: center;
+    display: grid;
+    grid-template-columns: 5fr 4fr calc(8vw + 10px);
+    cursor: pointer;
+
 }
 
+    .collection-item:hover {
+        background-color: var(--back-2);
+        color: var(--front-3);
+    }
+        .collection-item:hover .arrow-icon {
+            opacity: 1;
+            transform: translateX(calc(2vw + 5px + 0.5vh)) scale(1.1);
+            fill: var(--front-3);
+        }
+
+        .collection-item:hover .collection-item-label {
+            font-size: calc(0.55vh + 0.65vw + 8px);
+            color: var(--front-3);
+        }
+.collection-item-label {
+    cursor: inherit;
+    font-weight: 400;
+    color: var(--front);
+    font-family: 'Figtree';
+    font-size: calc(0.5vh + 0.6vw + 8px);
+    transition: 0.25s;
+}
+.arrow-icon {
+    justify-self: left;
+    height: calc(8px + 46%);
+    fill: var(--front);
+    opacity: 0;
+    transform: translateX(0) scale(1);
+    transition: 0.25s;
+}
 .collection-item-button {
     height: calc(10px + 41%);
     padding: 5%;
@@ -123,38 +160,11 @@
     align-items: center;
     justify-content: center;
 }
-.collection-item-edit-button {
-    height: calc(10px + 31%);
-    padding: 12%;
-}
-.collection-item-edit-button polygon {
-    stroke: var(--front);
-}
 
-.collection-item-button {
-    stroke: var(--front);
-}
-
-    .collection-item-button path {
-        stroke: var(--front);
-    }
-
-    .collection-item-button:hover {
-        background-color: var(--back-3);
-        fill: var(--front-2);
-    }
-
-        .collection-item-button:hover path {
-            stroke: var(--front-2);
-        }
-
-        .collection-item-button:hover polygon {
-            stroke: var(--front-2);
-        }
 .collection-item-input {
     height: calc(7px + 40%);
     width: 95%;
-    margin-left:2%;
+    margin-left: 2%;
     background-color: var(--back-2);
     border: 1px solid transparent;
     border-radius: calc(3px + 0.05vw + 0.1vh);
@@ -162,8 +172,9 @@
     font-size: calc(0.88vh + 0.6vw + 7px);
     font-weight: 300;
     color: var(--front);
-    outline:none;
+    outline: none;
 }
-.collection-item-input:focus {
-    background-color: var(--back-3);
-}
+
+    .collection-item-input:focus {
+        background-color: var(--back-3);
+    }

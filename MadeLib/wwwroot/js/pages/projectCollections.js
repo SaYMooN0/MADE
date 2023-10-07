@@ -36,7 +36,17 @@ function collectionAddNewPressesd() {
     document.querySelector('.add-new-message').textContent = inputValue;
 }
 function collectionItemClicked(e) {
-    //alert(JSON.stringify(e));
+    let targetElement = e.target;
+    while (targetElement && !targetElement.classList.contains('collection-item')) {
+        targetElement = targetElement.parentElement;
+    }
+
+    if (!targetElement) return;
+    const labelText = targetElement.querySelector('.collection-item-label').textContent;
+
+    alert(labelText);
+    
+    //addTab(getItemPage());
 }
 
 
