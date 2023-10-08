@@ -124,15 +124,16 @@ function getCraftingTableRecipeForm(formArguments, actionId, path) {
     `;
     return contentToReturn;
 }
-function getItemPage(itemId) {
+async function getItemPage(itemId) {
+    let args = await DotNet.invokeMethodAsync('MadeLib', 'GetItemInfo', itemId);
+    alert(JSON.stringify(args, null,2));
     let contentToReturn = `
             <div class="item-page-container">
                 <div class="item-main-info">
                     <img class="item-image"/>
-        
                 </div>
                 <div class="item-secondary-info">
-
+                    
                 </div>
                 <div class="item-delete-button" onclick='deleteItemClick(${itemId})'>
                     Delete

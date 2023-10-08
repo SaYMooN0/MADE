@@ -3,33 +3,36 @@ using Newtonsoft.Json;
 
 namespace MadeLib.Src.MinecraftRelatedClasses
 {
-    public class Item
+    public class Block
     {
         public string Id { get; set; }
         public string InGameName { get; set; } = "";
         public int MaxStackSize { get; set; } = 64;
-        public int? BurnTime { get; set; } =null;
+        public int? BurnTime { get; set; } = null;
         public bool FireResistant { get; set; } = false;
-        public Item(string id)
+        public float Hardness { get; set; } = 1;
+        public float Resistance { get; set; } = 1;
+        public Block(string id)
         {
             Id = id;
             InGameName = "";
         }
-        public Item(string id, string inGameName)
+        public Block(string id, string inGameName)
         {
             Id = id;
             InGameName = inGameName;
         }
         [JsonConstructor]
-        public Item(string id, string inGameName, int maxStackSize, int? burnTime, bool fireResistant)
+        public Block(string id, string inGameName, int maxStackSize, int? burnTime, bool fireResistant, float hardness, float resistance)
         {
-            Id= id;
+            Id = id;
             InGameName = inGameName;
             MaxStackSize = maxStackSize;
-            this.BurnTime = burnTime;
-            this.FireResistant = fireResistant;
+            BurnTime = burnTime;
+            FireResistant = fireResistant;
+            Hardness = hardness;
+            Resistance = resistance;
         }
 
-        
     }
 }

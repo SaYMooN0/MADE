@@ -1,6 +1,8 @@
 ﻿// Ignore Spelling: Interops Interop
 
+using MadeLib.Src.MinecraftRelatedClasses;
 using Microsoft.JSInterop;
+using Newtonsoft.Json;
 
 namespace MadeLib.Src.JsInterops
 {
@@ -18,6 +20,10 @@ namespace MadeLib.Src.JsInterops
                     return ProjectManager.CurrentProject.EditCollectionItem(oldValue, newValue);
                 default: return "An error has occurred";
             }
+        }
+        [JSInvokable]
+        static public Item GetItemInfo(string itemId) {
+            return ProjectManager.CurrentProject.GetItemById(itemId);
         }
 
     }

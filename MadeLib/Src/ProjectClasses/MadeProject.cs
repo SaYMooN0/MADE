@@ -58,6 +58,7 @@ namespace MadeLib.Src.ProjectClasses
                     "minecraft",
                     "Minecraft",
                     new List<Item> { new("stone","Stone"), new("granite","Granite"), new("dirt","Dirt"), new("andesite","Andesite"), new("sand","Sand") },
+                    new List<Block>(),
                     new List<Tag>(),
                     new List<ProcessingType>
                     {
@@ -67,7 +68,7 @@ namespace MadeLib.Src.ProjectClasses
             };
 
             if (loader == Loader.Forge)
-                Mods.Add(new Mod("forge", "Forge", new List<Item>(), new List<Tag> { new("ores", "Forge ores"), new("ores/copper", "Forge copper ores") }, new List<ProcessingType>()));
+                Mods.Add(new Mod("forge", "Forge", new List<Item>(),new List<Block>(), new List<Tag> { new("ores", "Forge ores"), new("ores/copper", "Forge copper ores") }, new List<ProcessingType>()));
 
             if (loader == Loader.Fabric)
                 Mods.Add(new Mod("fabric", "Fabric"));
@@ -125,9 +126,10 @@ namespace MadeLib.Src.ProjectClasses
             return false;
 
         }
-        public IEnumerable<(string Id, string InGameName)> GetAllItems(){return Mods.SelectMany(mod => mod.Items.Select(item => ($"{mod.Id}:{item.Id}", item.InGameName))); }
+        public IEnumerable<(string Id, string InGameName)> GetAllItems() { return Mods.SelectMany(mod => mod.Items.Select(item => ($"{mod.Id}:{item.Id}", item.InGameName))); }
+        public IEnumerable<(string Id, string InGameName)> GetAllBlocks() { return Mods.SelectMany(mod => mod.Blocks.Select(block => ($"{mod.Id}:{block.Id}", block.InGameName))); }
 
-        public IEnumerable<(string Id, string InGameName)> GetAllTags() {return Mods.SelectMany(mod => mod.Tags.Select(tag => ($"#{mod.Id}:{tag.Id}", tag.InGameName)));}
+        public IEnumerable<(string Id, string InGameName)> GetAllTags() { return Mods.SelectMany(mod => mod.Tags.Select(tag => ($"#{mod.Id}:{tag.Id}", tag.InGameName))); }
 
         public IEnumerable<(string Id, string InGameName)> GetAllProcessingTypes()
         {
@@ -151,7 +153,7 @@ namespace MadeLib.Src.ProjectClasses
             }
             else
             {
-                if (mod.Items.Any(item=>item.Id==inGameName))
+                if (mod.Items.Any(item => item.Id == inGameName))
                     return $"Mod with id {mod.Id} already contains this item";
                 mod.Items.Add(new(itemIdString, inGameName));
             }
@@ -171,23 +173,32 @@ namespace MadeLib.Src.ProjectClasses
         }
         public string DeleteItemFromCollection(string itemToDelete)
         {
+            Item item = GetItemById(itemToDelete);
+            if (item == null)
+                return $"No item with id {itemToDelete} found";
+
             string modString = itemToDelete.Split(":")[0];
-            itemToDelete = itemToDelete.Split(":")[1];
             Mod mod = Mods.FirstOrDefault(mod => mod.Id == modString);
+
             if (mod != null)
             {
-                Item item = mod.Items.FirstOrDefault(i => i.Id == itemToDelete);
-                if (item != null)
-                {
-                    mod.Items.Remove(item);
-                    SaveToFile();
-                    return "";
-                }
-                else
-                    return $"No item with id {itemToDelete} found in the mod {modString}";
+                mod.Items.Remove(item);
+                SaveToFile();
+                return "";
             }
-            else
-                return $"No mod with id {modString} found";
+
+            return $"No mod with id {modString} found";
+        }
+        public Item GetItemById(string itemIdString)
+        {
+            string modString = itemIdString.Split(":")[0];
+            string itemId = itemIdString.Split(":")[1];
+            Mod mod = Mods.FirstOrDefault(m => m.Id == modString);
+            if (mod != null)
+                return mod.Items.FirstOrDefault(i => i.Id == itemId);
+
+
+            return null;
         }
 
 
