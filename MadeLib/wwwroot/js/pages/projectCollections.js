@@ -44,13 +44,17 @@ async function collectionItemClicked(e) {
 
     if (!targetElement) return;
     const itemId = targetElement.querySelector('.collection-item-label').textContent;
-    let tabContent = getItemPage(itemId);
+    let tabContent = await getItemPage(itemId);
     if (tabContent == null) {
-        alert("Error");//ToDo: show error dialog
+        alert("Error"); //ToDo: show error dialog
         return;
     }
-    await addTab(tabContent,itemId);
+    addTab(tabContent, itemId.replace(':', '-') );
+
 }
 
-
+async function collectionBlockClicked(e) { alert("block   clicked")}
+async function collectionTagClicked(e) { alert("Tag   clicked")}
+async function collectionProcessingTypeClicked(e) { alert("ProcessingTyp   clicked")}
+async function collectionModClicked(e) { alert("Mod   clicked")}
 

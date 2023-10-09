@@ -9,6 +9,7 @@ namespace MadeLib.Src
 		public const string clientScripts = "client_scripts";
 		public const string assets = "assets";
 		public const string vanillaRecipesFile = "vanilla";
+		public const string textures = "textures";
 		
 		public static void WriteVanillaRecipe(string contentToWrite, string projectFolderPath,string actionId)
 		{
@@ -45,6 +46,7 @@ namespace MadeLib.Src
             File.Move(tempFilePath, filePath);
         }
         public static string GetFullVanillaPath() => Path.Combine(kubejs, serverScripts, $"{vanillaRecipesFile}.js");
+        public static string GetFullTextureItemPath() => Path.Combine(kubejs, assets, kubejs, textures,"item");
 		static private string WrapInOnEventRecipes(string input) => "onEvent('recipes', event => {"+input+ "}); ";
         private static string GenerateMadeComment(string actionId) => "//Made:" + actionId+';';
     }

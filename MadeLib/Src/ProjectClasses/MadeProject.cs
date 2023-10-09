@@ -1,14 +1,12 @@
 ﻿using MadeLib.Src.MinecraftRelatedClasses;
-using Microsoft.AspNetCore.Components.Web;
 using Newtonsoft.Json;
-using System;
-using System.Linq;
 
 namespace MadeLib.Src.ProjectClasses
 {
     public class MadeProject
     {
         public const string FileExtension = ".madeProject";
+        public const string kubejsModId = "kubejs";
         public string Name { get; private set; }
         public string FullPath { get; private set; }
         public string PathToFolder { get; private set; }
@@ -130,6 +128,7 @@ namespace MadeLib.Src.ProjectClasses
         public IEnumerable<(string Id, string InGameName)> GetAllBlocks() { return Mods.SelectMany(mod => mod.Blocks.Select(block => ($"{mod.Id}:{block.Id}", block.InGameName))); }
 
         public IEnumerable<(string Id, string InGameName)> GetAllTags() { return Mods.SelectMany(mod => mod.Tags.Select(tag => ($"#{mod.Id}:{tag.Id}", tag.InGameName))); }
+        public IEnumerable<(string Id, string InGameName)> GetAllMods() { return Mods.Select(mod => (mod.Id, mod.InGameName)); }
 
         public IEnumerable<(string Id, string InGameName)> GetAllProcessingTypes()
         {
@@ -196,9 +195,13 @@ namespace MadeLib.Src.ProjectClasses
             Mod mod = Mods.FirstOrDefault(m => m.Id == modString);
             if (mod != null)
                 return mod.Items.FirstOrDefault(i => i.Id == itemId);
-
-
             return null;
+        }
+        public string GetItemImgById(string id)
+        {
+            Item i = GetItemById(id);
+            if (i == null || id.Split(':')[0]!=kubejsModId) return string.Empty;
+            return PathToFolder+JsFilesController.GetFullTextureItemPath()+i.GetImagePath();
         }
 
 

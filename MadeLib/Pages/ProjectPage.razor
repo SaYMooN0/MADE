@@ -154,7 +154,7 @@
         string blocksContent = FormCollectionContent(ProjectManager.CurrentProject.GetAllBlocks(), CollectionItemType.Item);
         string tagsContent = FormCollectionContent(ProjectManager.CurrentProject.GetAllTags(), CollectionItemType.Tag);
         string typesContent = FormCollectionContent(ProjectManager.CurrentProject.GetAllProcessingTypes(), CollectionItemType.Type);
-        //string modsContent = FormCollectionContent(ProjectManager.CurrentProject.Mods.Select(mod => mod.Id), CollectionItemType.Mod);
+        string modsContent = FormCollectionContent(ProjectManager.CurrentProject.GetAllMods(), CollectionItemType.Type);
         await JSRuntime.InvokeVoidAsync("eval",
         "let recipeCollectionsPageScript = document.createElement('script');recipeCollectionsPageScript.src = '/_content/MadeLib/js/pages/projectCollections.js'; document.head.appendChild(recipeCollectionsPageScript);");
         string content = "<link href=\"_content/MadeLib/css/pages/projectCollections.css\" rel=\"stylesheet\" />" +
@@ -180,7 +180,7 @@
                                                 $"<div class='tab-content' data-content='items'>{blocksContent}</div>" +
                                                 $"<div class='tab-content' data-content='tags'>{tagsContent}</div>" +
                                                 $"<div class='tab-content' data-content='process-types'>{typesContent}</div>" +
-                                                $"<div class='tab-content' data-content='mods'>modsContent</div>" +
+                                                $"<div class='tab-content' data-content='mods'>{modsContent}</div>" +
                                           @"</div>
                                             <div class='collections-page-bottom-container'>
                                                 <div class='add-new-container'>
@@ -241,11 +241,30 @@
     }
     private string FormCollectionContent(IEnumerable<(string id, string inGameName)> collection, CollectionItemType type)
     {
-        string contentToReturn = "";
+        string onclickEvent = "";
+        switch (type)
+        {
+            case CollectionItemType.Item:
+                onclickEvent = "collectionItemClicked(event)";
+                break;
+            case CollectionItemType.Block:
+                onclickEvent = "collectionBlockClicked(event)";
+                break;
+            case CollectionItemType.Tag:
+                onclickEvent = "collectionTagClicked(event)";
+                break;
+            case CollectionItemType.Type:
+                onclickEvent = "collectionProcessingTypeClicked(event)";
+                break;
+            case CollectionItemType.Mod:
+                onclickEvent = "collectionModClicked(event)";
+                break;
+        }
+        string contentToReturn = "<link href=\"_content/MadeLib/css/pages/itemPage.css\" rel=\"stylesheet\" />";
         foreach (var item in collection)
         {
-            contentToReturn += @"<div class='collection-item' onclick='collectionItemClicked(event)'>
-                                    <label class='collection-item-label'>" + item.id + @"</label>
+            contentToReturn += $"<div class='collection-item' onclick='{onclickEvent}'>" +
+                                  @"<label class='collection-item-label'>" + item.id + @"</label>
                                     <label class='collection-item-label'>" + item.inGameName + @"</label>
                                     <svg class='arrow-icon' viewBox='-4.5 0 19 19' ><path d='M1.6 17.262a1.03 1.03 0 0 1-.728-1.757l6.073-6.073L.872 3.36a1.03 1.03 0 0 1 1.455-1.455l6.8 6.8a1.03 1.03 0 0 1 0 1.456l-6.8 6.8a1.025 1.025 0 0 1-.727.302z'/></svg>
                             </div>";

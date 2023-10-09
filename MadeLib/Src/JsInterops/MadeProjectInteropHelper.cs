@@ -25,6 +25,12 @@ namespace MadeLib.Src.JsInterops
         static public Item GetItemInfo(string itemId) {
             return ProjectManager.CurrentProject.GetItemById(itemId);
         }
+        [JSInvokable]
+        static public string GetItemImg(string itemId)
+        {
+            var a= ProjectManager.CurrentProject.GetItemImgById(itemId);
+            return a;
+        }
 
     }
 }
