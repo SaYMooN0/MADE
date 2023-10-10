@@ -126,18 +126,23 @@ function getCraftingTableRecipeForm(formArguments, actionId, path) {
 }
 async function getItemPage(itemId) {
     let args = await DotNet.invokeMethodAsync('MadeLib', 'GetItemInfo', itemId);
-    let imgSrc = await DotNet.invokeMethodAsync('MadeLib', 'GetItemImg', itemId);
+    let imgSrc = await DotNet.invokeMethodAsync('MadeLib', 'GetItemImgInBase64', itemId);
+    let imgString = "";
+    if (imgSrc === null) {
+        imgString = "Not kubejs item";
+    } else if (imgSrc === "") {
+        imgString = "Failed to get image";
+    } else {
+        imgString = `<img class="item-image" src="data:image/png;base64,${imgSrc}"/>`;
+    }
     let contentToReturn = `
             <div class="item-page-container">
                 <div class="item-main-info">
-                    <img class="item-image" src="${imgSrc}"/>
+                   ${imgString}
                 </div>
                 <div class="item-secondary-info">
                 <label>
                 ${JSON.stringify(args, null, 2)}
-                img:
-                ${imgSrc}
-
                 </label>
                 </div>
                 <div class="item-delete-button" onclick='deleteItemClick(${itemId})'>

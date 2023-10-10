@@ -66,7 +66,7 @@ namespace MadeLib.Src.ProjectClasses
             };
 
             if (loader == Loader.Forge)
-                Mods.Add(new Mod("forge", "Forge", new List<Item>(),new List<Block>(), new List<Tag> { new("ores", "Forge ores"), new("ores/copper", "Forge copper ores") }, new List<ProcessingType>()));
+                Mods.Add(new Mod("forge", "Forge", new List<Item>(), new List<Block>(), new List<Tag> { new("ores", "Forge ores"), new("ores/copper", "Forge copper ores") }, new List<ProcessingType>()));
 
             if (loader == Loader.Fabric)
                 Mods.Add(new Mod("fabric", "Fabric"));
@@ -200,8 +200,8 @@ namespace MadeLib.Src.ProjectClasses
         public string GetItemImgById(string id)
         {
             Item i = GetItemById(id);
-            if (i == null || id.Split(':')[0]!=kubejsModId) return string.Empty;
-            return PathToFolder+JsFilesController.GetFullTextureItemPath()+i.GetImagePath();
+            if (i == null || id.Split(':')[0] != kubejsModId) return string.Empty;
+            return Path.Combine(PathToFolder, JsFilesController.GetFullTextureItemPath(), i.GetImagePath());
         }
 
 

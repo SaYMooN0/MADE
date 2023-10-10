@@ -2,7 +2,8 @@
 
 using MadeLib.Src.MinecraftRelatedClasses;
 using Microsoft.JSInterop;
-using Newtonsoft.Json;
+using System.IO;
+using System.Drawing;
 
 namespace MadeLib.Src.JsInterops
 {
@@ -13,8 +14,9 @@ namespace MadeLib.Src.JsInterops
         [JSInvokable]
         static public bool GetShowWarningWhenDeletingAction() { return ProjectManager.CurrentProject.Settings.ShowWarningWhenDeletingAction; }
         [JSInvokable]
-        static public string TryChangeCollectionItem (string collectionType, string oldValue, string newValue) {
-            switch(collectionType)
+        static public string TryChangeCollectionItem(string collectionType, string oldValue, string newValue)
+        {
+            switch (collectionType)
             {
                 case "items":
                     return ProjectManager.CurrentProject.EditCollectionItem(oldValue, newValue);
@@ -22,14 +24,26 @@ namespace MadeLib.Src.JsInterops
             }
         }
         [JSInvokable]
-        static public Item GetItemInfo(string itemId) {
+        static public Item GetItemInfo(string itemId)
+        {
             return ProjectManager.CurrentProject.GetItemById(itemId);
         }
         [JSInvokable]
-        static public string GetItemImg(string itemId)
+        static public string GetItemImgInBase64(string itemId)
         {
-            var a= ProjectManager.CurrentProject.GetItemImgById(itemId);
-            return a;
+            string imagePath = ProjectManager.CurrentProject.GetItemImgById(itemId);
+            if (string.IsNullOrEmpty(imagePath)) return null;
+            try
+            {
+                using var image = Image.FromFile(imagePath);
+                using var ms = new MemoryStream();
+                image.Save(ms, System.Drawing.Imaging.ImageFormat.Png);
+                return Convert.ToBase64String(ms.ToArray());
+            }
+            catch
+            {
+                return "";
+            }
         }
 
     }
