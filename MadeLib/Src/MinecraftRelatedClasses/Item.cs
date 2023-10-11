@@ -31,8 +31,7 @@ namespace MadeLib.Src.MinecraftRelatedClasses
         }
         const string pngExtension = ".png";
         public string GetImagePath() => Id + pngExtension;
-
-
-
     }
 }
+
+

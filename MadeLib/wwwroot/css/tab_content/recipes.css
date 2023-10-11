@@ -80,7 +80,7 @@
 .crafting-table-letters-zone {
     margin-top: calc(52px + 3vh);
     width: 100%;
-    height: calc(78vh - 40px);
+    height: calc(90vh - 60px);
     display: grid;
     grid-template-rows: auto 1fr calc(14px + 4vh + 0.8vw);
     grid-gap:calc(0.8vh + 2px);

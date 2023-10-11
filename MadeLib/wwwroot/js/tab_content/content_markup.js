@@ -129,21 +129,40 @@ async function getItemPage(itemId) {
     let imgSrc = await DotNet.invokeMethodAsync('MadeLib', 'GetItemImgInBase64', itemId);
     let imgString = "";
     if (imgSrc === null) {
-        imgString = "Not kubejs item";
+        imgString = "<label class='image-loading-error'>Not kubejs item</label>";
     } else if (imgSrc === "") {
-        imgString = "Failed to get image";
+        imgString = "<label class='image-loading-error'>Failed to get image</label>";
     } else {
         imgString = `<img class="item-image" src="data:image/png;base64,${imgSrc}"/>`;
     }
     let contentToReturn = `
             <div class="item-page-container">
-                <div class="item-main-info">
+                <div class="item-img-container">
                    ${imgString}
                 </div>
-                <div class="item-secondary-info">
-                <label>
-                ${JSON.stringify(args, null, 2)}
-                </label>
+                <div class="item-info">
+                    <div class="item-info">
+                        <div class="item-info-content">
+                            <label for="itemId">ID:</label>
+                            <input id="itemId" type="text" value="${args.id}" />
+                        </div>
+                        <div class="item-info-content">
+                            <label for="inGameName">In Game Name:</label>
+                            <input id="inGameName" type="text" value="${args.inGameName}" />
+                        </div>
+                        <div class="item-info-content">
+                            <label for="maxStackSize">Max Stack Size:</label>
+                            <input id="maxStackSize" type="number" value="${args.maxStackSize}" />
+                        </div>
+                        <div class="item-info-content">
+                            <label for="burnTime">Burn Time:</label>
+                            <input id="burnTime" type="number" value="${args.burnTime}" />
+                        </div>
+                        <div class="item-info-content">
+                            <label for="fireResistant">Fire Resistant:</label>
+                            <input id="fireResistant" type="checkbox" ${args.fireResistant ? 'checked' : ''} />
+                        </div>
+                    </div>
                 </div>
                 <div class="item-delete-button" onclick='deleteItemClick(${itemId})'>
                     Delete
